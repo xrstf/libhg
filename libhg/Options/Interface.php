@@ -9,6 +9,7 @@
  */
 
 interface libhg_Options_Interface {
+	public function __toString();
 	public function toArray();
 	public function merge(libhg_Options_Interface $options);
 	public function reset();

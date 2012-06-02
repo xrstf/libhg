@@ -8,7 +8,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-class libhg_Command_Status_Cmd implements libhg_Command_Interface {
+class libhg_Command_Status_Cmd extends libhg_Command_Base {
 	protected $all      = false;
 	protected $modified = true;
 	protected $added    = true;
@@ -72,12 +72,11 @@ class libhg_Command_Status_Cmd implements libhg_Command_Interface {
 	public function getIncludes() { return $this->includes; }
 	public function getExcludes() { return $this->excludes; }
 
-	public function __toString() {
+	public function getName() {
 		return 'status';
 	}
 
-	public function run(libhg_Client_Interface $client) {
-		$stream  = $client->getReadableStream();
+	public function getOptions() {
 		$options = new libhg_Options_Container();
 
 		if ($this->all)      $options->setFlag('-A');
@@ -108,21 +107,18 @@ class libhg_Command_Status_Cmd implements libhg_Command_Interface {
 			$options->setMultiple('-X', $this->excludes);
 		}
 
+		return $options;
+	}
+
+	public function run(libhg_Client_Interface $client) {
+		$options = $this->getOptions();
+
 		$client->runCommand('status', $options);
 
-		$output = array();
-		$code   = null;
+		$stream = $client->getReadableStream();
+		$output = $stream->readString(libhg_Stream::CHANNEL_OUTPUT);
+		$code   = $stream->readReturnValue();
 
-		while ($stream->hasOutput()) {
-			$size     = $stream->readInt();
-			$output[] = $stream->read($size);
-		}
-
-		if ($stream->getChannel() === libhg_Stream::CHANNEL_RESULT) {
-			$size = $stream->readInt();
-			$code = $stream->readInt();
-		}
-
-		return new libhg_Command_Summary_Result($output, $code);
+		return libhg_Command_Status_Result::parseOutput($output, $this);
 	}
 }

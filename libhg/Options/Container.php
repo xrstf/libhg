@@ -44,6 +44,11 @@ class libhg_Options_Container implements libhg_Options_Interface {
 		return $result;
 	}
 
+	public function __toString() {
+		$options = $this->toArray();
+		return implode(' ', $options);
+	}
+
 	public function reset() {
 		$this->args    = array();
 		$this->options = array();

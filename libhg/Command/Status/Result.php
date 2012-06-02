@@ -9,11 +9,39 @@
  */
 
 class libhg_Command_Status_Result {
-	public $output;
-	public $retval;
+	public $files;
 
-	public function __construct($output, $retval) {
-		$this->output = trim(implode('', $output));
-		$this->retval = $retval;
+	const STATUS_MODIFIED = 'M';
+	const STATUS_ADDED    = 'A';
+	const STATUS_REMOVED  = 'R';
+	const STATUS_DELETED  = '!';
+	const STATUS_CLEAN    = 'C';
+	const STATUS_UNKNOWN  = '?';
+	const STATUS_IGNORED  = 'I';
+
+	public function __construct(array $files) {
+		$this->files = $files;
+	}
+
+	public static function parseOutput($output, libhg_Command_Status_Cmd $cmd) {
+		$files  = array_filter(explode("\n", $output));
+		$result = array();
+
+		if (!$cmd->getNoStatus()) {
+			foreach ($files as $line) {
+				$line  = str_replace('\\', '/', $line);
+				$parts = explode(' ', $line, 2);
+
+				$result[$parts[1]] = $parts[0];
+			}
+		}
+		else {
+			foreach ($files as $file) {
+				$file = str_replace('\\', '/', $file);
+				$result[$file] = self::STATUS_UNKNOWN;
+			}
+		}
+
+		return new self($result);
 	}
 }

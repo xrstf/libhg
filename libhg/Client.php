@@ -110,7 +110,8 @@ class libhg_Client implements libhg_Client_Interface {
 	}
 
 	public function runCommand($commandName, libhg_Options_Interface $options) {
-		$options = $this->options->merge($options)->toArray();
+		$options = $this->options->merge($options);
+		$options = $options->toArray();
 
 		array_unshift($options, $commandName);
 

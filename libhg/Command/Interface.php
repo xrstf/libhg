@@ -10,5 +10,6 @@
 
 interface libhg_Command_Interface {
 	public function __toString();
+	public function getOptions();
 	public function run(libhg_Client_Interface $client);
 }

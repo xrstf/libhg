@@ -17,4 +17,8 @@ interface libhg_Stream_Readable {
 	public function expectChannels(array $channels);
 
 	public function getChannel();
+	public function hasOutput();
+
+	public function readString($channel);
+	public function readReturnValue();
 }

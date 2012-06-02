@@ -13,6 +13,10 @@ class libhg_Command_Hello_Cmd implements libhg_Command_Interface {
 		return '(hello)';
 	}
 
+	public function getOptions() {
+		return new libhg_Options_Container();
+	}
+
 	public function run(libhg_Client_Interface $client) {
 		$input = $client->getReadableStream();
 		$input->expectChannels(array(libhg_Stream::CHANNEL_OUTPUT));

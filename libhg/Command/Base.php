@@ -8,12 +8,11 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-class libhg_Command_Summary_Result {
-	public $output;
-	public $retval;
+abstract class libhg_Command_Base implements libhg_Command_Interface {
+	public function __toString() {
+		$name    = $this->getName();
+		$options = (string) $this->getOptions();
 
-	public function __construct($output, $retval) {
-		$this->output = trim($output);
-		$this->retval = $retval;
+		return rtrim($name.' '.$options);
 	}
 }

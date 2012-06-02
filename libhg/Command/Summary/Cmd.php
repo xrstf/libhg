@@ -8,7 +8,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-class libhg_Command_Summary_Cmd implements libhg_Command_Interface {
+class libhg_Command_Summary_Cmd extends libhg_Command_Base {
 	protected $remote;
 
 	public function __construct($remote = false) {
@@ -23,32 +23,28 @@ class libhg_Command_Summary_Cmd implements libhg_Command_Interface {
 		return $this->remote;
 	}
 
-	public function __toString() {
-		return 'summary'.($this->remote ? ' --remote' : '');
+	public function getName() {
+		return 'summary';
 	}
 
-	public function run(libhg_Client_Interface $client) {
-		$stream  = $client->getReadableStream();
+	public function getOptions() {
 		$options = new libhg_Options_Container();
 
 		if ($this->remote) {
 			$options->setFlag('--remote');
 		}
 
+		return $options;
+	}
+
+	public function run(libhg_Client_Interface $client) {
+		$options = $this->getOptions();
+
 		$client->runCommand('summary', $options);
 
-		$output = array();
-		$code   = null;
-
-		while ($stream->hasOutput()) {
-			$size     = $stream->readInt();
-			$output[] = $stream->read($size);
-		}
-
-		if ($stream->getChannel() === libhg_Stream::CHANNEL_RESULT) {
-			$size = $stream->readInt();
-			$code = $stream->readInt();
-		}
+		$stream = $client->getReadableStream();
+		$output = $stream->readString(libhg_Stream::CHANNEL_OUTPUT);
+		$code   = $stream->readReturnValue();
 
 		return new libhg_Command_Summary_Result($output, $code);
 	}

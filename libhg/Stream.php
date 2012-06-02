@@ -95,6 +95,30 @@ class libhg_Stream implements libhg_Stream_Readable, libhg_Stream_Writable {
 		return $this->readChannel() === self::CHANNEL_OUTPUT;
 	}
 
+	public function readString($channel) {
+		$data = array();
+
+		while ($this->readChannel() === $channel) {
+			$size   = $this->readInt();
+			$data[] = $this->read($size);
+		}
+
+		return implode('', $data);
+	}
+
+	public function readReturnValue($readChannelIdentifier = false) {
+		$channel = $readChannelIdentifier ? $this->readChannel() : $this->getChannel();
+
+		if ($channel !== self::CHANNEL_RESULT) {
+			throw new libhg_Exception('Expected result channel, but found "'.$channel.'".');
+		}
+
+		// ignored size (only required by protocol design, return code is always a 4byte integer)
+		$size = $this->readInt();
+
+		return $this->readInt();
+	}
+
 	public function expectOutput() {
 		return $this->expectChannels(array(self::CHANNEL_OUTPUT));
 	}
