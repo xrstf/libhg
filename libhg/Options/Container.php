@@ -15,9 +15,19 @@ class libhg_Options_Container implements libhg_Options_Interface {
 
 	public function toArray() {
 		$result = array();
+		$chars  = '';
 
 		foreach ($this->flags as $flag) {
-			$result[] = $flag;
+			if (strlen($flag) === 2 && $flag[0] === '-') {
+				$chars .= $flag[1];
+			}
+			else {
+				$result[] = $flag;
+			}
+		}
+
+		if (!empty($chars)) {
+			$result[] = '-'.$chars;
 		}
 
 		foreach ($this->options as $name => $values) {
