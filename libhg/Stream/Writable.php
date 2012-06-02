@@ -8,6 +8,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-abstract class libhg {
-
+interface libhg_Stream_Writable {
+	public function write($bytes);
+	public function writeInt($int);
 }
