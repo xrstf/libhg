@@ -1,0 +1,19 @@
+{
+	"name": "xrstf/libhg",
+	"description": "Wrapper around the Mercurial command server, providing a convenient interface to most commands.",
+	"keywords": ["php", "mercurial", "server"],
+	"authors": [{
+		"name": "Christoph Mewes",
+		"homepage": "http://www.xrstf.de/"
+	}],
+	"homepage": "https://bitbucket.org/xrstf/libhg",
+	"license": "MIT",
+	"require": {
+		"php": ">=5.2.1"
+	},
+	"autoload": {
+		"psr-0": {
+			"libhg": "."
+		}
+	}
+}
