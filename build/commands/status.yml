@@ -1,0 +1,21 @@
+name: status
+multi-args:
+   files: { alias: file }
+multi-opts:
+   revs:    { cli: '--rev', alias: rev  }
+   include: { cli: '-I',    alias: incl }
+   exclude: { cli: '-X',    alias: excl }
+single-opts:
+   change: ~
+flags:
+   all:      { cli: '-A' }
+   modified: { cli: '-m', default: true }
+   added:    { cli: '-a', default: true }
+   removed:  { cli: '-r', default: true }
+   deleted:  { cli: '-d', default: true }
+   clean:    { cli: '-c' }
+   unknown:  { cli: '-u', default: true }
+   ignored:  { cli: '-i' }
+   noStatus: { cli: '-n' }
+   copies:   { cli: '-C' }
+   subrepos: { cli: '-S' }

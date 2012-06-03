@@ -1,0 +1,16 @@
+name: commit
+multi-args:
+   files: { alias: file }
+single-opts:
+   message: { cli: '-m' }
+   logfile: { cli: '-l' }
+   date:    { cli: '-d' }
+   user:    { cli: '-u' }
+multi-opts:
+   include: { cli: '-I', alias: incl }
+   exclude: { cli: '-X', alias: excl }
+flags:
+   addremove:   { cli: '-A' }
+   closeBranch: ~
+   amend:       ~
+   subrepos:    { cli: '-S' }

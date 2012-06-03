@@ -1,0 +1,14 @@
+name: backout
+single-args:
+   rev: { optional: false }
+multi-opts:
+   include: { cli: '-I', alias: incl }
+   exclude: { cli: '-X', alias: excl }
+single-opts:
+   tool:    { cli: '-t' }
+   message: { cli: '-m' }
+   logfile: { cli: '-l' }
+   date:    { cli: '-d' }
+   user:    { cli: '-u' }
+flags:
+   merge: ~

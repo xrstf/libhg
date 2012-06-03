@@ -1,0 +1,4 @@
+name: branches
+flags:
+   active: { cli: '-a' }
+   closed: { cli: '-c' }

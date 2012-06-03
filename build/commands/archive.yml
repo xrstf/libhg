@@ -1,0 +1,10 @@
+name: archive
+single-args:
+   dest: { optional: false }
+single-opts:
+   prefix: { cli: '-p' }
+   revs:   { cli: '-r' }
+   type:   { cli: '-t' }
+flags:
+   noDecode: ~
+   subrepos: { cli: '-S' }

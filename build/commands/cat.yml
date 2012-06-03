@@ -1,0 +1,11 @@
+name: cat
+multi-args:
+   files: { alias: file, optional: false }
+single-opts:
+   output: { cli: '-o' }
+   rev:    { cli: '-r' }
+multi-opts:
+   include: { cli: '-I', alias: incl }
+   exclude: { cli: '-X', alias: excl }
+flags:
+   decode: ~

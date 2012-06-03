@@ -1,0 +1,17 @@
+name: log
+single-args:
+   file: ~
+multi-opts:
+   keywords: { cli: '-k',    alias: keyword }
+   revs:     { cli: '--rev', alias: rev     }
+   users:    { cli: '-u',    alias: user    }
+   branches: { cli: '-b',    alias: branch  }
+   prunes:   { cli: '-P',    alias: prune   }
+single-opts:
+   date:  { cli: '-d' }
+   limit: { cli: '-l' }
+flags:
+   follow:   { cli: '-f' }
+   copies:   { cli: '-C' }
+   removed:  ~
+   noMerges: { cli: '-M' }

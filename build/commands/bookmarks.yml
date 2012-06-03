@@ -1,0 +1,10 @@
+name: bookmarks
+single-args:
+   name: ~
+single-opts:
+   rev:    { cli: '-r' }
+   rename: { cli: '-m' }
+flags:
+   force:    { cli: '-f' }
+   delete:   { cli: '-d' }
+   inactive: { cli: '-i' }

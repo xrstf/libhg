@@ -1,0 +1,6 @@
+name: branch
+single-args:
+   name: { default: false }
+flags:
+   force: { cli: '-f' }
+   clean: { cli: '-C' }

@@ -1,0 +1,16 @@
+name: bundle
+single-args:
+   file: { optional: false }
+   dest: ~
+multi-opts:
+   revs:     { cli: '-r',    alias: rev    }
+   branches: { cli: '-b',    alias: branch }
+   bases:    { cli: '--base' alias: base   }
+single-opts:
+   type:      { cli: '-t'          }
+   ssh:       { cli: '-e'          }
+   remoteCmd: { cli: '--remotecmd' }
+flags:
+   force:    { cli: '-f' }
+   all:      { cli: '-a' }
+   insecure: ~
