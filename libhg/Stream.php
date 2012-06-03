@@ -12,6 +12,7 @@ class libhg_Stream implements libhg_Stream_Readable, libhg_Stream_Writable {
 	private $fp;
 	private $open;
 	private $channel;
+	private $buffer;
 
 	const STDIN  = 0;
 	const STDOUT = 1;
@@ -32,6 +33,7 @@ class libhg_Stream implements libhg_Stream_Readable, libhg_Stream_Writable {
 		$this->fp      = $stream;
 		$this->open    = true;
 		$this->channel = null;
+		$this->buffer  = '';
 	}
 
 	public function close() {
@@ -40,6 +42,7 @@ class libhg_Stream implements libhg_Stream_Readable, libhg_Stream_Writable {
 
 		$this->open    = false;
 		$this->channel = null;
+		$this->buffer  = '';
 
 		return true;
 	}
@@ -93,6 +96,46 @@ class libhg_Stream implements libhg_Stream_Readable, libhg_Stream_Writable {
 
 	public function hasOutput() {
 		return $this->readChannel() === self::CHANNEL_OUTPUT;
+	}
+
+	public function readUntil($endString) {
+		if ($this->channel !== self::CHANNEL_OUTPUT) {
+			return null;
+		}
+
+		$data   = $this->buffer;
+		$lenEnd = mb_strlen($endString);
+
+		// does the buffer contain enough data to fulfill the request?
+		if (mb_strlen($data) >= $lenEnd) {
+			$pos = mb_strpos($data, $endString);
+
+			// found delimiter
+			if ($pos !== false) {
+				$this->buffer = mb_substr($data, $pos+$lenEnd);
+				return mb_substr($data, 0, $pos+$lenEnd);
+			}
+		}
+
+		$this->buffer = '';
+
+		while ($this->readChannel() === self::CHANNEL_OUTPUT) {
+			$size  = $this->readInt();
+			$chunk = $this->read($size);
+			$data .= $chunk;
+
+			if (mb_strlen($data) >= $lenEnd) {
+				$pos = mb_strpos($data, $endString);
+
+				// found delimiter
+				if ($pos !== false) {
+					$this->buffer = mb_substr($data, $pos+$lenEnd);
+					return mb_substr($data, 0, $pos+$lenEnd);
+				}
+			}
+		}
+
+		return $data;
 	}
 
 	public function readString($channel) {

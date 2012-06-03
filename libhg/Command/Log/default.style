@@ -1,0 +1,6 @@
+changeset = "REV:{rev}\nNODE:{node}\nDATE:{date|rfc822date}\nAUTHOR:{author}\nDESC:{desc|urlescape}\nBRANCH:{branch}\n{parents}{tags}{files_add}{files}{files_del}\n"
+parent = "PARENT:{node}\n"
+tag = "TAG:{tag}\n"
+file = "FILE:{file}\n"
+file_add = "ADD:{file_add}\n"
+file_del = "DEL:{file_del}\n"

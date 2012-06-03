@@ -110,18 +110,66 @@ class libhg_Command_Log_Cmd extends libhg_Command_Base {
 		if ($this->includes) { $options->setMultiple('-I', $this->includes); }
 		if ($this->excludes) { $options->setMultiple('-X', $this->excludes); }
 
+		// make sure we have a output format we can understand
+		$options->setSingle('--style', realpath(dirname(__FILE__).'/default.style'));
+		$options->setFlag('--debug'); // make hg show trivial parents (i.e. non-merge parents)
+
 		return $options;
 	}
 
 	public function run(libhg_Client_Interface $client) {
-		$options = $this->getOptions();
+		$options    = $this->getOptions();
+		$changesets = array();
+		$stream     = $client->getReadableStream();
 
 		$client->runCommand('log', $options);
 
-		$stream = $client->getReadableStream();
-		$output = $stream->readString(libhg_Stream::CHANNEL_OUTPUT);
-		$code   = $stream->readReturnValue();
+		while ($chunk = $stream->readUntil("\n\n")) {
+			$changeset = explode("\n", trim($chunk));
+			$tags      = array();
+			$parents   = array();
+			$modified  = array();
+			$added     = array();
+			$deleted   = array();
 
-		return libhg_Command_Log_Result::parseOutput($output, $this);
+			$rev = $node = $date = $author = $desc = $branch = '';
+
+			foreach ($changeset as $row) {
+				list($key, $value) = explode(':', $row, 2);
+				$key = strtolower($key);
+
+				switch ($key) {
+					case 'desc':
+						$desc = urldecode($value);
+						break;
+
+					case 'rev':
+					case 'node':
+					case 'date':
+					case 'author':
+					case 'branch':
+						$$key = $value;
+						break;
+
+					case 'parent':
+						if (!preg_match('#^0+$#', $value)) {
+							$parents[] = $value;
+						}
+
+						break;
+
+					case 'tag':  $tags[]     = $value; break;
+					case 'file': $modified[] = $value; break;
+					case 'add':  $added[]    = $value; break;
+					case 'del':  $deleted[]  = $value; break;
+				}
+			}
+
+			$changesets[] = new libhg_Changeset($node, $rev, $parents, $date, $author, $desc, $branch, $tags, $modified, $added, $deleted);
+		}
+
+		$code = $stream->readReturnValue();
+
+		return new libhg_Command_Log_Result($changesets, $code);
 	}
 }

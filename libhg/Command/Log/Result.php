@@ -9,14 +9,25 @@
  */
 
 class libhg_Command_Log_Result {
-	public $files;
+	public $changesets;
+	public $code;
 
-	public function __construct(array $files) {
-		$this->files = $files;
+	public function __construct(array $changesets, $code) {
+		$this->changesets = $changesets;
+		$this->code       = $code;
 	}
 
-	public static function parseOutput($output, libhg_Command_Log_Cmd $cmd) {
-		$files = explode("\n", $output);
-		return new self($files);
+	public function getNodes() {
+		return $this->getChangesetProperty('node');
+	}
+
+	public function getChangesetProperty($prop) {
+		$result = array();
+
+		foreach ($this->changesets as $changeset) {
+			$result[] = $changeset->$prop;
+		}
+
+		return $result;
 	}
 }

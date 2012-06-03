@@ -65,6 +65,17 @@ class libhg_Options_Container implements libhg_Options_Interface {
 			$this->setFlag($flag);
 		}
 
+		foreach ($options->getOptions() as $name => $values) {
+			$merged = array_merge((array) $this->getMultiple($name), $values);
+			$this->options[$name] = $merged;
+		}
+
+		$otherArguments = $options->getArguments();
+
+		if (!empty($otherArguments)) {
+			$this->args = $otherArguments;
+		}
+
 		return $this;
 	}
 

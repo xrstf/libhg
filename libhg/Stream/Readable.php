@@ -20,5 +20,6 @@ interface libhg_Stream_Readable {
 	public function hasOutput();
 
 	public function readString($channel);
+	public function readUntil($endString);
 	public function readReturnValue();
 }
