@@ -8,33 +8,18 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-class libhg_Command_Summary_Cmd extends libhg_Command_Base {
-	protected $remote;
+class libhg_Command_Summary_Cmd extends libhg_Command_Generic {
+	protected function getOptionDefinition() {
+		return $this->appendInclExclOptions(array('remote' => array('type' => 'flag')));
+	}
 
 	public function __construct($remote = false) {
-		$this->setRemote($remote);
-	}
-
-	public function setRemote($remote) {
-		$this->remote = (boolean) $remote;
-	}
-
-	public function getRemote() {
-		return $this->remote;
+		parent::__construct();
+		$this->remote($remote);
 	}
 
 	public function getCommandName() {
 		return 'summary';
-	}
-
-	public function getCommandOptions() {
-		$options = new libhg_Options_Container();
-
-		if ($this->remote) {
-			$options->setFlag('--remote');
-		}
-
-		return $options;
 	}
 
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {

@@ -8,32 +8,22 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-class libhg_Command_Branch_Cmd extends libhg_Command_Base {
-	protected $name  = null;
-	protected $force = false;
-	protected $clean = false;
-
+class libhg_Command_Branch_Cmd extends libhg_Command_Generic {
 	public function __construct($name = null) {
-		$this->name = $name;
+		parent::__construct();
+		$this->name($name);
 	}
 
-	public function name($name)         { $this->name  = $name; return $this; }
-	public function force($flag = true) { $this->force = $flag; return $this; }
-	public function clean($flag = true) { $this->clean = $flag; return $this; }
+	protected function getOptionDefinition() {
+		return array(
+			'name'  => array('type' => 'single-arg'),
+			'force' => array('type' => 'flag', 'name' => '-f'),
+			'clean' => array('type' => 'flag', 'name' => '-C')
+		);
+	}
 
-	public function getCommandName() { return 'branch';     }
-	public function getName()        { return $this->name;  }
-	public function getForce()       { return $this->force; }
-	public function getClean()       { return $this->clean; }
-
-	public function getCommandOptions() {
-		$options = new libhg_Options_Container();
-
-		if ($this->name !== null) $options->addArgument($this->name);
-		if ($this->force)         $options->setFlag('-f');
-		if ($this->clean)         $options->setFlag('-C');
-
-		return $options;
+	public function getCommandName() {
+		return 'branch';
 	}
 
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {

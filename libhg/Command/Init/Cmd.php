@@ -8,36 +8,23 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-class libhg_Command_Init_Cmd extends libhg_Command_Base {
-	protected $dest      = null;
-	protected $ssh       = null;
-	protected $remoteCmd = null;
-	protected $insecure  = false;
-
+class libhg_Command_Init_Cmd extends libhg_Command_Generic {
 	public function __construct($dest = null) {
-		$this->dest = $dest;
+		parent::__construct();
+		$this->dest($dest);
 	}
 
-	public function dest($dest)            { $this->dest      = $dest;       return $this; }
-	public function ssh($sshCommand)       { $this->ssh       = $sshCommand; return $this; }
-	public function remoteCmd($remoteCmd)  { $this->remoteCmd = $remoteCmd;  return $this; }
-	public function insecure($flag = true) { $this->insecure  = $flag;       return $this; }
+	protected function getOptionDefinition() {
+		return array(
+			'dest'      => array('type' => 'single-arg'),
+			'ssh'       => array('type' => 'single-opt', 'name' => '-e'),
+			'remoteCmd' => array('type' => 'single-opt', 'name' => '--remotecmd'),
+			'insecure'  => array('type' => 'flag')
+		);
+	}
 
-	public function getCommandName() { return 'init';           }
-	public function getDest()        { return $this->dest;      }
-	public function setSsh()         { return $this->ssh;       }
-	public function getRemoteCmd()   { return $this->remoteCmd; }
-	public function getInsecure()    { return $this->insecure;  }
-
-	public function getCommandOptions() {
-		$options = new libhg_Options_Container();
-
-		if ($this->dest !== null)      $options->addArgument($this->dest);
-		if ($this->ssh !== null)       $options->setSingle('-e', $this->ssh);
-		if ($this->remoteCmd !== null) $options->setSingle('--remotecmd', $this->remoteCmd);
-		if ($this->insecure)           $options->setFlag('--insecure');
-
-		return $options;
+	public function getCommandName() {
+		return 'init';
 	}
 
 	public function usesNoRepositoryOption() {
