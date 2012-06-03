@@ -8,18 +8,80 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Stream that supports reading data from it
+ */
 interface libhg_Stream_Readable {
+	/**
+	 * Read N bytes
+	 *
+	 * @param  int $bytes  number of bytes to read
+	 * @return string      read bytes
+	 */
 	public function read($bytes);
+
+	/**
+	 * read 4 byte integer
+	 *
+	 * @return int
+	 */
 	public function readInt();
+
+	/**
+	 * Read channel identifier
+	 *
+	 * @throws libhg_Exception  if invalid or error channel was read
+	 * @return string           channel identifier
+	 */
 	public function readChannel();
 
+	/**
+	 * checks if the next channel is the output channel
+	 *
+	 * @return string  channel
+	 */
 	public function expectOutput();
+
+	/**
+	 * checks the next channel
+	 *
+	 * @throws libhg_Exception  if an unexpected channel was read
+	 * @param  array $channels  allowed channels
+	 * @return string           channel
+	 */
 	public function expectChannels(array $channels);
 
+	/**
+	 * get current channel
+	 *
+	 * The channel is reset everytime readChannel() (and only readChannel()) is
+	 * called.
+	 *
+	 * @return string
+	 */
 	public function getChannel();
+
+	/**
+	 * checks if the next channel is the output channel
+	 *
+	 * @return boolean
+	 */
 	public function hasOutput();
 
+	/**
+	 * read string
+	 *
+	 * @param  string $channel
+	 * @return string
+	 */
 	public function readString($channel);
-	public function readUntil($endString);
+
+	/**
+	 * read return value
+	 *
+	 * @throws libhg_Exception  if found channel is not the result channel
+	 * @param  boolean $readChannelIdentifier
+	 * @return int
+	 */
 	public function readReturnValue();
 }

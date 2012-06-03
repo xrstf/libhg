@@ -8,7 +8,23 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Stream that supports writing data to it
+ */
 interface libhg_Stream_Writable {
+	/**
+	 * write N bytes
+	 *
+	 * @param  string $bytes
+	 * @return int            number of written bytes
+	 */
 	public function write($bytes);
+
+	/**
+	 * write an integer
+	 *
+	 * @param  int $int
+	 * @return boolean
+	 */
 	public function writeInt($int);
 }

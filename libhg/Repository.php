@@ -8,10 +8,21 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Repository wrapper
+ *
+ * This class wraps a single repository, given by the working directory's
+ * path.
+ */
 class libhg_Repository implements libhg_Repository_Interface {
-	protected $path;
-	protected $client;
+	protected $path;   ///< string
+	protected $client; ///< libhg_Client_Interface
 
+	/**
+	 * Constructor
+	 *
+	 * @param string $path  full path to a working directory (without the '/.hg')
+	 */
 	public function __construct($path) {
 		$repo = realpath($path);
 
@@ -23,15 +34,31 @@ class libhg_Repository implements libhg_Repository_Interface {
 		$this->client = null;
 	}
 
+	/**
+	 * get directory
+	 *
+	 * @return string  path without trailing directory separator
+	 */
 	public function getDirectory() {
 		return $this->path;
 	}
 
+	/**
+	 * set client to use
+	 *
+	 * @param  libhg_Client_Interface $client
+	 * @return libhg_Repository                self
+	 */
 	public function setClient(libhg_Client_Interface $client) {
 		$this->client = $client;
 		return $this;
 	}
 
+	/**
+	 * get client
+	 *
+	 * @return libhg_Client_Interface
+	 */
 	public function getClient() {
 		if ($this->client === null) {
 			$options = new libhg_Options_Container();
@@ -41,10 +68,21 @@ class libhg_Repository implements libhg_Repository_Interface {
 		return $this->client;
 	}
 
+	/**
+	 * Run a command
+	 *
+	 * @param  libhg_Command_Interface $command  the command to run
+	 * @return mixed                             the command's return value
+	 */
 	public function run(libhg_Command_Interface $command) {
 		return $this->getClient()->run($command, $this);
 	}
 
+	/**
+	 * starts a log command
+	 *
+	 * @return libhg_Command_Log_Cmd
+	 */
 	public function log() {
 		$cmd = new libhg_Command_Log_Cmd();
 		return $cmd->setClient($this->getClient());

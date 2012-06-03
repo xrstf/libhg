@@ -9,5 +9,10 @@
  */
 
 interface libhg_Repository_Interface {
+	/**
+	 * get directory
+	 *
+	 * @return string  path without trailing directory separator
+	 */
 	public function getDirectory();
 }
