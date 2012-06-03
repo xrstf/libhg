@@ -24,7 +24,7 @@ class libhg_Repository {
 		$this->client  = null;
 		$this->options = new libhg_Options_Container();
 
-		$this->options->setSingle('--repository', $this->path);
+		$this->options->setRepository($this);
 	}
 
 	public function getDirectory() {

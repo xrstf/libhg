@@ -46,7 +46,7 @@ class libhg_Client implements libhg_Client_Interface {
 	public function connect($errorLog = null) {
 		if ($this->open) $this->close();
 
-		$repository  = $this->options->getSingle('--repository');
+		$repository  = $this->options->getRepository();
 		$cmd         = 'hg serve --cmdserver pipe';
 		$pipes       = null;
 		$descriptors = array(
@@ -62,7 +62,7 @@ class libhg_Client implements libhg_Client_Interface {
 			$descriptors[libhg_Stream::STDERR] = array('file', $errorLog, 'a');
 		}
 
-		$this->process = proc_open($cmd, $descriptors, $pipes, $repository);
+		$this->process = proc_open($cmd, $descriptors, $pipes, $repository->getDirectory());
 
 		if (!is_resource($this->process)) {
 			throw new libhg_Exception('Could not start command server.');

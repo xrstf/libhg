@@ -12,10 +12,24 @@ class libhg_Options_Container implements libhg_Options_Interface {
 	protected $args    = array();
 	protected $options = array();
 	protected $flags   = array();
+	protected $repo    = null;
+
+	public function setRepository(libhg_Repository $repo) {
+		$this->repo = $repo;
+	}
+
+	public function getRepository() {
+		return $this->repo;
+	}
 
 	public function toArray() {
 		$result = array();
 		$chars  = '';
+
+		if ($this->repo) {
+			$result[] = '-R';
+			$result[] = $this->repo->getDirectory();
+		}
 
 		foreach ($this->flags as $flag) {
 			if (strlen($flag) === 2 && $flag[0] === '-') {
@@ -53,6 +67,7 @@ class libhg_Options_Container implements libhg_Options_Interface {
 		$this->args    = array();
 		$this->options = array();
 		$this->flags   = array();
+		$this->repo    = null;
 	}
 
 	public function addArgument($arg) {
@@ -76,6 +91,7 @@ class libhg_Options_Container implements libhg_Options_Interface {
 			$this->args = $otherArguments;
 		}
 
+		$this->repo = $options->repo;
 		return $this;
 	}
 
