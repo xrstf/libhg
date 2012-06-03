@@ -150,8 +150,16 @@ abstract class libhg_Command_Generic extends libhg_Command_Base {
 	}
 
 	protected function appendInclExclOptions(array $options) {
-		$options['include'] = array('type' => 'multi-opt', 'name' => '-I');
-		$options['exclude'] = array('type' => 'multi-opt', 'name' => '-X');
+		$options['include'] = array('type' => 'multi-opt', 'name' => '-I', 'alias' => 'incl');
+		$options['exclude'] = array('type' => 'multi-opt', 'name' => '-X', 'alias' => 'excl');
+
+		return $options;
+	}
+
+	protected function appendCommunicationOptions(array $options) {
+		$options['ssh']       = array('type' => 'single-opt', 'name' => '-e');
+		$options['remoteCmd'] = array('type' => 'single-opt', 'name' => '--remotecmd');
+		$options['insecure']  = array('type' => 'flag');
 
 		return $options;
 	}

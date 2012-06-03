@@ -15,12 +15,9 @@ class libhg_Command_Init_Cmd extends libhg_Command_Generic {
 	}
 
 	protected function getOptionDefinition() {
-		return array(
-			'dest'      => array('type' => 'single-arg'),
-			'ssh'       => array('type' => 'single-opt', 'name' => '-e'),
-			'remoteCmd' => array('type' => 'single-opt', 'name' => '--remotecmd'),
-			'insecure'  => array('type' => 'flag')
-		);
+		return $this->appendCommunicationOptions(array(
+			'dest' => array('type' => 'single-arg')
+		));
 	}
 
 	public function getCommandName() {

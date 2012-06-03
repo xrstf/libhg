@@ -8,7 +8,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-class libhg_Command_Branch_Cmd extends libhg_Command_Generic {
+class libhg_Command_Commit_Cmd extends libhg_Command_Generic {
 	public function __construct($message = null, $isFile = false, $user = null, $files = null, $addremove = false, $closeBranch = false) {
 		parent::__construct();
 
