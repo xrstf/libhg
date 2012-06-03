@@ -9,6 +9,7 @@
  */
 
 class libhg_Command_Log_Cmd extends libhg_Command_Base {
+	protected $file     = null;
 	protected $follow   = false;
 	protected $date     = null;
 	protected $copies   = false;
@@ -24,6 +25,7 @@ class libhg_Command_Log_Cmd extends libhg_Command_Base {
 	protected $includes = array();
 	protected $excludes = array();
 
+	public function file($file)            { $this->file       = $file;   return $this; }
 	public function follow($flag = true)   { $this->follow     = $flag;   return $this; }
 	public function date($date)            { $this->date       = $date;   return $this; }
 	public function copies($flag = true)   { $this->copies     = $flag;   return $this; }
@@ -73,6 +75,7 @@ class libhg_Command_Log_Cmd extends libhg_Command_Base {
 		return $this;
 	}
 
+	public function getFile()     { return $this->file;     }
 	public function getFollow()   { return $this->follow;   }
 	public function getDate()     { return $this->date;     }
 	public function getCopies()   { return $this->copies;   }
@@ -94,6 +97,7 @@ class libhg_Command_Log_Cmd extends libhg_Command_Base {
 	public function getOptions() {
 		$options = new libhg_Options_Container();
 
+		if ($this->file)     $options->addArgument($this->file);
 		if ($this->follow)   $options->setFlag('-f');
 		if ($this->copies)   $options->setFlag('-C');
 		if ($this->removed)  $options->setFlag('--removed');
