@@ -9,6 +9,21 @@
  */
 
 abstract class libhg_Command_Base implements libhg_Command_Interface {
+	protected $client;
+
+	public function setClient(libhg_Client_Interface $client = null) {
+		$this->client = $client;
+		return $this;
+	}
+
+	public function exec() {
+		if ($this->client === null) {
+			throw new libhg_Exception('exec() needs to have a client set prior via setClient().');
+		}
+
+		return $this->run($this->client);
+	}
+
 	public function __toString() {
 		$name    = $this->getName();
 		$options = (string) $this->getOptions();

@@ -46,4 +46,9 @@ class libhg_Repository {
 	public function run(libhg_Command_Interface $command) {
 		return $this->getClient()->run($command);
 	}
+
+	public function log() {
+		$cmd = new libhg_Command_Log_Cmd();
+		return $cmd->setClient($this->getClient());
+	}
 }
