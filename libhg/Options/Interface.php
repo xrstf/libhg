@@ -27,6 +27,6 @@ interface libhg_Options_Interface {
 	public function getOptions();
 	public function getFlags();
 
-	public function setRepository(libhg_Repository_Interface $repo);
+	public function setRepository(libhg_Repository_Interface $repo = null);
 	public function getRepository();
 }

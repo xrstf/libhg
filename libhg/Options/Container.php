@@ -14,7 +14,7 @@ class libhg_Options_Container implements libhg_Options_Interface {
 	protected $flags   = array();
 	protected $repo    = null;
 
-	public function setRepository(libhg_Repository_Interface $repo) {
+	public function setRepository(libhg_Repository_Interface $repo = null) {
 		$this->repo = $repo;
 	}
 

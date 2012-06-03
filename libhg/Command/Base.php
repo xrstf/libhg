@@ -16,6 +16,10 @@ abstract class libhg_Command_Base implements libhg_Command_Interface {
 		return $this;
 	}
 
+	public function usesNoRepositoryOption() {
+		return false;
+	}
+
 	public function exec() {
 		if ($this->client === null) {
 			throw new libhg_Exception('exec() needs to have a client set prior via setClient().');

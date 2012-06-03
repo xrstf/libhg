@@ -117,6 +117,10 @@ class libhg_Client implements libhg_Client_Interface {
 		$options = $this->options->merge($options);
 		$repo    = $repository ? $repository : $this->repo;
 
+		if ($command->usesNoRepositoryOption()) {
+			$repo = null;
+		}
+
 		$options->setRepository($repo);
 		$options = $options->toArray();
 

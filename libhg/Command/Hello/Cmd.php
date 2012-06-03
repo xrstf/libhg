@@ -17,6 +17,10 @@ class libhg_Command_Hello_Cmd implements libhg_Command_Interface {
 		return new libhg_Options_Container();
 	}
 
+	public function usesNoRepositoryOption() {
+		return true;
+	}
+
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
 		$reader->expectChannels(array(libhg_Stream::CHANNEL_OUTPUT));
 
