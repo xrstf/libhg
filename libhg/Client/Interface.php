@@ -11,10 +11,12 @@
 interface libhg_Client_Interface {
 	public function connect();
 	public function close();
+	public function isConnected();
 	public function getCapabilities();
 	public function getOptions();
+	public function getRepository();
+	public function setRepository(libhg_Repository_Interface $repository);
 	public function getWritableStream();
 	public function getReadableStream();
-	public function isConnected();
-	public function run(libhg_Command_Interface $command);
+	public function run(libhg_Command_Interface $command, libhg_Repository_Interface $repository = null);
 }

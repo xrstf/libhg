@@ -16,10 +16,13 @@ class libhg_Client implements libhg_Client_Interface {
 
 	protected $capabilities = null;
 	protected $options;
+	protected $repo;
 
-	public function __construct(libhg_Options_Interface $options) {
+	public function __construct(libhg_Options_Interface $options, libhg_Repository_Interface $repo) {
 		$this->reset();
+
 		$this->options = $options;
+		$this->repo    = $repo;
 	}
 
 	public function getOptions()        { return $this->options;      }
@@ -27,6 +30,7 @@ class libhg_Client implements libhg_Client_Interface {
 	public function getWritableStream() { return $this->stdin;        }
 	public function getReadableStream() { return $this->stdout;       }
 	public function isConnected()       { return $this->open;         }
+	public function getRepository()     { return $this->repo;         }
 
 	protected function reset() {
 		$this->stdin        = null;
@@ -38,6 +42,11 @@ class libhg_Client implements libhg_Client_Interface {
 		return $this;
 	}
 
+	public function setRepository(libhg_Repository_Interface $repo) {
+		$this->repo = $repo;
+		return $this;
+	}
+
 	public function setOptions(libhg_Options_Interface $options) {
 		$this->options = $options;
 		return $this;
@@ -46,7 +55,6 @@ class libhg_Client implements libhg_Client_Interface {
 	public function connect($errorLog = null) {
 		if ($this->open) $this->close();
 
-		$repository  = $this->options->getRepository();
 		$cmd         = 'hg serve --cmdserver pipe';
 		$pipes       = null;
 		$descriptors = array(
@@ -54,15 +62,11 @@ class libhg_Client implements libhg_Client_Interface {
 			libhg_Stream::STDOUT => array('pipe', 'w')
 		);
 
-		if ($repository === null) {
-			throw new libhg_Exception('The options container does not contain a repository path (-R option).');
-		}
-
 		if ($errorLog !== null) {
 			$descriptors[libhg_Stream::STDERR] = array('file', $errorLog, 'a');
 		}
 
-		$this->process = proc_open($cmd, $descriptors, $pipes, $repository->getDirectory());
+		$this->process = proc_open($cmd, $descriptors, $pipes, $this->repo->getDirectory());
 
 		if (!is_resource($this->process)) {
 			throw new libhg_Exception('Could not start command server.');
@@ -92,7 +96,9 @@ class libhg_Client implements libhg_Client_Interface {
 
 	protected function readHello() {
 		$cmd    = new libhg_Command_Hello_Cmd();
-		$result = $cmd->run($this);
+		$writer = $this->getWritableStream();
+		$reader = $this->getReadableStream();
+		$result = $cmd->evaluate($reader, $writer, $this->repo);
 
 		if ($result->encoding !== 'UTF-8') {
 			throw new libhg_Exception('Encoding mismatch. Server must be using UTF-8, but uses '.$enc.'.');
@@ -105,24 +111,27 @@ class libhg_Client implements libhg_Client_Interface {
 		$this->capabilities = $result->capabilities;
 	}
 
-	public function run(libhg_Command_Interface $command) {
-		return $command->run($this);
-	}
-
-	public function runCommand($commandName, libhg_Options_Interface $options) {
+	public function run(libhg_Command_Interface $command, libhg_Repository_Interface $repository = null) {
+		$name    = $command->getName();
+		$options = $command->getOptions();
 		$options = $this->options->merge($options);
+		$repo    = $repository ? $repository : $this->repo;
+
+		$options->setRepository($repo);
 		$options = $options->toArray();
 
-		array_unshift($options, $commandName);
+		array_unshift($options, $name);
 
 		$msg = implode(chr(0), $options);
 		$len = strlen($msg);
 
-		$stream = $this->getWritableStream();
-		$stream->write("runcommand\n");
-		$stream->writeInt($len);
-		$stream->write($msg);
+		$writer = $this->getWritableStream();
+		$reader = $this->getReadableStream();
 
-		return $this;
+		$writer->write("runcommand\n");
+		$writer->writeInt($len);
+		$writer->write($msg);
+
+		return $command->evaluate($reader, $writer, $this->repo);
 	}
 }

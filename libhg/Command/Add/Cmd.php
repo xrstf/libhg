@@ -62,15 +62,10 @@ class libhg_Command_Add_Cmd extends libhg_Command_Base {
 		return $options;
 	}
 
-	public function run(libhg_Client_Interface $client) {
-		$options = $this->getOptions();
-		$stream  = $client->getReadableStream();
-
-		$client->runCommand('add', $options);
-
-		$files = trim($stream->readString(libhg_Stream::CHANNEL_OUTPUT));
+	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
+		$files = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
 		$files = empty($files) ? array() : explode("\n", $files);
-		$code  = $stream->readReturnValue();
+		$code  = $reader->readReturnValue();
 
 		return new libhg_Command_Add_Result($files, $code);
 	}

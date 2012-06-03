@@ -17,12 +17,11 @@ class libhg_Command_Hello_Cmd implements libhg_Command_Interface {
 		return new libhg_Options_Container();
 	}
 
-	public function run(libhg_Client_Interface $client) {
-		$input = $client->getReadableStream();
-		$input->expectChannels(array(libhg_Stream::CHANNEL_OUTPUT));
+	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
+		$reader->expectChannels(array(libhg_Stream::CHANNEL_OUTPUT));
 
-		$size         = $input->readInt();
-		$hello        = explode("\n", $input->read($size));
+		$size         = $reader->readInt();
+		$hello        = explode("\n", $reader->read($size));
 		$encoding     = null;
 		$capabilities = array();
 

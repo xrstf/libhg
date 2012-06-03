@@ -8,9 +8,8 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-class libhg_Repository {
+class libhg_Repository implements libhg_Repository_Interface {
 	protected $path;
-	protected $options;
 	protected $client;
 
 	public function __construct($path) {
@@ -20,31 +19,30 @@ class libhg_Repository {
 			throw new libhg_Exception('Invalid repository path "'.$path.'" given.');
 		}
 
-		$this->path    = rtrim($repo, DIRECTORY_SEPARATOR);
-		$this->client  = null;
-		$this->options = new libhg_Options_Container();
-
-		$this->options->setRepository($this);
+		$this->path   = rtrim($repo, DIRECTORY_SEPARATOR);
+		$this->client = null;
 	}
 
 	public function getDirectory() {
 		return $this->path;
 	}
 
-	public function getOptions() {
-		return $this->options;
+	public function setClient(libhg_Client_Interface $client) {
+		$this->client = $client;
+		return $this;
 	}
 
 	public function getClient() {
 		if ($this->client === null) {
-			$this->client = new libhg_Client($this->getOptions());
+			$options = new libhg_Options_Container();
+			$this->client = new libhg_Client($options, $this);
 		}
 
 		return $this->client;
 	}
 
 	public function run(libhg_Command_Interface $command) {
-		return $this->getClient()->run($command);
+		return $this->getClient()->run($command, $this);
 	}
 
 	public function log() {

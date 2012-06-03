@@ -110,14 +110,9 @@ class libhg_Command_Status_Cmd extends libhg_Command_Base {
 		return $options;
 	}
 
-	public function run(libhg_Client_Interface $client) {
-		$options = $this->getOptions();
-
-		$client->runCommand('status', $options);
-
-		$stream = $client->getReadableStream();
-		$output = $stream->readString(libhg_Stream::CHANNEL_OUTPUT);
-		$code   = $stream->readReturnValue();
+	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
+		$output = $reader->readString(libhg_Stream::CHANNEL_OUTPUT);
+		$code   = $reader->readReturnValue();
 
 		return libhg_Command_Status_Result::parseOutput($output, $this);
 	}

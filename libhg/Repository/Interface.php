@@ -8,8 +8,6 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-interface libhg_Command_Interface {
-	public function __toString();
-	public function getOptions();
-	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo);
+interface libhg_Repository_Interface {
+	public function getDirectory();
 }

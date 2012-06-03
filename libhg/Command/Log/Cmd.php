@@ -121,15 +121,10 @@ class libhg_Command_Log_Cmd extends libhg_Command_Base {
 		return $options;
 	}
 
-	public function run(libhg_Client_Interface $client) {
-		$options    = $this->getOptions();
+	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
 		$changesets = array();
-		$stream     = $client->getReadableStream();
-		$repo       = $client->getOptions()->getRepository();
 
-		$client->runCommand('log', $options);
-
-		while ($chunk = $stream->readUntil("\n\n")) {
+		while ($chunk = $reader->readUntil("\n\n")) {
 			$changeset = explode("\n", trim($chunk));
 			$tags      = array();
 			$parents   = array();
@@ -173,7 +168,7 @@ class libhg_Command_Log_Cmd extends libhg_Command_Base {
 			$changesets[] = new libhg_Changeset($repo, $node, $rev, $parents, $date, $author, $desc, $branch, $tags, $modified, $added, $deleted);
 		}
 
-		$code = $stream->readReturnValue();
+		$code = $reader->readReturnValue();
 
 		return new libhg_Command_Log_Result($changesets, $code);
 	}

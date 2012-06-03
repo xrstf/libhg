@@ -14,7 +14,7 @@ class libhg_Options_Container implements libhg_Options_Interface {
 	protected $flags   = array();
 	protected $repo    = null;
 
-	public function setRepository(libhg_Repository $repo) {
+	public function setRepository(libhg_Repository_Interface $repo) {
 		$this->repo = $repo;
 	}
 
@@ -76,23 +76,25 @@ class libhg_Options_Container implements libhg_Options_Interface {
 	}
 
 	public function merge(libhg_Options_Interface $options) {
+		$copy = clone $this;
+
 		foreach ($options->getFlags() as $flag) {
-			$this->setFlag($flag);
+			$copy->setFlag($flag);
 		}
 
 		foreach ($options->getOptions() as $name => $values) {
-			$merged = array_merge((array) $this->getMultiple($name), $values);
-			$this->options[$name] = $merged;
+			$merged = array_merge((array) $copy->getMultiple($name), $values);
+			$copy->options[$name] = $merged;
 		}
 
 		$otherArguments = $options->getArguments();
 
 		if (!empty($otherArguments)) {
-			$this->args = $otherArguments;
+			$copy->args = $otherArguments;
 		}
 
-		$this->repo = $options->repo;
-		return $this;
+		$copy->repo = $options->repo;
+		return $copy;
 	}
 
 	public function getArguments() { return $this->args;    }
