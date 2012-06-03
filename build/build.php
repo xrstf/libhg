@@ -75,10 +75,10 @@ HEADER
 ");
 
 	if ($useNS) {
-		fwrite($fp, 'class Base extends \libhg_Command_Base {');
+		fwrite($fp, 'abstract class Base extends \libhg_Command_Base {');
 	}
 	else {
-		fwrite($fp, "class {$namespace}_Base extends libhg_Command_Base {");
+		fwrite($fp, "abstract class {$namespace}_Base extends libhg_Command_Base {");
 	}
 
 	$options = array();
