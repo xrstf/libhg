@@ -42,11 +42,11 @@ class libhg_Command_Add_Cmd extends libhg_Command_Base {
 	public function getIncludes() { return $this->includes; }
 	public function getExcludes() { return $this->excludes; }
 
-	public function getName() {
+	public function getCommandName() {
 		return 'add';
 	}
 
-	public function getOptions() {
+	public function getCommandOptions() {
 		$options = new libhg_Options_Container();
 
 		if ($this->subrepos) $options->setFlag('-S');

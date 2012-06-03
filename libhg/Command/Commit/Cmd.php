@@ -70,7 +70,7 @@ class libhg_Command_Branch_Cmd extends libhg_Command_Base {
 		return $this;
 	}
 
-	public function getName()        { return 'commit';           }
+	public function getCommandName() { return 'commit';           }
 	public function getFiles()       { return $this->files;       }
 	public function getMessage()     { return $this->message;     }
 	public function getLogfile()     { return $this->logfile;     }
@@ -83,7 +83,7 @@ class libhg_Command_Branch_Cmd extends libhg_Command_Base {
 	public function getIncludes()    { return $this->includes;    }
 	public function getExcludes()    { return $this->excludes;    }
 
-	public function getOptions() {
+	public function getCommandOptions() {
 		$options = new libhg_Options_Container();
 
 		if (empty($this->message)) {

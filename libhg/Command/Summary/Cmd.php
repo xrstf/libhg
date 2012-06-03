@@ -23,11 +23,11 @@ class libhg_Command_Summary_Cmd extends libhg_Command_Base {
 		return $this->remote;
 	}
 
-	public function getName() {
+	public function getCommandName() {
 		return 'summary';
 	}
 
-	public function getOptions() {
+	public function getCommandOptions() {
 		$options = new libhg_Options_Container();
 
 		if ($this->remote) {

@@ -13,7 +13,11 @@ class libhg_Command_Hello_Cmd implements libhg_Command_Interface {
 		return '(hello)';
 	}
 
-	public function getOptions() {
+	public function getCommandName() {
+		throw new libhg_Exception('The hello command does not have a name and can only read the server\'s hello message.');
+	}
+
+	public function getCommandOptions() {
 		return new libhg_Options_Container();
 	}
 

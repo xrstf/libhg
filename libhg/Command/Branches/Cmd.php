@@ -15,11 +15,11 @@ class libhg_Command_Branches_Cmd extends libhg_Command_Base {
 	public function active($flag = true) { $this->active = $flag; return $this; }
 	public function closed($flag = true) { $this->closed = $flag; return $this; }
 
-	public function getName()   { return 'branches';    }
-	public function getActive() { return $this->active; }
-	public function getClosed() { return $this->closed; }
+	public function getCommandName() { return 'branches';    }
+	public function getActive()      { return $this->active; }
+	public function getClosed()      { return $this->closed; }
 
-	public function getOptions() {
+	public function getCommandOptions() {
 		$options = new libhg_Options_Container();
 
 		if ($this->active) $options->setFlag('-a');

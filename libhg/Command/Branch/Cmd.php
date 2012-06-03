@@ -21,12 +21,12 @@ class libhg_Command_Branch_Cmd extends libhg_Command_Base {
 	public function force($flag = true) { $this->force = $flag; return $this; }
 	public function clean($flag = true) { $this->clean = $flag; return $this; }
 
-	public function getName()   { return 'branch';     }
-	public function getBranch() { return $this->name;  }
-	public function getForce()  { return $this->force; }
-	public function getClean()  { return $this->clean; }
+	public function getCommandName() { return 'branch';     }
+	public function getName()        { return $this->name;  }
+	public function getForce()       { return $this->force; }
+	public function getClean()       { return $this->clean; }
 
-	public function getOptions() {
+	public function getCommandOptions() {
 		$options = new libhg_Options_Container();
 
 		if ($this->name !== null) $options->addArgument($this->name);

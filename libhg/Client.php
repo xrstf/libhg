@@ -208,8 +208,8 @@ class libhg_Client implements libhg_Client_Interface {
 	 * @return mixed                                  the command's return value
 	 */
 	public function run(libhg_Command_Interface $command, libhg_Repository_Interface $repository = null) {
-		$name    = $command->getName();
-		$options = $command->getOptions();
+		$name    = $command->getCommandName();
+		$options = $command->getCommandOptions();
 		$options = $this->options->merge($options);
 		$repo    = $repository ? $repository : $this->repo;
 

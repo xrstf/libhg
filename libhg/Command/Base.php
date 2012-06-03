@@ -29,8 +29,8 @@ abstract class libhg_Command_Base implements libhg_Command_Interface {
 	}
 
 	public function __toString() {
-		$name    = $this->getName();
-		$options = (string) $this->getOptions();
+		$name    = $this->getCommandName();
+		$options = (string) $this->getCommandOptions();
 
 		return rtrim($name.' '.$options);
 	}

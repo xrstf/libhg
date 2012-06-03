@@ -10,7 +10,8 @@
 
 interface libhg_Command_Interface {
 	public function __toString();
-	public function getOptions();
+	public function getCommandName();
+	public function getCommandOptions();
 	public function usesNoRepositoryOption();
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo);
 }

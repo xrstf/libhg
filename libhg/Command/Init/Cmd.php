@@ -23,13 +23,13 @@ class libhg_Command_Init_Cmd extends libhg_Command_Base {
 	public function remoteCmd($remoteCmd)  { $this->remoteCmd = $remoteCmd;  return $this; }
 	public function insecure($flag = true) { $this->insecure  = $flag;       return $this; }
 
-	public function getName()      { return 'init';           }
-	public function getDest()      { return $this->dest;      }
-	public function setSsh()       { return $this->ssh;       }
-	public function getRemoteCmd() { return $this->remoteCmd; }
-	public function getInsecure()  { return $this->insecure;  }
+	public function getCommandName() { return 'init';           }
+	public function getDest()        { return $this->dest;      }
+	public function setSsh()         { return $this->ssh;       }
+	public function getRemoteCmd()   { return $this->remoteCmd; }
+	public function getInsecure()    { return $this->insecure;  }
 
-	public function getOptions() {
+	public function getCommandOptions() {
 		$options = new libhg_Options_Container();
 
 		if ($this->dest !== null)      $options->addArgument($this->dest);

@@ -89,11 +89,11 @@ class libhg_Command_Annotate_Cmd extends libhg_Command_Base {
 	public function getIncludes()          { return $this->includes;          }
 	public function getExcludes()          { return $this->excludes;          }
 
-	public function getName() {
+	public function getCommandName() {
 		return 'annotate';
 	}
 
-	public function getOptions() {
+	public function getCommandOptions() {
 		$options = new libhg_Options_Container();
 
 		if ($this->noFollow)          $options->setFlag('--no-follow');
