@@ -121,6 +121,7 @@ class libhg_Command_Log_Cmd extends libhg_Command_Base {
 		$options    = $this->getOptions();
 		$changesets = array();
 		$stream     = $client->getReadableStream();
+		$repo       = $client->getOptions()->getRepository();
 
 		$client->runCommand('log', $options);
 
@@ -165,7 +166,7 @@ class libhg_Command_Log_Cmd extends libhg_Command_Base {
 				}
 			}
 
-			$changesets[] = new libhg_Changeset($node, $rev, $parents, $date, $author, $desc, $branch, $tags, $modified, $added, $deleted);
+			$changesets[] = new libhg_Changeset($repo, $node, $rev, $parents, $date, $author, $desc, $branch, $tags, $modified, $added, $deleted);
 		}
 
 		$code = $stream->readReturnValue();

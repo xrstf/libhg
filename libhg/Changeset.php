@@ -9,6 +9,7 @@
  */
 
 class libhg_Changeset {
+	public $repo     = null;
 	public $rev      = null;
 	public $node     = null;
 	public $parents  = null;
@@ -20,11 +21,11 @@ class libhg_Changeset {
 	public $modified = null;
 	public $added    = null;
 	public $deleted  = null;
-	public $repo     = null;
 
 	public $shortNode = null;
 
-	public function __construct($node, $rev = null, array $parents = null, $date = null, $author = null, $desc = null, $branch = null, array $tags = null, array $modified = null, array $added = null, array $deleted = null) {
+	public function __construct(libhg_Repository $repo, $node, $rev = null, array $parents = null, $date = null, $author = null, $desc = null, $branch = null, array $tags = null, array $modified = null, array $added = null, array $deleted = null) {
+		$this->repo     = $repo;
 		$this->rev      = $rev;
 		$this->node     = $node;
 		$this->parents  = $parents;
