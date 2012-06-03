@@ -8,33 +8,9 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-class libhg_Command_Annotate_Cmd extends libhg_Command_Generic {
+class libhg_Command_Annotate_Cmd extends libhg_Command_Annotate_Base {
 	public function __construct($initialFile) {
-		parent::__construct();
 		$this->files((array) $initialFile);
-	}
-
-	protected function getOptionDefinition() {
-		return $this->appendInclExclOptions(array(
-			'files'             => array('type' => 'multi-arg', 'alias' => 'file'),
-			'revs'              => array('type' => 'multi-opt', 'name' => '-r', 'alias' => 'rev'),
-			'noFollow'          => array('type' => 'flag'),
-			'text'              => array('type' => 'flag', 'name' => '-a'),
-			'user'              => array('type' => 'flag', 'name' => '-u'),
-			'file'              => array('type' => 'flag', 'name' => '-f'),
-			'date'              => array('type' => 'flag', 'name' => '-d'),
-			'dateShort'         => array('type' => 'flag', 'name' => '-q'),
-			'number'            => array('type' => 'flag', 'name' => '-n'),
-			'changeset'         => array('type' => 'flag', 'name' => '-c'),
-			'lineNumber'        => array('type' => 'flag', 'name' => '-l'),
-			'ignoreAllSpace'    => array('type' => 'flag', 'name' => '-w'),
-			'ignoreSpaceChange' => array('type' => 'flag', 'name' => '-b'),
-			'ignoreBlankLines'  => array('type' => 'flag', 'name' => '-B')
-		));
-	}
-
-	public function getCommandName() {
-		return 'annotate';
 	}
 
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {

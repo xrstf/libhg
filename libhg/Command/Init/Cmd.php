@@ -8,20 +8,9 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-class libhg_Command_Init_Cmd extends libhg_Command_Generic {
+class libhg_Command_Init_Cmd extends libhg_Command_Init_Base {
 	public function __construct($dest = null) {
-		parent::__construct();
 		$this->dest($dest);
-	}
-
-	protected function getOptionDefinition() {
-		return $this->appendCommunicationOptions(array(
-			'dest' => array('type' => 'single-arg')
-		));
-	}
-
-	public function getCommandName() {
-		return 'init';
 	}
 
 	public function usesNoRepositoryOption() {

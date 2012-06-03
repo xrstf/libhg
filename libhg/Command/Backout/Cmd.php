@@ -8,28 +8,21 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-class libhg_Command_Backout_Cmd extends libhg_Command_Commit_Cmd {
+class libhg_Command_Backout_Cmd extends libhg_Command_Backout_Base {
 	public function __construct($rev) {
-		parent::__construct();
 		$this->rev($rev);
 	}
 
-	protected function getOptionDefinition() {
-		return $this->appendInclExclOptions(array(
-			'rev' => array('type' => 'single-arg'),
+	public function getCommandOptions() {
+		if (empty($this->message)) {
+			$file = $this->logfile ? realpath($this->logfile) : false;
 
-			'tool'    => array('type' => 'single-opt', 'name' => '-t'),
-			'message' => array('type' => 'single-opt', 'name' => '-m'),
-			'logfile' => array('type' => 'single-opt', 'name' => '-t'),
-			'date'    => array('type' => 'single-opt', 'name' => '-d'),
-			'user'    => array('type' => 'single-opt', 'name' => '-u'),
+			if ($file === false) {
+				throw new libhg_Exception('No commit message given or logfile not found.');
+			}
+		}
 
-			'merge' => array('type' => 'flag')
-		));
-	}
-
-	public function getCommandName() {
-		return 'backout';
+		return parent::getCommandOptions();
 	}
 
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {

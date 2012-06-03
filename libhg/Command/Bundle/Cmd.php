@@ -8,30 +8,9 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-class libhg_Command_Bundle_Cmd extends libhg_Command_Commit_Cmd {
+class libhg_Command_Bundle_Cmd extends libhg_Command_Bundle_Base {
 	public function __construct($file) {
-		parent::__construct();
 		$this->file($file);
-	}
-
-	protected function getOptionDefinition() {
-		return $this->appendCommunicationOptions(array(
-			'file' => array('type' => 'single-arg'),
-			'dest' => array('type' => 'single-arg'),
-
-			'revs'     => array('type' => 'multi-opt', 'name' => '-r', 'alias' => 'rev'),
-			'branches' => array('type' => 'multi-opt', 'name' => '-r', 'alias' => 'branch'),
-			'bases'    => array('type' => 'multi-opt', 'name' => '--base', 'alias' => 'base'),
-
-			'type' => array('type' => 'single-opt', 'name' => '-t'),
-
-			'force' => array('type' => 'flag', 'name' => '-f'),
-			'all'   => array('type' => 'flag', 'name' => '-a')
-		));
-	}
-
-	public function getCommandName() {
-		return 'bundle';
 	}
 
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {

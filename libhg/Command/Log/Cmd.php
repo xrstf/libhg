@@ -8,31 +8,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-class libhg_Command_Log_Cmd extends libhg_Command_Generic {
-	protected function getOptionDefinition() {
-		return $this->appendInclExclOptions(array(
-			'file' => array('type' => 'single-arg'),
-
-			'keywords' => array('type' => 'multi-opt', 'name' => '-k',    'alias' => 'keyword'),
-			'revs'     => array('type' => 'multi-opt', 'name' => '--rev', 'alias' => 'rev'),
-			'users'    => array('type' => 'multi-opt', 'name' => '-u',    'alias' => 'user'),
-			'branches' => array('type' => 'multi-opt', 'name' => '-b',    'alias' => 'branch'),
-			'prunes'   => array('type' => 'multi-opt', 'name' => '-P',    'alias' => 'prune'),
-
-			'date'  => array('type' => 'single-opt', 'name' => '-d'),
-			'limit' => array('type' => 'single-opt', 'name' => '-l'),
-
-			'follow'   => array('type' => 'flag', 'name' => '-f'),
-			'copies'   => array('type' => 'flag', 'name' => '-C'),
-			'removed'  => array('type' => 'flag'),
-			'noMerges' => array('type' => 'flag', 'name' => '-M')
-		));
-	}
-
-	public function getCommandName() {
-		return 'log';
-	}
-
+class libhg_Command_Log_Cmd extends libhg_Command_Log_Base {
 	public function getCommandOptions() {
 		$options = parent::getCommandOptions();
 

@@ -8,22 +8,9 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-class libhg_Command_Branch_Cmd extends libhg_Command_Generic {
+class libhg_Command_Branch_Cmd extends libhg_Command_Branch_Base {
 	public function __construct($name = null) {
-		parent::__construct();
 		$this->name($name);
-	}
-
-	protected function getOptionDefinition() {
-		return array(
-			'name'  => array('type' => 'single-arg'),
-			'force' => array('type' => 'flag', 'name' => '-f'),
-			'clean' => array('type' => 'flag', 'name' => '-C')
-		);
-	}
-
-	public function getCommandName() {
-		return 'branch';
 	}
 
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {

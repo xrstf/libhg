@@ -8,23 +8,9 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-class libhg_Command_Cat_Cmd extends libhg_Command_Commit_Cmd {
+class libhg_Command_Cat_Cmd extends libhg_Command_Cat_Base {
 	public function __construct($files) {
-		parent::__construct();
-		$this->files($files);
-	}
-
-	protected function getOptionDefinition() {
-		return $this->appendInclExclOptions(array(
-			'files'  => array('type' => 'multi-arg'),
-			'output' => array('type' => 'single-opt', 'name' => '-o'),
-			'rev'    => array('type' => 'single-opt', 'name' => '-r'),
-			'decode' => array('type' => 'flag')
-		));
-	}
-
-	public function getCommandName() {
-		return 'cat';
+		$this->files((array) $files);
 	}
 
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
