@@ -57,7 +57,7 @@ abstract class libhg_Command_Generic extends libhg_Command_Base {
 			return $this;
 		}
 
-		throw new libhg_Exception('Option "'.$prop.'" is not defined for '.get_class($this).' instances.');
+		throw new libhg_Exception('Option "'.$option.'" is not defined for '.get_class($this).' instances.');
 	}
 
 	private function resolveAlias($option) {
