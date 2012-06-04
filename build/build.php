@@ -83,15 +83,15 @@ HEADER
 
 	$options = array();
 
-	if (isset($cmd['single-args'])) {
-		foreach ($cmd['single-args'] as $key => $value) {
-			$options[] = new libhg_SingleArgument($key, $value);
-		}
-	}
-
 	if (isset($cmd['multi-args'])) {
 		foreach ($cmd['multi-args'] as $key => $value) {
 			$options[] = new libhg_MultiArgument($key, $value);
+		}
+	}
+
+	if (isset($cmd['single-args'])) {
+		foreach ($cmd['single-args'] as $key => $value) {
+			$options[] = new libhg_SingleArgument($key, $value);
 		}
 	}
 
