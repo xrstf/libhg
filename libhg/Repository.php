@@ -84,7 +84,33 @@ class libhg_Repository implements libhg_Repository_Interface {
 	 * @return libhg_Command_Log_Cmd
 	 */
 	public function log() {
-		$cmd = new libhg_Command_Log_Cmd();
-		return $cmd->setClient($this->getClient());
+		$cmd    = new libhg_Command_Log_Cmd();
+		$client = $this->getClient()->setRepository($this);
+
+		return $cmd->setClient($client);
+	}
+
+	/**
+	 * starts an update command
+	 *
+	 * @return libhg_Command_Update_Cmd
+	 */
+	public function update($rev = null, $clean = false, $check = false) {
+		$cmd    = new libhg_Command_Log_Cmd();
+		$client = $this->getClient()->setRepository($this);
+
+		return $cmd->setClient($client)->rev($rev)->clean($clean)->check($check);
+	}
+
+	/**
+	 * starts a tag command
+	 *
+	 * @return libhg_Command_Tag_Cmd
+	 */
+	public function tag($name = null, $force = false) {
+		$cmd    = new libhg_Command_Tag_Cmd();
+		$client = $this->getClient()->setRepository($this);
+
+		return $cmd->setClient($client)->name($name)->force($force);
 	}
 }
