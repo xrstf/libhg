@@ -1,0 +1,7 @@
+name: update
+single-opts:
+   date: { cli: '-d' }
+   rev:  { cli: '-r' }
+flags:
+   clean: { cli: '-C' }
+   check: { cli: '-c' }

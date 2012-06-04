@@ -1,0 +1,16 @@
+name: pull
+single-args:
+   source: ~
+multi-opts:
+   revs:      { cli: '-r', alias: rev      }
+   bookmarks: { cli: '-B', alias: bookmark }
+   branches:  { cli: '-b', alias: branch   }
+single-opts:
+   ssh:       { cli: '-e'          }
+   remoteCmd: { cli: '--remotecmd' }
+flags:
+   update:   { cli: '-u' }
+   force:    { cli: '-f' }
+   tool:     { cli: '-t' }
+   rebase:   ~
+   insecure: ~

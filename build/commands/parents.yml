@@ -1,0 +1,5 @@
+name: parents
+single-args:
+   file: ~
+single-opts:
+   rev: { cli: '-r' }

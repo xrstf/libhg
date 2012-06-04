@@ -1,0 +1,8 @@
+name: heads
+multi-args:
+   revs: { alias: rev }
+single-opts:
+   startrev: { cli: '-r' }
+flags:
+   topo:   { cli: '-t' }
+   closed: { cli: '-c' }

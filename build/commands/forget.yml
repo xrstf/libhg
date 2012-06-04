@@ -1,0 +1,6 @@
+name: forget
+multi-args:
+   files: { alias: file, optional: false }
+multi-opts:
+   include: { cli: '-I', alias: incl }
+   exclude: { cli: '-X', alias: excl }

@@ -1,0 +1,7 @@
+name: manifest
+single-args:
+   source: ~
+single-opts:
+   rev: { cli: '-r' }
+flags:
+   all: ~

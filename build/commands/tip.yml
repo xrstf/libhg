@@ -1,0 +1,4 @@
+name: tip
+flags:
+   patch: { cli: '-p' }
+   git:   { cli: '-g' }

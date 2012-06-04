@@ -1,0 +1,14 @@
+name: identify
+single-args:
+   source: ~
+single-opts:
+   rev:       { cli: '-r'          }
+   ssh:       { cli: '-e'          }
+   remoteCmd: { cli: '--remotecmd' }
+flags:
+   num:       { cli: '-n' }
+   id:        { cli: '-i' }
+   branch:    { cli: '-b' }
+   tags:      { cli: '-t' }
+   bookmarks: { cli: '-B' }
+   insecure:  ~

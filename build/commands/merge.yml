@@ -1,0 +1,7 @@
+name: merge
+single-opts:
+   rev:  { cli: '-r' }
+   tool: { cli: '-t' }
+flags:
+   force:   { cli: '-f' }
+   preview: { cli: '-P' }

@@ -1,0 +1,12 @@
+name: tag
+multi-args:
+   names: { optional: false, alias: name }
+single-opts:
+   rev:     { cli: '-r' }
+   message: { cli: '-m' }
+   date:    { cli: '-d' }
+   user:    { cli: '-u' }
+flags:
+   force:  { cli: '-f' }
+   local:  { cli: '-l' }
+   remove: ~
