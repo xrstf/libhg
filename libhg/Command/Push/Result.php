@@ -12,7 +12,7 @@
  * Generated result class for `hg push`
  *
  * @see       http://selenic.com/hg/help/push
- * @generated 2012-06-04 04:09
+ * @generated 2012-06-04 04:14
  */
 class libhg_Command_Push_Result {
 	/**
@@ -29,6 +29,12 @@ class libhg_Command_Push_Result {
 	 */
 	public $code;
 
+	/**
+	 * Constructor
+	 *
+	 * @param string $output  command's output
+	 * @param int    $code    command's return code
+	 */
 	public function __construct($output, $code) {
 		$this->output = $output;
 		$this->code   = $code;

@@ -202,6 +202,12 @@ $sig {
 	 */
 	public \$code;
 
+	/**
+	 * Constructor
+	 *
+	 * @param string \$output  command's output
+	 * @param int    \$code    command's return code
+	 */
 	public function __construct(\$output, \$code) {
 		\$this->output = \$output;
 		\$this->code   = \$code;
@@ -240,9 +246,9 @@ $sig {
 	/**
 	 * evaluate server's respond to runcommand
 	 *
-	 * @param  libhg_Stream_Readable      \$reader readable stream
-	 * @param  libhg_Stream_Writable      \$writer writable stream
-	 * @param  libhg_Repository_Interface \$repo   used repository
+	 * @param  libhg_Stream_Readable      \$reader  readable stream
+	 * @param  libhg_Stream_Writable      \$writer  writable stream
+	 * @param  libhg_Repository_Interface \$repo    used repository
 	 * @return libhg_Command_{$cmdNameU}_Result
 	 */
 	public function evaluate(libhg_Stream_Readable \$reader, libhg_Stream_Writable \$writer, libhg_Repository_Interface \$repo) {

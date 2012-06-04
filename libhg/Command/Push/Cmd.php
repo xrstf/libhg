@@ -12,15 +12,15 @@
  * Generated command class for `hg push`
  *
  * @see       http://selenic.com/hg/help/push
- * @generated 2012-06-04 04:09
+ * @generated 2012-06-04 04:14
  */
 class libhg_Command_Push_Cmd extends libhg_Command_Push_Base {
 	/**
 	 * evaluate server's respond to runcommand
 	 *
-	 * @param  libhg_Stream_Readable      $reader readable stream
-	 * @param  libhg_Stream_Writable      $writer writable stream
-	 * @param  libhg_Repository_Interface $repo   used repository
+	 * @param  libhg_Stream_Readable      $reader  readable stream
+	 * @param  libhg_Stream_Writable      $writer  writable stream
+	 * @param  libhg_Repository_Interface $repo    used repository
 	 * @return libhg_Command_Push_Result
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {

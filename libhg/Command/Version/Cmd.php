@@ -12,15 +12,15 @@
  * Generated command class for `hg version`
  *
  * @see       http://selenic.com/hg/help/version
- * @generated 2012-06-04 04:09
+ * @generated 2012-06-04 04:14
  */
 class libhg_Command_Version_Cmd extends libhg_Command_Version_Base {
 	/**
 	 * evaluate server's respond to runcommand
 	 *
-	 * @param  libhg_Stream_Readable      $reader readable stream
-	 * @param  libhg_Stream_Writable      $writer writable stream
-	 * @param  libhg_Repository_Interface $repo   used repository
+	 * @param  libhg_Stream_Readable      $reader  readable stream
+	 * @param  libhg_Stream_Writable      $writer  writable stream
+	 * @param  libhg_Repository_Interface $repo    used repository
 	 * @return libhg_Command_Version_Result
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
