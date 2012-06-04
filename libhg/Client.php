@@ -130,13 +130,14 @@ class libhg_Client implements libhg_Client_Interface {
 	 *
 	 * This spawns a new hg instance and connects to its STDIN/STDOUT.
 	 *
-	 * @param  string $errorLog  optional error log filename
-	 * @return libhg_Client      self
+	 * @param  string  $errorLog          optional error log filename
+	 * @param  boolean $forceMqExtension  if true, the hg process is spawned with '--config extensions.mq=""'
+	 * @return libhg_Client               self
 	 */
-	public function connect($errorLog = null) {
+	public function connect($errorLog = null, $forceMqExtension = true) {
 		if ($this->open) $this->close();
 
-		$cmd         = 'hg serve --cmdserver pipe';
+		$cmd         = 'hg serve '.($forceMqExtension ? '--config extensions.mq="" ' : '').'--cmdserver pipe';
 		$pipes       = null;
 		$descriptors = array(
 			libhg_Stream::STDIN  => array('pipe', 'r'),
