@@ -25,7 +25,7 @@ abstract class libhg_Command_Base implements libhg_Command_Interface {
 			throw new libhg_Exception('exec() needs to have a client set prior via setClient().');
 		}
 
-		return $this->run($this->client);
+		return $this->client->run($this);
 	}
 
 	public function __toString() {
