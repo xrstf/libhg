@@ -1,0 +1,12 @@
+name: copy
+multi-args:
+   sources: { alias: source }
+single-args:
+   dest: { optional: false }
+multi-opts:
+   include: { cli: '-I', alias: incl }
+   exclude: { cli: '-X', alias: excl }
+flags:
+   after:  { cli: '-A' }
+   force:  { cli: '-f' }
+   dryRun: { cli: '-n' }

@@ -1,0 +1,16 @@
+name: clone
+single-args:
+   source: { optional: false }
+   dest:   ~
+multi-opts:
+   revs:     { cli: '-r', alias: rev    }
+   branches: { cli: '-b', alias: branch }
+single-opts:
+   updateRev: { cli: '-u'          }
+   ssh:       { cli: '-e'          }
+   remoteCmd: { cli: '--remotecmd' }
+flags:
+   noUpdate:     { cli: '-U' }
+   pull:         ~
+   uncompressed: ~
+   insecure:     ~

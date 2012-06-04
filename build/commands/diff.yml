@@ -1,0 +1,21 @@
+name: diff
+multi-args:
+   files: { alias: file }
+multi-opts:
+   revs:    { cli: '-r', alias: rev  }
+   include: { cli: '-I', alias: incl }
+   exclude: { cli: '-X', alias: excl }
+single-opts:
+   change:  { cli: '-c' }
+   unified: { cli: '-U' }
+flags:
+   text:              { cli: '-a' }
+   git:               { cli: '-g' }
+   noDates:           { cli: '--nodates' }
+   showFunction:      { cli: '-p' }
+   reverse:           ~
+   ignoreAllSpace:    { cli: '-w' }
+   ignoreSpaceChange: { cli: '-b' }
+   ignoreBlankLines:  { cli: '-B' }
+   stat:              ~
+   subrepos:          { cli: '-S' }

@@ -1,0 +1,10 @@
+name: export
+multi-args:
+   revs: { alias: rev }
+single-opts:
+   output: { cli: '-o' }
+flags:
+   switchParent: ~
+   text:         { cli: '-a' }
+   git:          { cli: '-g' }
+   noDates:      { cli: '--nodates' }
