@@ -13,6 +13,14 @@ class libhg_Command_Summary_Cmd extends libhg_Command_Summary_Base {
 		$this->remote($remote);
 	}
 
+	/**
+	 * evaluate server's respond to runcommand
+	 *
+	 * @param  libhg_Stream_Readable      $reader  readable stream
+	 * @param  libhg_Stream_Writable      $writer  writable stream
+	 * @param  libhg_Repository_Interface $repo    used repository
+	 * @return libhg_Command_Summary_Result
+	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
 		$output = $reader->readString(libhg_Stream::CHANNEL_OUTPUT);
 		$code   = $reader->readReturnValue();

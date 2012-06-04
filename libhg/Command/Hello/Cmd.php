@@ -25,6 +25,14 @@ class libhg_Command_Hello_Cmd implements libhg_Command_Interface {
 		return true;
 	}
 
+	/**
+	 * evaluate server's respond to runcommand
+	 *
+	 * @param  libhg_Stream_Readable      $reader  readable stream
+	 * @param  libhg_Stream_Writable      $writer  writable stream
+	 * @param  libhg_Repository_Interface $repo    used repository
+	 * @return libhg_Command_Hello_Result
+	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
 		$reader->expectChannels(array(libhg_Stream::CHANNEL_OUTPUT));
 

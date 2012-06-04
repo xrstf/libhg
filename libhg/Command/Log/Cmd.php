@@ -19,6 +19,14 @@ class libhg_Command_Log_Cmd extends libhg_Command_Log_Base {
 		return $options;
 	}
 
+	/**
+	 * evaluate server's respond to runcommand
+	 *
+	 * @param  libhg_Stream_Readable      $reader  readable stream
+	 * @param  libhg_Stream_Writable      $writer  writable stream
+	 * @param  libhg_Repository_Interface $repo    used repository
+	 * @return libhg_Command_Log_Result
+	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
 		$changesets = array();
 

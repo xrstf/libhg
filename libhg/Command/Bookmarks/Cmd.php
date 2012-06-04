@@ -9,11 +9,19 @@
  */
 
 class libhg_Command_Bookmarks_Cmd extends libhg_Command_Bookmarks_Base {
+	/**
+	 * evaluate server's respond to runcommand
+	 *
+	 * @param  libhg_Stream_Readable      $reader  readable stream
+	 * @param  libhg_Stream_Writable      $writer  writable stream
+	 * @param  libhg_Repository_Interface $repo    used repository
+	 * @return libhg_Command_Bookmarks_Result
+	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
-		$branches = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
-		$branches = empty($branches) ? array() : explode("\n", $branches);
-		$code     = $reader->readReturnValue();
+		$bkmarks = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
+		$bkmarks = empty($bkmarks) ? array() : explode("\n", $bkmarks);
+		$code    = $reader->readReturnValue();
 
-		return new libhg_Command_Bookmarks_Result($branches, $code);
+		return new libhg_Command_Bookmarks_Result($bkmarks, $code);
 	}
 }

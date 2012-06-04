@@ -9,6 +9,14 @@
  */
 
 class libhg_Command_Addremove_Cmd extends libhg_Command_Addremove_Base {
+	/**
+	 * evaluate server's respond to runcommand
+	 *
+	 * @param  libhg_Stream_Readable      $reader  readable stream
+	 * @param  libhg_Stream_Writable      $writer  writable stream
+	 * @param  libhg_Repository_Interface $repo    used repository
+	 * @return libhg_Command_Addremove_Result
+	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
 		$files = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
 		$files = empty($files) ? array() : explode("\n", $files);
