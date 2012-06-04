@@ -1,0 +1,5 @@
+name: showconfig
+multi-args:
+   names: { alias: name }
+flags:
+   untrusted: { cli: '-u' }

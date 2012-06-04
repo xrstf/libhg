@@ -43,42 +43,12 @@ foreach ($commands as $cmdYaml) {
 	$cmdName   = $cmd['name'];
 	$cmdNameU  = ucfirst($cmdName);
 	$namespace = $nsPrefix.$nsSep.$cmdNameU;
-	$classFile = $srcBasedir.str_replace($nsSep, DIRECTORY_SEPARATOR, $namespace).DIRECTORY_SEPARATOR.'Base.php';
+	$classDir  = $srcBasedir.str_replace($nsSep, DIRECTORY_SEPARATOR, $namespace);
+	$classFile = $classDir.DIRECTORY_SEPARATOR.'Base.php';
 	$fullClass = $namespace.$nsSep.'Base';
 
-	$fp = fopen($classFile, 'wb');
-	fwrite($fp, <<<HEADER
-<?php
-/*
- * Copyright (c) $year, Christoph Mewes, http://www.xrstf.de/
- *
- * This file is released under the terms of the MIT license. You can find the
- * complete text in the attached LICENSE file or online at:
- *
- * http://www.opensource.org/licenses/mit-license.php
- */
-
-HEADER
-);
-
-	if ($useNS) {
-		fwrite($fp, "\nnamespace $namespace;\n");
-	}
-
-	fwrite($fp, "
-/**
- * Generated base class for `hg $cmdName`
- *
- * @see       http://selenic.com/hg/help/$cmdName
- * @generated $now
- */
-");
-
-	if ($useNS) {
-		fwrite($fp, 'abstract class Base extends \libhg_Command_Base {');
-	}
-	else {
-		fwrite($fp, "abstract class {$namespace}_Base extends libhg_Command_Base {");
+	if (!is_dir($classDir)) {
+		mkdir($classDir);
 	}
 
 	$options = array();
@@ -112,6 +82,34 @@ HEADER
 			$options[] = new libhg_Flag($key, $value);
 		}
 	}
+
+	$nsLine   = '';
+	$classSig = "abstract class {$namespace}_Base extends libhg_Command_Base {";
+
+	if ($useNS) {
+		$nsLine   = "\nnamespace $namespace;\n";
+		$classSig = 'abstract class Base extends \libhg_Command_Base {';
+	}
+
+	$fp = fopen($classFile, 'wb');
+	fwrite($fp,
+"<?php
+/*
+ * Copyright (c) $year, Christoph Mewes, http://www.xrstf.de/
+ *
+ * This file is released under the terms of the MIT license. You can find the
+ * complete text in the attached LICENSE file or online at:
+ *
+ * http://www.opensource.org/licenses/mit-license.php
+ */
+$nsLine
+/**
+ * Generated base class for `hg $cmdName`
+ *
+ * @see       http://selenic.com/hg/help/$cmdName
+ * @generated $now
+ */
+$classSig");
 
 	// write field declarations
 	foreach ($options as $option) {
@@ -161,6 +159,103 @@ HEADER
 	}
 }
 ");
+
+	fclose($fp);
+
+	// write dummy result class if non exists
+
+	$resultFile = $classDir.DIRECTORY_SEPARATOR.'Result.php';
+
+	if (!file_exists($resultFile)) {
+		$fp  = fopen($resultFile, 'wb');
+		$sig = $useNS ? 'class Result' : "class {$namespace}_Result";
+
+		fwrite($fp,
+"<?php
+/*
+ * Copyright (c) $year, Christoph Mewes, http://www.xrstf.de/
+ *
+ * This file is released under the terms of the MIT license. You can find the
+ * complete text in the attached LICENSE file or online at:
+ *
+ * http://www.opensource.org/licenses/mit-license.php
+ */
+$nsLine
+/**
+ * Generated result class for `hg $cmdName`
+ *
+ * @see       http://selenic.com/hg/help/$cmdName
+ * @generated $now
+ */
+$sig {
+	/**
+	 * command output
+	 *
+	 * @var string
+	 */
+	public \$output;
+
+	/**
+	 * command return code
+	 *
+	 * @var int
+	 */
+	public \$code;
+
+	public function __construct(\$output, \$code) {
+		\$this->output = \$output;
+		\$this->code   = \$code;
+	}
+}
+");
+
+		fclose($fp);
+	}
+
+	// write dummy command class if non exists
+
+	$cmdFile = $classDir.DIRECTORY_SEPARATOR.'Cmd.php';
+
+	if (!file_exists($cmdFile)) {
+		$fp  = fopen($cmdFile, 'wb');
+		$sig = $useNS ? 'class Cmd extends Base' : "class {$namespace}_Cmd extends {$namespace}_Base";
+		fwrite($fp,
+"<?php
+/*
+ * Copyright (c) $year, Christoph Mewes, http://www.xrstf.de/
+ *
+ * This file is released under the terms of the MIT license. You can find the
+ * complete text in the attached LICENSE file or online at:
+ *
+ * http://www.opensource.org/licenses/mit-license.php
+ */
+$nsLine
+/**
+ * Generated command class for `hg $cmdName`
+ *
+ * @see       http://selenic.com/hg/help/$cmdName
+ * @generated $now
+ */
+$sig {
+	/**
+	 * evaluate server's respond to runcommand
+	 *
+	 * @param  libhg_Stream_Readable      \$reader readable stream
+	 * @param  libhg_Stream_Writable      \$writer writable stream
+	 * @param  libhg_Repository_Interface \$repo   used repository
+	 * @return libhg_Command_{$cmdNameU}_Result
+	 */
+	public function evaluate(libhg_Stream_Readable \$reader, libhg_Stream_Writable \$writer, libhg_Repository_Interface \$repo) {
+		\$output = trim(\$reader->readString(libhg_Stream::CHANNEL_OUTPUT));
+		\$code   = \$reader->readReturnValue();
+
+		return new libhg_Command_{$cmdNameU}_Result(\$output, \$code);
+	}
+}
+");
+
+		fclose($fp);
+	}
 }
 
 abstract class libhg_Option {
