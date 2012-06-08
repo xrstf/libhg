@@ -7,7 +7,7 @@ multi-opts:
    exclude: { cli: '-X', alias: excl }
 flags:
    noFollow:          ~
-   text:              { cli: '-s' }
+   text:              { cli: '-a' }
    user:              { cli: '-u' }
    file:              { cli: '-f' }
    date:              { cli: '-d' }

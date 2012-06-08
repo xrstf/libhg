@@ -51,7 +51,7 @@ abstract class libhg_Command_Annotate_Base extends libhg_Command_Base {
 	protected $noFollow = false;
 
 	/**
-	 * 'text' flag (-s)
+	 * 'text' flag (-a)
 	 *
 	 * @var boolean
 	 */
@@ -569,7 +569,7 @@ abstract class libhg_Command_Annotate_Base extends libhg_Command_Base {
 		if (!empty($this->include)) $options->setMultiple('-I', $this->include);
 		if (!empty($this->exclude)) $options->setMultiple('-X', $this->exclude);
 		if ($this->noFollow) $options->setFlag('--no-follow');
-		if ($this->text) $options->setFlag('-s');
+		if ($this->text) $options->setFlag('-a');
 		if ($this->user) $options->setFlag('-u');
 		if ($this->file) $options->setFlag('-f');
 		if ($this->date) $options->setFlag('-d');
