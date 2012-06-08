@@ -5,7 +5,7 @@ libhg is a PHP library, capable of connecting and interacting with a
 [Mercurial command server][hgcmdsrv]. The library doesn't use any special PHP
 extensions and is compatible with PHP 5.2.1 and up.
 
-![Build Status][travis]
+[![Build Status][travisimg]][travis]
 
 **Note:** This project is still in a very early stage and not yet ready for
 any use (especially not production use).
@@ -130,7 +130,8 @@ License
 libhg is licensed under the MIT License - see the LICENSE file for details
 
 [hgcmdsrv]: http://mercurial.selenic.com/wiki/CommandServer
-[travis]: https://secure.travis-ci.org/xrstf/libhg.png
+[travis]: https://secure.travis-ci.org/xrstf/libhg
+[travisimg]: https://secure.travis-ci.org/xrstf/libhg.png
 [composer]: https://getcomposer.org/
 [bb]: https://bitbucket.org/xrstf/libhg
 [github]: https://github.com/xrstf/libhg
