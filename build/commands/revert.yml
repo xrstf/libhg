@@ -1,0 +1,13 @@
+name: revert
+multi-args:
+   names: { optional: true, alias: name }
+multi-opts:
+   include: { cli: '-I', alias: incl }
+   exclude: { cli: '-X', alias: excl }
+single-opts:
+   rev:  { cli: '-r' }
+   date: { cli: '-d' }
+flags:
+   all:      { cli: '-a' }
+   noBackup: { cli: '-C' }
+   dryRun:   { cli: '-n' }

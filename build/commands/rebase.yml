@@ -1,0 +1,19 @@
+# This commands needs the rebase extension.
+name: rebase
+multi-opts:
+   revs: { cli: '-r', alias: rev }
+single-opts:
+   source:  { cli: '-s' }
+   base:    { cli: '-b' }
+   dest:    { cli: '-d' }
+   message: { cli: '-m' }
+   logfile: { cli: '-l' }
+   tool:    { cli: '-t' }
+flags:
+   collapse:     ~
+   edit:         { cli: '-e' }
+   keep:         ~
+   keepBranches: { cli: '--keepbranches' }
+   detach:       { cli: '-D' }
+   continue:     { cli: '-c' }
+   abort:        { cli: '-a' }

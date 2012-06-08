@@ -1,0 +1,14 @@
+name: resolve
+multi-args:
+   files: { optional: true, alias: file }
+multi-opts:
+   include: { cli: '-I', alias: incl }
+   exclude: { cli: '-X', alias: excl }
+single-opts:
+   tool: { cli: '-t' }
+flags:
+   all:      { cli: '-a' }
+   list:     { cli: '-l' }
+   mark:     { cli: '-m' }
+   unmark:   { cli: '-u' }
+   noStatus: { cli: '-n' }

@@ -1,0 +1,19 @@
+name: grep
+single-args:
+   pattern: ~
+multi-args:
+   files: { optional: true, alias: file }
+multi-opts:
+   revs:    { cli: '-I', alias: rev  }
+   include: { cli: '-I', alias: incl }
+   exclude: { cli: '-X', alias: excl }
+flags:
+   print0:           { cli: '-0' }
+   all:              ~
+   text:             { cli: '-a' }
+   follow:           { cli: '-f' }
+   ignoreCase:       { cli: '-i' }
+   filesWithMatches: { cli: '-l' }
+   lineNumber:       { cli: '-n' }
+   user:             { cli: '-u' }
+   date:             { cli: '-d' }

@@ -1,0 +1,20 @@
+# This commands needs the convert extension.
+name: convert
+single-args:
+   source: { optional: false }
+   dest:   { optional: true }
+   revmap: { optional: true }
+multi-opts:
+   configs: { cli: '--config', alias: config }
+single-opts:
+   sourceType:  { cli: '-s' }
+   destType:    { cli: '-d' }
+   rev:         { cli: '-r' }
+   authormap:   { cli: '-A' }
+   filemap:     ~
+   splicemap:   ~
+   branchmap:   ~
+flags:
+   branchsort: ~
+   datesort:   ~
+   sourcesort: ~

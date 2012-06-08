@@ -1,0 +1,5 @@
+name: unbundle
+multi-args:
+   files: { optional: false, alias: file }
+flags:
+   update: { cli: '-u' }

@@ -1,0 +1,13 @@
+name: graft
+multi-args:
+   revisions: { alias: rev }
+single-opts:
+   user: { cli: '-u' }
+   date: { cli: '-d' }
+   tool: { cli: '-t' }
+flags:
+   continue:    { cli: '-c' }
+   edit:        { cli: '-e' }
+   currentdate: { cli: '-D' }
+   currentuser: { cli: '-U' }
+   dryRun:      { cli: '-n' }

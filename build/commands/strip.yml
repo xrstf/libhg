@@ -1,0 +1,9 @@
+# This commands needs the mq extension. It's loaded by default when
+# connecting a libhg_Client.
+name: strip
+multi-args:
+   revs: { optional: false, alias: rev }
+flags:
+   force:    { cli: '-f' }
+   noBackup: ~
+   keep:     { cli: '-k' }

@@ -1,0 +1,17 @@
+# This commands needs the fetch extension.
+name: fetch
+single-args:
+   source: { optional: true }
+multi-opts:
+   revs: { cli: '-r', alias: rev }
+single-opts:
+   message:   { cli: '-m'          }
+   logfile:   { cli: '-l'          }
+   date:      { cli: '-d'          }
+   user:      { cli: '-u'          }
+   ssh:       { cli: '-e'          }
+   remoteCmd: { cli: '--remotecmd' }
+flags:
+   edit:         { cli: '-e' }
+   switchParent: ~
+   insecure:     ~

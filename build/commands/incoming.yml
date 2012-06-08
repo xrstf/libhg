@@ -1,0 +1,20 @@
+name: incoming
+single-args:
+   source: { optional: false }
+multi-opts:
+   revs:     { cli: '-r', alias: rev    }
+   branches: { cli: '-b', alias: branch }
+single-opts:
+   bundle:    ~
+   limit:     { cli: '-l'          }
+   ssh:       { cli: '-e'          }
+   remoteCmd: { cli: '--remotecmd' }
+flags:
+   force:        { cli: '-f' }
+   newestFirst:  { cli: '-n' }
+   bookmarks:    { cli: '-B' }
+#  patch:        { cli: '-p' }
+#  git:          { cli: '-g' }
+   noMerges:     { cli: '-M' }
+#  stat:         ~
+   insecure:     ~

@@ -1,0 +1,8 @@
+name: phase
+multi-args:
+   revs: { optional: true, alias: rev }
+flags:
+   public: { cli: '-p' }
+   draft:  { cli: '-d' }
+   secret: { cli: '-s' }
+   force:  { cli: '-f' }
