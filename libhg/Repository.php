@@ -69,6 +69,18 @@ class libhg_Repository implements libhg_Repository_Interface {
 	}
 
 	/**
+	 * get hgrc wrapper
+	 *
+	 * @return libhg_Hgrc  wrapper (does not mean that the file actually exists)
+	 */
+	public function getHgrc() {
+		$file = $this->path.DIRECTORY_SEPARATOR.'.hg'.DIRECTORY_SEPARATOR.'hgrc';
+		$hgrc = new libhg_Hgrc($file);
+
+		return $hgrc;
+	}
+
+	/**
 	 * Run a command
 	 *
 	 * @param  libhg_Command_Interface $command  the command to run
