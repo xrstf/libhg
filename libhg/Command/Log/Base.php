@@ -11,8 +11,8 @@
 /**
  * Generated base class for `hg log`
  *
- * @see       http://selenic.com/hg/help/log
- * @generated 2012-06-04 01:30
+ * @generated
+ * @see http://selenic.com/hg/help/log
  */
 abstract class libhg_Command_Log_Base extends libhg_Command_Base {
 	/**

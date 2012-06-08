@@ -11,8 +11,8 @@
 /**
  * Generated base class for `hg export`
  *
- * @see       http://selenic.com/hg/help/export
- * @generated 2012-06-04 02:01
+ * @generated
+ * @see http://selenic.com/hg/help/export
  */
 abstract class libhg_Command_Export_Base extends libhg_Command_Base {
 	/**

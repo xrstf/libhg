@@ -11,8 +11,8 @@
 /**
  * Generated base class for `hg pull`
  *
- * @see       http://selenic.com/hg/help/pull
- * @generated 2012-06-04 04:09
+ * @generated
+ * @see http://selenic.com/hg/help/pull
  */
 abstract class libhg_Command_Pull_Base extends libhg_Command_Base {
 	/**

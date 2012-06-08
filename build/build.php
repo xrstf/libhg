@@ -106,8 +106,8 @@ $nsLine
 /**
  * Generated base class for `hg $cmdName`
  *
- * @see       http://selenic.com/hg/help/$cmdName
- * @generated $now
+ * @generated
+ * @see http://selenic.com/hg/help/$cmdName
  */
 $classSig");
 
@@ -184,8 +184,8 @@ $nsLine
 /**
  * Generated result class for `hg $cmdName`
  *
- * @see       http://selenic.com/hg/help/$cmdName
- * @generated $now
+ * @generated
+ * @see http://selenic.com/hg/help/$cmdName
  */
 $sig {
 	/**
@@ -239,8 +239,8 @@ $nsLine
 /**
  * Generated command class for `hg $cmdName`
  *
- * @see       http://selenic.com/hg/help/$cmdName
- * @generated $now
+ * @generated
+ * @see http://selenic.com/hg/help/$cmdName
  */
 $sig {
 	/**

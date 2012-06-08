@@ -11,8 +11,8 @@
 /**
  * Generated base class for `hg identify`
  *
- * @see       http://selenic.com/hg/help/identify
- * @generated 2012-06-04 04:09
+ * @generated
+ * @see http://selenic.com/hg/help/identify
  */
 abstract class libhg_Command_Identify_Base extends libhg_Command_Base {
 	/**

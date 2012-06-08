@@ -11,8 +11,8 @@
 /**
  * Generated base class for `hg version`
  *
- * @see       http://selenic.com/hg/help/version
- * @generated 2012-06-04 04:09
+ * @generated
+ * @see http://selenic.com/hg/help/version
  */
 abstract class libhg_Command_Version_Base extends libhg_Command_Base {
 	/**

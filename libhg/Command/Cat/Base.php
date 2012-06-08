@@ -11,8 +11,8 @@
 /**
  * Generated base class for `hg cat`
  *
- * @see       http://selenic.com/hg/help/cat
- * @generated 2012-06-04 01:30
+ * @generated
+ * @see http://selenic.com/hg/help/cat
  */
 abstract class libhg_Command_Cat_Base extends libhg_Command_Base {
 	/**

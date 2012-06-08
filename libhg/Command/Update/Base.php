@@ -11,8 +11,8 @@
 /**
  * Generated base class for `hg update`
  *
- * @see       http://selenic.com/hg/help/update
- * @generated 2012-06-04 04:09
+ * @generated
+ * @see http://selenic.com/hg/help/update
  */
 abstract class libhg_Command_Update_Base extends libhg_Command_Base {
 	/**

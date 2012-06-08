@@ -11,8 +11,8 @@
 /**
  * Generated base class for `hg push`
  *
- * @see       http://selenic.com/hg/help/push
- * @generated 2012-06-04 04:09
+ * @generated
+ * @see http://selenic.com/hg/help/push
  */
 abstract class libhg_Command_Push_Base extends libhg_Command_Base {
 	/**

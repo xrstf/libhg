@@ -11,8 +11,8 @@
 /**
  * Generated base class for `hg annotate`
  *
- * @see       http://selenic.com/hg/help/annotate
- * @generated 2012-06-04 01:30
+ * @generated
+ * @see http://selenic.com/hg/help/annotate
  */
 abstract class libhg_Command_Annotate_Base extends libhg_Command_Base {
 	/**

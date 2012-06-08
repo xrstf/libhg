@@ -11,8 +11,8 @@
 /**
  * Generated base class for `hg showconfig`
  *
- * @see       http://selenic.com/hg/help/showconfig
- * @generated 2012-06-04 03:28
+ * @generated
+ * @see http://selenic.com/hg/help/showconfig
  */
 abstract class libhg_Command_Showconfig_Base extends libhg_Command_Base {
 	/**

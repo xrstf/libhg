@@ -11,8 +11,8 @@
 /**
  * Generated base class for `hg init`
  *
- * @see       http://selenic.com/hg/help/init
- * @generated 2012-06-04 01:30
+ * @generated
+ * @see http://selenic.com/hg/help/init
  */
 abstract class libhg_Command_Init_Base extends libhg_Command_Base {
 	/**

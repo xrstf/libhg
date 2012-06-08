@@ -11,8 +11,8 @@
 /**
  * Generated base class for `hg forget`
  *
- * @see       http://selenic.com/hg/help/forget
- * @generated 2012-06-04 04:09
+ * @generated
+ * @see http://selenic.com/hg/help/forget
  */
 abstract class libhg_Command_Forget_Base extends libhg_Command_Base {
 	/**

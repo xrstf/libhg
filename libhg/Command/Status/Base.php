@@ -11,8 +11,8 @@
 /**
  * Generated base class for `hg status`
  *
- * @see       http://selenic.com/hg/help/status
- * @generated 2012-06-04 01:30
+ * @generated
+ * @see http://selenic.com/hg/help/status
  */
 abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 	/**

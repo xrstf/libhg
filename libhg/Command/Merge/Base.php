@@ -11,8 +11,8 @@
 /**
  * Generated base class for `hg merge`
  *
- * @see       http://selenic.com/hg/help/merge
- * @generated 2012-06-04 04:09
+ * @generated
+ * @see http://selenic.com/hg/help/merge
  */
 abstract class libhg_Command_Merge_Base extends libhg_Command_Base {
 	/**

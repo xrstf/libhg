@@ -11,8 +11,8 @@
 /**
  * Generated base class for `hg branch`
  *
- * @see       http://selenic.com/hg/help/branch
- * @generated 2012-06-04 01:30
+ * @generated
+ * @see http://selenic.com/hg/help/branch
  */
 abstract class libhg_Command_Branch_Base extends libhg_Command_Base {
 	/**
