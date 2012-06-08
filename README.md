@@ -42,6 +42,8 @@ You can use [Composer][composer] to install libhg. The package name is
        }
     }
 
+Test:
+
     `````javascript
     {
        "requires": {
