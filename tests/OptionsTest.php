@@ -83,6 +83,24 @@ class libhg_OptionsTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @depends testSingleOptions
 	 */
+	public function testRepositoryOption() {
+		$options = new libhg_Options_Container();
+		$repo    = new libhg_Repository(LIBHG_REPOS.'/sally');
+
+		$options->setRepository($repo);
+		$this->assertEquals('-R '.$repo->getDirectory(), (string) $options);
+
+		$options->setRepository(null);
+		$this->assertEquals('', (string) $options);
+
+		$options->setRepository($repo);
+		$options->reset();
+		$this->assertEquals('', (string) $options);
+	}
+
+	/**
+	 * @depends testSingleOptions
+	 */
 	public function testMultiOptions() {
 		$options = new libhg_Options_Container();
 		$options->setMultiple('--foo', array('bar', 'baz'));
