@@ -14,6 +14,9 @@ class libhg_Options_Container implements libhg_Options_Interface {
 	protected $flags   = array();
 	protected $repo    = null;
 
+	const TYPE_SINGLE   = 0;
+	const TYPE_MULTIPLE = 1;
+
 	public function setRepository(libhg_Repository_Interface $repo = null) {
 		$this->repo = $repo;
 	}
@@ -45,7 +48,7 @@ class libhg_Options_Container implements libhg_Options_Interface {
 		}
 
 		foreach ($this->options as $name => $values) {
-			foreach ($values as $value) {
+			foreach ($values[1] as $value) {
 				$result[] = $name;
 				$result[] = $value;
 			}
@@ -82,9 +85,18 @@ class libhg_Options_Container implements libhg_Options_Interface {
 			$copy->setFlag($flag);
 		}
 
-		foreach ($options->getOptions() as $name => $values) {
-			$merged = array_merge((array) $copy->getMultiple($name), $values);
-			$copy->options[$name] = $merged;
+		foreach ($options->options as $name => $option) {
+			list ($type, $values) = $option;
+
+			if ($type === self::TYPE_SINGLE) {
+				$copy->options[$name] = $option;
+			}
+			else {
+				$copyValue = (array) $copy->getMultiple($name);
+				$merged    = array_merge($copyValue, $values);
+
+				$copy->options[$name] = array(self::TYPE_MULTIPLE, $merged);
+			}
 		}
 
 		$otherArguments = $options->getArguments();
@@ -97,21 +109,30 @@ class libhg_Options_Container implements libhg_Options_Interface {
 		return $copy;
 	}
 
-	public function getArguments() { return $this->args;    }
-	public function getOptions()   { return $this->options; }
-	public function getFlags()     { return $this->flags;   }
+	public function getArguments() { return $this->args;  }
+	public function getFlags()     { return $this->flags; }
 
-	public function getSingle($name)   { return isset($this->options[$name])  ? reset($this->options[$name]) : null; }
-	public function getMultiple($name) { return isset($this->options[$name])  ? $this->options[$name]        : null; }
-	public function getFlag($name)     { return in_array($name, $this->flags) ? true                         : null; }
+	public function getOptions() {
+		$retval = array();
+
+		foreach ($this->options as $name => $option) {
+			$retval[$name] = $option[1];
+		}
+
+		return $retval;
+	}
+
+	public function getSingle($name)   { return isset($this->options[$name])  ? reset($this->options[$name][1]) : null; }
+	public function getMultiple($name) { return isset($this->options[$name])  ? $this->options[$name][1]        : null; }
+	public function getFlag($name)     { return in_array($name, $this->flags) ? true                            : null; }
 
 	public function setSingle($name, $value) {
-		$this->options[$name] = array($value);
+		$this->options[$name] = array(self::TYPE_SINGLE, array($value));
 		return $this;
 	}
 
 	public function setMultiple($name, array $values) {
-		$this->options[$name] = $values;
+		$this->options[$name] = array(self::TYPE_MULTIPLE, $values);
 		return $this;
 	}
 

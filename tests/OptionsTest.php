@@ -156,4 +156,63 @@ class libhg_OptionsTest extends PHPUnit_Framework_TestCase {
 		$options->setFlag('-A');
 		$this->assertEquals('--foo --bla -long -abA', (string) $options);
 	}
+
+	public function testMerging() {
+		$base  = new libhg_Options_Container();
+		$other = new libhg_Options_Container();
+
+		$base
+			->addArgument('x')
+			->setFlag('--base')
+			->setFlag('-s')
+			->setSingle('baseS1',  'a')
+			->setSingle('sharedS', 'Z')
+			->setSingle('baseS2',  'b')
+			->setMultiple('baseM1',  array('x', 'y'))
+			->setMultiple('sharedM', array('x'))
+			->setMultiple('baseM2',  array('z'))
+		;
+
+		$other
+			->addArgument('y')
+			->setFlag('--other')
+			->setFlag('-s')
+			->setSingle('otherS1', 'a')
+			->setSingle('sharedS', 'T')
+			->setSingle('otherS2', 'b')
+			->setMultiple('otherM1', array('y'))
+			->setMultiple('sharedM', array('y'))
+			->setMultiple('otherM2', array('z'))
+		;
+
+		$merged = $base->merge($other);
+		$this->assertNotSame($merged, $base);
+
+		$expected = new libhg_Options_Container();
+		$expected
+			// arguments should NOT be merged, as their number is important
+			->addArgument('y')
+
+			// arguments should just be merged together (take both sides)
+			->setFlag('--base')
+			->setFlag('-s')
+			->setFlag('--other')
+
+			// dito for single options, but the value from $other overwrites the $base value
+			->setSingle('baseS1',  'a')
+			->setSingle('sharedS', 'T')
+			->setSingle('baseS2',  'b')
+			->setSingle('otherS1', 'a')
+			->setSingle('otherS2', 'b')
+
+			// multiple options are merged (take both sides), values are merged as well
+			->setMultiple('baseM1',  array('x', 'y'))
+			->setMultiple('sharedM', array('x', 'y'))
+			->setMultiple('baseM2',  array('z'))
+			->setMultiple('otherM1', array('y'))
+			->setMultiple('otherM2', array('z'))
+		;
+
+		$this->assertEquals($expected, $merged);
+	}
 }
