@@ -138,4 +138,22 @@ class libhg_OptionsTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(array(), $options->toArray());
 		$this->assertEquals('', (string) $options);
 	}
+
+	/**
+	 * @depends testFlags
+	 */
+	public function testJoiningFlags() {
+		$options = new libhg_Options_Container();
+
+		$options->setFlag('--foo');
+		$options->setFlag('-a');
+		$options->setFlag('-b');
+		$options->setFlag('--bla');
+		$this->assertEquals('--foo --bla -ab', (string) $options);
+
+		$options->setFlag('-long');
+		$this->assertEquals('--foo --bla -long -ab', (string) $options);
+		$options->setFlag('-A');
+		$this->assertEquals('--foo --bla -long -abA', (string) $options);
+	}
 }
