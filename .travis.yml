@@ -4,3 +4,7 @@ php:
    - 5.2
    - 5.3
    - 5.4
+
+install:
+   - mkdir repos
+   - hg clone -r e030eaabef75 https://bitbucket.org/SallyCMS/0.2 repos/sally
