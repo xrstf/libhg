@@ -59,7 +59,7 @@ class libhg_Options_Container implements libhg_Options_Interface {
 	}
 
 	public function __toString() {
-		$options = $this->toArray();
+		$options = array_filter($this->toArray());
 		return implode(' ', $options);
 	}
 
@@ -101,9 +101,9 @@ class libhg_Options_Container implements libhg_Options_Interface {
 	public function getOptions()   { return $this->options; }
 	public function getFlags()     { return $this->flags;   }
 
-	public function getSingle($name)   { return isset($this->options[$name]) ? reset($this->options[$name]) : null; }
-	public function getMultiple($name) { return isset($this->options[$name]) ? $this->options[$name]        : null; }
-	public function getFlag($name)     { return isset($this->flags[$name])   ? $this->flags[$name]          : null; }
+	public function getSingle($name)   { return isset($this->options[$name])  ? reset($this->options[$name]) : null; }
+	public function getMultiple($name) { return isset($this->options[$name])  ? $this->options[$name]        : null; }
+	public function getFlag($name)     { return in_array($name, $this->flags) ? true                         : null; }
 
 	public function setSingle($name, $value) {
 		$this->options[$name] = array($value);
