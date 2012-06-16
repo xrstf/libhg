@@ -57,14 +57,12 @@ class libhg_Hgrc {
 	}
 
 	/**
-	 * read file content
-	 *
-	 * This will overwrite any changes that might have happened to this object.
+	 * check file existence
 	 *
 	 * @throws libhg_Exception  if file has not yet been set
 	 * @return boolean
 	 */
-	public function read($returnSelf) {
+	public function exists() {
 		if ($this->file === null) {
 			throw new libhg_Exception('Cannot check file because it has not yet been set.');
 		}

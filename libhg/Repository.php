@@ -24,9 +24,16 @@ class libhg_Repository implements libhg_Repository_Interface {
 	 * @param string $path  full path to a working directory (without the '/.hg')
 	 */
 	public function __construct($path) {
-		$repo = realpath($path);
+		$repo = is_string($path) && !empty($path) ? realpath($path) : false;
 
-		if ($repo === false || !is_dir($repo) || !is_dir($repo.DIRECTORY_SEPARATOR.'.hg')) {
+		if ($repo === false || !is_dir($repo)) {
+			throw new libhg_Exception('Invalid repository path "'.$path.'" given.');
+		}
+
+		if (basename($repo) === '.hg') {
+			$repo = dirname($repo);
+		}
+		elseif (!is_dir($repo.DIRECTORY_SEPARATOR.'.hg')) {
 			throw new libhg_Exception('Invalid repository path "'.$path.'" given.');
 		}
 

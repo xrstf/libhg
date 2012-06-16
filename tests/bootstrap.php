@@ -12,3 +12,7 @@ define('LIBHG_BASE',  rtrim(realpath(dirname(__FILE__).'/../'), DIRECTORY_SEPARA
 define('LIBHG_REPOS', LIBHG_BASE.DIRECTORY_SEPARATOR.'repos');
 
 require LIBHG_BASE.'/Autoload.php';
+
+foreach (glob(LIBHG_BASE.'/tests/Dummies/*.php') as $file) {
+	require $file;
+}
