@@ -57,9 +57,9 @@ abstract class libhg_Command_Branches_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set active
+	 * set or unset active flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag                true to set the flag, false to unset it
 	 * @return libhg_Command_Branches_Base  self
 	 */
 	public function active($flag = true) {
@@ -68,9 +68,9 @@ abstract class libhg_Command_Branches_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set closed
+	 * set or unset closed flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag                true to set the flag, false to unset it
 	 * @return libhg_Command_Branches_Base  self
 	 */
 	public function closed($flag = true) {

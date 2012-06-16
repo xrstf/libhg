@@ -75,7 +75,7 @@ abstract class libhg_Command_Branch_Base extends libhg_Command_Base {
 	/**
 	 * set name
 	 *
-	 * @param  string $name
+	 * @param  string $name               the single name argument
 	 * @return libhg_Command_Branch_Base  self
 	 */
 	public function name($name) {
@@ -84,9 +84,9 @@ abstract class libhg_Command_Branch_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set force
+	 * set or unset force flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Branch_Base  self
 	 */
 	public function force($flag = true) {
@@ -95,9 +95,9 @@ abstract class libhg_Command_Branch_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set clean
+	 * set or unset clean flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Branch_Base  self
 	 */
 	public function clean($flag = true) {

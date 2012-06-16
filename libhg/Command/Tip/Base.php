@@ -57,9 +57,9 @@ abstract class libhg_Command_Tip_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set patch
+	 * set or unset patch flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag           true to set the flag, false to unset it
 	 * @return libhg_Command_Tip_Base  self
 	 */
 	public function patch($flag = true) {
@@ -68,9 +68,9 @@ abstract class libhg_Command_Tip_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set git
+	 * set or unset git flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag           true to set the flag, false to unset it
 	 * @return libhg_Command_Tip_Base  self
 	 */
 	public function git($flag = true) {

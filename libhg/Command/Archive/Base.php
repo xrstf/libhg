@@ -123,7 +123,7 @@ abstract class libhg_Command_Archive_Base extends libhg_Command_Base {
 	/**
 	 * set dest
 	 *
-	 * @param  string $dest
+	 * @param  string $dest                the single dest argument
 	 * @return libhg_Command_Archive_Base  self
 	 */
 	public function dest($dest) {
@@ -134,7 +134,7 @@ abstract class libhg_Command_Archive_Base extends libhg_Command_Base {
 	/**
 	 * set prefix
 	 *
-	 * @param  string $prefix
+	 * @param  string $prefix              the single prefix argument
 	 * @return libhg_Command_Archive_Base  self
 	 */
 	public function prefix($prefix) {
@@ -145,7 +145,7 @@ abstract class libhg_Command_Archive_Base extends libhg_Command_Base {
 	/**
 	 * set revs
 	 *
-	 * @param  string $revs
+	 * @param  string $revs                the single revs argument
 	 * @return libhg_Command_Archive_Base  self
 	 */
 	public function revs($revs) {
@@ -156,7 +156,7 @@ abstract class libhg_Command_Archive_Base extends libhg_Command_Base {
 	/**
 	 * set type
 	 *
-	 * @param  string $type
+	 * @param  string $type                the single type argument
 	 * @return libhg_Command_Archive_Base  self
 	 */
 	public function type($type) {
@@ -165,9 +165,9 @@ abstract class libhg_Command_Archive_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set noDecode
+	 * set or unset noDecode flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag               true to set the flag, false to unset it
 	 * @return libhg_Command_Archive_Base  self
 	 */
 	public function noDecode($flag = true) {
@@ -176,9 +176,9 @@ abstract class libhg_Command_Archive_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set subrepos
+	 * set or unset subrepos flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag               true to set the flag, false to unset it
 	 * @return libhg_Command_Archive_Base  self
 	 */
 	public function subrepos($flag = true) {

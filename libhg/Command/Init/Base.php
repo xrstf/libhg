@@ -91,7 +91,7 @@ abstract class libhg_Command_Init_Base extends libhg_Command_Base {
 	/**
 	 * set dest
 	 *
-	 * @param  string $dest
+	 * @param  string $dest             the single dest argument
 	 * @return libhg_Command_Init_Base  self
 	 */
 	public function dest($dest) {
@@ -102,7 +102,7 @@ abstract class libhg_Command_Init_Base extends libhg_Command_Base {
 	/**
 	 * set ssh
 	 *
-	 * @param  string $ssh
+	 * @param  string $ssh              the single ssh argument
 	 * @return libhg_Command_Init_Base  self
 	 */
 	public function ssh($ssh) {
@@ -113,7 +113,7 @@ abstract class libhg_Command_Init_Base extends libhg_Command_Base {
 	/**
 	 * set remoteCmd
 	 *
-	 * @param  string $remoteCmd
+	 * @param  string $remoteCmd        the single remoteCmd argument
 	 * @return libhg_Command_Init_Base  self
 	 */
 	public function remoteCmd($remoteCmd) {
@@ -122,9 +122,9 @@ abstract class libhg_Command_Init_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set insecure
+	 * set or unset insecure flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag            true to set the flag, false to unset it
 	 * @return libhg_Command_Init_Base  self
 	 */
 	public function insecure($flag = true) {

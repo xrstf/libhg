@@ -187,7 +187,7 @@ abstract class libhg_Command_Identify_Base extends libhg_Command_Base {
 	/**
 	 * set source
 	 *
-	 * @param  string $source
+	 * @param  string $source               the single source argument
 	 * @return libhg_Command_Identify_Base  self
 	 */
 	public function source($source) {
@@ -198,7 +198,7 @@ abstract class libhg_Command_Identify_Base extends libhg_Command_Base {
 	/**
 	 * set rev
 	 *
-	 * @param  string $rev
+	 * @param  string $rev                  the single rev argument
 	 * @return libhg_Command_Identify_Base  self
 	 */
 	public function rev($rev) {
@@ -209,7 +209,7 @@ abstract class libhg_Command_Identify_Base extends libhg_Command_Base {
 	/**
 	 * set ssh
 	 *
-	 * @param  string $ssh
+	 * @param  string $ssh                  the single ssh argument
 	 * @return libhg_Command_Identify_Base  self
 	 */
 	public function ssh($ssh) {
@@ -220,7 +220,7 @@ abstract class libhg_Command_Identify_Base extends libhg_Command_Base {
 	/**
 	 * set remoteCmd
 	 *
-	 * @param  string $remoteCmd
+	 * @param  string $remoteCmd            the single remoteCmd argument
 	 * @return libhg_Command_Identify_Base  self
 	 */
 	public function remoteCmd($remoteCmd) {
@@ -229,9 +229,9 @@ abstract class libhg_Command_Identify_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set num
+	 * set or unset num flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag                true to set the flag, false to unset it
 	 * @return libhg_Command_Identify_Base  self
 	 */
 	public function num($flag = true) {
@@ -240,9 +240,9 @@ abstract class libhg_Command_Identify_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set id
+	 * set or unset id flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag                true to set the flag, false to unset it
 	 * @return libhg_Command_Identify_Base  self
 	 */
 	public function id($flag = true) {
@@ -251,9 +251,9 @@ abstract class libhg_Command_Identify_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set branch
+	 * set or unset branch flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag                true to set the flag, false to unset it
 	 * @return libhg_Command_Identify_Base  self
 	 */
 	public function branch($flag = true) {
@@ -262,9 +262,9 @@ abstract class libhg_Command_Identify_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set tags
+	 * set or unset tags flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag                true to set the flag, false to unset it
 	 * @return libhg_Command_Identify_Base  self
 	 */
 	public function tags($flag = true) {
@@ -273,9 +273,9 @@ abstract class libhg_Command_Identify_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set bookmarks
+	 * set or unset bookmarks flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag                true to set the flag, false to unset it
 	 * @return libhg_Command_Identify_Base  self
 	 */
 	public function bookmarks($flag = true) {
@@ -284,9 +284,9 @@ abstract class libhg_Command_Identify_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set insecure
+	 * set or unset insecure flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag                true to set the flag, false to unset it
 	 * @return libhg_Command_Identify_Base  self
 	 */
 	public function insecure($flag = true) {

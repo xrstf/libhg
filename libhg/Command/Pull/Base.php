@@ -203,7 +203,7 @@ abstract class libhg_Command_Pull_Base extends libhg_Command_Base {
 	/**
 	 * set source
 	 *
-	 * @param  string $source
+	 * @param  string $source           the single source argument
 	 * @return libhg_Command_Pull_Base  self
 	 */
 	public function source($source) {
@@ -212,27 +212,16 @@ abstract class libhg_Command_Pull_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple revs
+	 * append a single or multiple revs
 	 *
-	 * @param  array $revs
+	 * @param  mixed $revs              a single (scalar) or multiple (array) revs
 	 * @return libhg_Command_Pull_Base  self
 	 */
-	public function revs(array $revs) {
-		foreach ($revs as $val) {
+	public function rev($revs) {
+		foreach ((array) $revs as $val) {
 			$this->revs[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single rev
-	 *
-	 * @param  array $rev
-	 * @return libhg_Command_Pull_Base  self
-	 */
-	public function rev($rev) {
-		$this->revs[] = $rev;
 		return $this;
 	}
 
@@ -247,27 +236,16 @@ abstract class libhg_Command_Pull_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple bookmarks
+	 * append a single or multiple bookmarks
 	 *
-	 * @param  array $bookmarks
+	 * @param  mixed $bookmarks         a single (scalar) or multiple (array) bookmarks
 	 * @return libhg_Command_Pull_Base  self
 	 */
-	public function bookmarks(array $bookmarks) {
-		foreach ($bookmarks as $val) {
+	public function bookmark($bookmarks) {
+		foreach ((array) $bookmarks as $val) {
 			$this->bookmarks[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single bookmark
-	 *
-	 * @param  array $bookmark
-	 * @return libhg_Command_Pull_Base  self
-	 */
-	public function bookmark($bookmark) {
-		$this->bookmarks[] = $bookmark;
 		return $this;
 	}
 
@@ -282,27 +260,16 @@ abstract class libhg_Command_Pull_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple branches
+	 * append a single or multiple branches
 	 *
-	 * @param  array $branches
+	 * @param  mixed $branches          a single (scalar) or multiple (array) branches
 	 * @return libhg_Command_Pull_Base  self
 	 */
-	public function branches(array $branches) {
-		foreach ($branches as $val) {
+	public function branch($branches) {
+		foreach ((array) $branches as $val) {
 			$this->branches[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single branch
-	 *
-	 * @param  array $branch
-	 * @return libhg_Command_Pull_Base  self
-	 */
-	public function branch($branch) {
-		$this->branches[] = $branch;
 		return $this;
 	}
 
@@ -319,7 +286,7 @@ abstract class libhg_Command_Pull_Base extends libhg_Command_Base {
 	/**
 	 * set ssh
 	 *
-	 * @param  string $ssh
+	 * @param  string $ssh              the single ssh argument
 	 * @return libhg_Command_Pull_Base  self
 	 */
 	public function ssh($ssh) {
@@ -330,7 +297,7 @@ abstract class libhg_Command_Pull_Base extends libhg_Command_Base {
 	/**
 	 * set remoteCmd
 	 *
-	 * @param  string $remoteCmd
+	 * @param  string $remoteCmd        the single remoteCmd argument
 	 * @return libhg_Command_Pull_Base  self
 	 */
 	public function remoteCmd($remoteCmd) {
@@ -339,9 +306,9 @@ abstract class libhg_Command_Pull_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set update
+	 * set or unset update flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag            true to set the flag, false to unset it
 	 * @return libhg_Command_Pull_Base  self
 	 */
 	public function update($flag = true) {
@@ -350,9 +317,9 @@ abstract class libhg_Command_Pull_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set force
+	 * set or unset force flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag            true to set the flag, false to unset it
 	 * @return libhg_Command_Pull_Base  self
 	 */
 	public function force($flag = true) {
@@ -361,9 +328,9 @@ abstract class libhg_Command_Pull_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set tool
+	 * set or unset tool flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag            true to set the flag, false to unset it
 	 * @return libhg_Command_Pull_Base  self
 	 */
 	public function tool($flag = true) {
@@ -372,9 +339,9 @@ abstract class libhg_Command_Pull_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set rebase
+	 * set or unset rebase flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag            true to set the flag, false to unset it
 	 * @return libhg_Command_Pull_Base  self
 	 */
 	public function rebase($flag = true) {
@@ -383,9 +350,9 @@ abstract class libhg_Command_Pull_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set insecure
+	 * set or unset insecure flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag            true to set the flag, false to unset it
 	 * @return libhg_Command_Pull_Base  self
 	 */
 	public function insecure($flag = true) {

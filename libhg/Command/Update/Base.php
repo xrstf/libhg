@@ -91,7 +91,7 @@ abstract class libhg_Command_Update_Base extends libhg_Command_Base {
 	/**
 	 * set date
 	 *
-	 * @param  string $date
+	 * @param  string $date               the single date argument
 	 * @return libhg_Command_Update_Base  self
 	 */
 	public function date($date) {
@@ -102,7 +102,7 @@ abstract class libhg_Command_Update_Base extends libhg_Command_Base {
 	/**
 	 * set rev
 	 *
-	 * @param  string $rev
+	 * @param  string $rev                the single rev argument
 	 * @return libhg_Command_Update_Base  self
 	 */
 	public function rev($rev) {
@@ -111,9 +111,9 @@ abstract class libhg_Command_Update_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set clean
+	 * set or unset clean flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Update_Base  self
 	 */
 	public function clean($flag = true) {
@@ -122,9 +122,9 @@ abstract class libhg_Command_Update_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set check
+	 * set or unset check flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Update_Base  self
 	 */
 	public function check($flag = true) {

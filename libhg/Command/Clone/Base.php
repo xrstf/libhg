@@ -203,7 +203,7 @@ abstract class libhg_Command_Clone_Base extends libhg_Command_Base {
 	/**
 	 * set source
 	 *
-	 * @param  string $source
+	 * @param  string $source            the single source argument
 	 * @return libhg_Command_Clone_Base  self
 	 */
 	public function source($source) {
@@ -214,7 +214,7 @@ abstract class libhg_Command_Clone_Base extends libhg_Command_Base {
 	/**
 	 * set dest
 	 *
-	 * @param  string $dest
+	 * @param  string $dest              the single dest argument
 	 * @return libhg_Command_Clone_Base  self
 	 */
 	public function dest($dest) {
@@ -223,27 +223,16 @@ abstract class libhg_Command_Clone_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple revs
+	 * append a single or multiple revs
 	 *
-	 * @param  array $revs
+	 * @param  mixed $revs               a single (scalar) or multiple (array) revs
 	 * @return libhg_Command_Clone_Base  self
 	 */
-	public function revs(array $revs) {
-		foreach ($revs as $val) {
+	public function rev($revs) {
+		foreach ((array) $revs as $val) {
 			$this->revs[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single rev
-	 *
-	 * @param  array $rev
-	 * @return libhg_Command_Clone_Base  self
-	 */
-	public function rev($rev) {
-		$this->revs[] = $rev;
 		return $this;
 	}
 
@@ -258,27 +247,16 @@ abstract class libhg_Command_Clone_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple branches
+	 * append a single or multiple branches
 	 *
-	 * @param  array $branches
+	 * @param  mixed $branches           a single (scalar) or multiple (array) branches
 	 * @return libhg_Command_Clone_Base  self
 	 */
-	public function branches(array $branches) {
-		foreach ($branches as $val) {
+	public function branch($branches) {
+		foreach ((array) $branches as $val) {
 			$this->branches[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single branch
-	 *
-	 * @param  array $branch
-	 * @return libhg_Command_Clone_Base  self
-	 */
-	public function branch($branch) {
-		$this->branches[] = $branch;
 		return $this;
 	}
 
@@ -295,7 +273,7 @@ abstract class libhg_Command_Clone_Base extends libhg_Command_Base {
 	/**
 	 * set updateRev
 	 *
-	 * @param  string $updateRev
+	 * @param  string $updateRev         the single updateRev argument
 	 * @return libhg_Command_Clone_Base  self
 	 */
 	public function updateRev($updateRev) {
@@ -306,7 +284,7 @@ abstract class libhg_Command_Clone_Base extends libhg_Command_Base {
 	/**
 	 * set ssh
 	 *
-	 * @param  string $ssh
+	 * @param  string $ssh               the single ssh argument
 	 * @return libhg_Command_Clone_Base  self
 	 */
 	public function ssh($ssh) {
@@ -317,7 +295,7 @@ abstract class libhg_Command_Clone_Base extends libhg_Command_Base {
 	/**
 	 * set remoteCmd
 	 *
-	 * @param  string $remoteCmd
+	 * @param  string $remoteCmd         the single remoteCmd argument
 	 * @return libhg_Command_Clone_Base  self
 	 */
 	public function remoteCmd($remoteCmd) {
@@ -326,9 +304,9 @@ abstract class libhg_Command_Clone_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set noUpdate
+	 * set or unset noUpdate flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Clone_Base  self
 	 */
 	public function noUpdate($flag = true) {
@@ -337,9 +315,9 @@ abstract class libhg_Command_Clone_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set pull
+	 * set or unset pull flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Clone_Base  self
 	 */
 	public function pull($flag = true) {
@@ -348,9 +326,9 @@ abstract class libhg_Command_Clone_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set uncompressed
+	 * set or unset uncompressed flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Clone_Base  self
 	 */
 	public function uncompressed($flag = true) {
@@ -359,9 +337,9 @@ abstract class libhg_Command_Clone_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set insecure
+	 * set or unset insecure flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Clone_Base  self
 	 */
 	public function insecure($flag = true) {

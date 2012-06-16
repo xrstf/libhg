@@ -203,7 +203,7 @@ abstract class libhg_Command_Fetch_Base extends libhg_Command_Base {
 	/**
 	 * set source
 	 *
-	 * @param  string $source
+	 * @param  string $source            the single source argument
 	 * @return libhg_Command_Fetch_Base  self
 	 */
 	public function source($source) {
@@ -212,27 +212,16 @@ abstract class libhg_Command_Fetch_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple revs
+	 * append a single or multiple revs
 	 *
-	 * @param  array $revs
+	 * @param  mixed $revs               a single (scalar) or multiple (array) revs
 	 * @return libhg_Command_Fetch_Base  self
 	 */
-	public function revs(array $revs) {
-		foreach ($revs as $val) {
+	public function rev($revs) {
+		foreach ((array) $revs as $val) {
 			$this->revs[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single rev
-	 *
-	 * @param  array $rev
-	 * @return libhg_Command_Fetch_Base  self
-	 */
-	public function rev($rev) {
-		$this->revs[] = $rev;
 		return $this;
 	}
 
@@ -249,7 +238,7 @@ abstract class libhg_Command_Fetch_Base extends libhg_Command_Base {
 	/**
 	 * set message
 	 *
-	 * @param  string $message
+	 * @param  string $message           the single message argument
 	 * @return libhg_Command_Fetch_Base  self
 	 */
 	public function message($message) {
@@ -260,7 +249,7 @@ abstract class libhg_Command_Fetch_Base extends libhg_Command_Base {
 	/**
 	 * set logfile
 	 *
-	 * @param  string $logfile
+	 * @param  string $logfile           the single logfile argument
 	 * @return libhg_Command_Fetch_Base  self
 	 */
 	public function logfile($logfile) {
@@ -271,7 +260,7 @@ abstract class libhg_Command_Fetch_Base extends libhg_Command_Base {
 	/**
 	 * set date
 	 *
-	 * @param  string $date
+	 * @param  string $date              the single date argument
 	 * @return libhg_Command_Fetch_Base  self
 	 */
 	public function date($date) {
@@ -282,7 +271,7 @@ abstract class libhg_Command_Fetch_Base extends libhg_Command_Base {
 	/**
 	 * set user
 	 *
-	 * @param  string $user
+	 * @param  string $user              the single user argument
 	 * @return libhg_Command_Fetch_Base  self
 	 */
 	public function user($user) {
@@ -293,7 +282,7 @@ abstract class libhg_Command_Fetch_Base extends libhg_Command_Base {
 	/**
 	 * set ssh
 	 *
-	 * @param  string $ssh
+	 * @param  string $ssh               the single ssh argument
 	 * @return libhg_Command_Fetch_Base  self
 	 */
 	public function ssh($ssh) {
@@ -304,7 +293,7 @@ abstract class libhg_Command_Fetch_Base extends libhg_Command_Base {
 	/**
 	 * set remoteCmd
 	 *
-	 * @param  string $remoteCmd
+	 * @param  string $remoteCmd         the single remoteCmd argument
 	 * @return libhg_Command_Fetch_Base  self
 	 */
 	public function remoteCmd($remoteCmd) {
@@ -313,9 +302,9 @@ abstract class libhg_Command_Fetch_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set edit
+	 * set or unset edit flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Fetch_Base  self
 	 */
 	public function edit($flag = true) {
@@ -324,9 +313,9 @@ abstract class libhg_Command_Fetch_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set switchParent
+	 * set or unset switchParent flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Fetch_Base  self
 	 */
 	public function switchParent($flag = true) {
@@ -335,9 +324,9 @@ abstract class libhg_Command_Fetch_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set insecure
+	 * set or unset insecure flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Fetch_Base  self
 	 */
 	public function insecure($flag = true) {

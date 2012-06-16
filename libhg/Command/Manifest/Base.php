@@ -75,7 +75,7 @@ abstract class libhg_Command_Manifest_Base extends libhg_Command_Base {
 	/**
 	 * set source
 	 *
-	 * @param  string $source
+	 * @param  string $source               the single source argument
 	 * @return libhg_Command_Manifest_Base  self
 	 */
 	public function source($source) {
@@ -86,7 +86,7 @@ abstract class libhg_Command_Manifest_Base extends libhg_Command_Base {
 	/**
 	 * set rev
 	 *
-	 * @param  string $rev
+	 * @param  string $rev                  the single rev argument
 	 * @return libhg_Command_Manifest_Base  self
 	 */
 	public function rev($rev) {
@@ -95,9 +95,9 @@ abstract class libhg_Command_Manifest_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set all
+	 * set or unset all flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag                true to set the flag, false to unset it
 	 * @return libhg_Command_Manifest_Base  self
 	 */
 	public function all($flag = true) {

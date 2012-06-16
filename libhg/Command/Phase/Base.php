@@ -105,27 +105,16 @@ abstract class libhg_Command_Phase_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple revs
+	 * append a single or multiple revs
 	 *
-	 * @param  array $revs
+	 * @param  mixed $revs               a single (scalar) or multiple (array) revs
 	 * @return libhg_Command_Phase_Base  self
 	 */
-	public function revs(array $revs) {
-		foreach ($revs as $val) {
+	public function rev($revs) {
+		foreach ((array) $revs as $val) {
 			$this->revs[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single rev
-	 *
-	 * @param  array $rev
-	 * @return libhg_Command_Phase_Base  self
-	 */
-	public function rev($rev) {
-		$this->revs[] = $rev;
 		return $this;
 	}
 
@@ -140,9 +129,9 @@ abstract class libhg_Command_Phase_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set public
+	 * set or unset public flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Phase_Base  self
 	 */
 	public function public($flag = true) {
@@ -151,9 +140,9 @@ abstract class libhg_Command_Phase_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set draft
+	 * set or unset draft flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Phase_Base  self
 	 */
 	public function draft($flag = true) {
@@ -162,9 +151,9 @@ abstract class libhg_Command_Phase_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set secret
+	 * set or unset secret flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Phase_Base  self
 	 */
 	public function secret($flag = true) {
@@ -173,9 +162,9 @@ abstract class libhg_Command_Phase_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set force
+	 * set or unset force flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Phase_Base  self
 	 */
 	public function force($flag = true) {

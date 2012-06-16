@@ -34,7 +34,7 @@ abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 	 *
 	 * @var array
 	 */
-	protected $include = array();
+	protected $incl = array();
 
 	/**
 	 * optional 'exclude' options (-X)
@@ -144,7 +144,7 @@ abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 	 * @return array  set include or array() if not set
 	 */
 	public function getInclude() {
-		return $this->include;
+		return $this->incl;
 	}
 
 	/**
@@ -265,27 +265,16 @@ abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple files
+	 * append a single or multiple files
 	 *
-	 * @param  array $files
+	 * @param  mixed $files               a single (scalar) or multiple (array) files
 	 * @return libhg_Command_Status_Base  self
 	 */
-	public function files(array $files) {
-		foreach ($files as $val) {
+	public function file($files) {
+		foreach ((array) $files as $val) {
 			$this->files[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single file
-	 *
-	 * @param  array $file
-	 * @return libhg_Command_Status_Base  self
-	 */
-	public function file($file) {
-		$this->files[] = $file;
 		return $this;
 	}
 
@@ -300,27 +289,16 @@ abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple revs
+	 * append a single or multiple revs
 	 *
-	 * @param  array $revs
+	 * @param  mixed $revs                a single (scalar) or multiple (array) revs
 	 * @return libhg_Command_Status_Base  self
 	 */
-	public function revs(array $revs) {
-		foreach ($revs as $val) {
+	public function rev($revs) {
+		foreach ((array) $revs as $val) {
 			$this->revs[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single rev
-	 *
-	 * @param  array $rev
-	 * @return libhg_Command_Status_Base  self
-	 */
-	public function rev($rev) {
-		$this->revs[] = $rev;
 		return $this;
 	}
 
@@ -335,27 +313,16 @@ abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple include
+	 * append a single or multiple include
 	 *
-	 * @param  array $include
-	 * @return libhg_Command_Status_Base  self
-	 */
-	public function include(array $include) {
-		foreach ($include as $val) {
-			$this->include[] = $val;
-		}
-
-		return $this;
-	}
-
-	/**
-	 * append a single incl
-	 *
-	 * @param  array $incl
+	 * @param  mixed $incl                a single (scalar) or multiple (array) include
 	 * @return libhg_Command_Status_Base  self
 	 */
 	public function incl($incl) {
-		$this->include[] = $incl;
+		foreach ((array) $incl as $val) {
+			$this->incl[] = $val;
+		}
+
 		return $this;
 	}
 
@@ -365,32 +332,21 @@ abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 	 * @return libhg_Command_Status_Base  self
 	 */
 	public function resetInclude() {
-		$this->include = array();
+		$this->incl = array();
 		return $this;
 	}
 
 	/**
-	 * append multiple exclude
+	 * append a single or multiple exclude
 	 *
-	 * @param  array $exclude
+	 * @param  mixed $exclude             a single (scalar) or multiple (array) exclude
 	 * @return libhg_Command_Status_Base  self
 	 */
-	public function exclude(array $exclude) {
-		foreach ($exclude as $val) {
+	public function excl($exclude) {
+		foreach ((array) $exclude as $val) {
 			$this->exclude[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single excl
-	 *
-	 * @param  array $excl
-	 * @return libhg_Command_Status_Base  self
-	 */
-	public function excl($excl) {
-		$this->exclude[] = $excl;
 		return $this;
 	}
 
@@ -407,7 +363,7 @@ abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 	/**
 	 * set change
 	 *
-	 * @param  string $change
+	 * @param  string $change             the single change argument
 	 * @return libhg_Command_Status_Base  self
 	 */
 	public function change($change) {
@@ -416,9 +372,9 @@ abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set all
+	 * set or unset all flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Status_Base  self
 	 */
 	public function all($flag = true) {
@@ -427,9 +383,9 @@ abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set modified
+	 * set or unset modified flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Status_Base  self
 	 */
 	public function modified($flag = true) {
@@ -438,9 +394,9 @@ abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set added
+	 * set or unset added flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Status_Base  self
 	 */
 	public function added($flag = true) {
@@ -449,9 +405,9 @@ abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set removed
+	 * set or unset removed flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Status_Base  self
 	 */
 	public function removed($flag = true) {
@@ -460,9 +416,9 @@ abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set deleted
+	 * set or unset deleted flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Status_Base  self
 	 */
 	public function deleted($flag = true) {
@@ -471,9 +427,9 @@ abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set clean
+	 * set or unset clean flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Status_Base  self
 	 */
 	public function clean($flag = true) {
@@ -482,9 +438,9 @@ abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set unknown
+	 * set or unset unknown flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Status_Base  self
 	 */
 	public function unknown($flag = true) {
@@ -493,9 +449,9 @@ abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set ignored
+	 * set or unset ignored flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Status_Base  self
 	 */
 	public function ignored($flag = true) {
@@ -504,9 +460,9 @@ abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set copies
+	 * set or unset copies flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Status_Base  self
 	 */
 	public function copies($flag = true) {
@@ -515,9 +471,9 @@ abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set subrepos
+	 * set or unset subrepos flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Status_Base  self
 	 */
 	public function subrepos($flag = true) {

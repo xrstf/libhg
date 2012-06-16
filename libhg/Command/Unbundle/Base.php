@@ -57,27 +57,16 @@ abstract class libhg_Command_Unbundle_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple files
+	 * append a single or multiple files
 	 *
-	 * @param  array $files
+	 * @param  mixed $files                 a single (scalar) or multiple (array) files
 	 * @return libhg_Command_Unbundle_Base  self
 	 */
-	public function files(array $files) {
-		foreach ($files as $val) {
+	public function file($files) {
+		foreach ((array) $files as $val) {
 			$this->files[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single file
-	 *
-	 * @param  array $file
-	 * @return libhg_Command_Unbundle_Base  self
-	 */
-	public function file($file) {
-		$this->files[] = $file;
 		return $this;
 	}
 
@@ -92,9 +81,9 @@ abstract class libhg_Command_Unbundle_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set update
+	 * set or unset update flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag                true to set the flag, false to unset it
 	 * @return libhg_Command_Unbundle_Base  self
 	 */
 	public function update($flag = true) {

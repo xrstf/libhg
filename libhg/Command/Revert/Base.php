@@ -27,7 +27,7 @@ abstract class libhg_Command_Revert_Base extends libhg_Command_Base {
 	 *
 	 * @var array
 	 */
-	protected $include = array();
+	protected $incl = array();
 
 	/**
 	 * optional 'exclude' options (-X)
@@ -86,7 +86,7 @@ abstract class libhg_Command_Revert_Base extends libhg_Command_Base {
 	 * @return array  set include or array() if not set
 	 */
 	public function getInclude() {
-		return $this->include;
+		return $this->incl;
 	}
 
 	/**
@@ -153,27 +153,16 @@ abstract class libhg_Command_Revert_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple names
+	 * append a single or multiple names
 	 *
-	 * @param  array $names
+	 * @param  mixed $names               a single (scalar) or multiple (array) names
 	 * @return libhg_Command_Revert_Base  self
 	 */
-	public function names(array $names) {
-		foreach ($names as $val) {
+	public function name($names) {
+		foreach ((array) $names as $val) {
 			$this->names[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single name
-	 *
-	 * @param  array $name
-	 * @return libhg_Command_Revert_Base  self
-	 */
-	public function name($name) {
-		$this->names[] = $name;
 		return $this;
 	}
 
@@ -188,27 +177,16 @@ abstract class libhg_Command_Revert_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple include
+	 * append a single or multiple include
 	 *
-	 * @param  array $include
-	 * @return libhg_Command_Revert_Base  self
-	 */
-	public function include(array $include) {
-		foreach ($include as $val) {
-			$this->include[] = $val;
-		}
-
-		return $this;
-	}
-
-	/**
-	 * append a single incl
-	 *
-	 * @param  array $incl
+	 * @param  mixed $incl                a single (scalar) or multiple (array) include
 	 * @return libhg_Command_Revert_Base  self
 	 */
 	public function incl($incl) {
-		$this->include[] = $incl;
+		foreach ((array) $incl as $val) {
+			$this->incl[] = $val;
+		}
+
 		return $this;
 	}
 
@@ -218,32 +196,21 @@ abstract class libhg_Command_Revert_Base extends libhg_Command_Base {
 	 * @return libhg_Command_Revert_Base  self
 	 */
 	public function resetInclude() {
-		$this->include = array();
+		$this->incl = array();
 		return $this;
 	}
 
 	/**
-	 * append multiple exclude
+	 * append a single or multiple exclude
 	 *
-	 * @param  array $exclude
+	 * @param  mixed $exclude             a single (scalar) or multiple (array) exclude
 	 * @return libhg_Command_Revert_Base  self
 	 */
-	public function exclude(array $exclude) {
-		foreach ($exclude as $val) {
+	public function excl($exclude) {
+		foreach ((array) $exclude as $val) {
 			$this->exclude[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single excl
-	 *
-	 * @param  array $excl
-	 * @return libhg_Command_Revert_Base  self
-	 */
-	public function excl($excl) {
-		$this->exclude[] = $excl;
 		return $this;
 	}
 
@@ -260,7 +227,7 @@ abstract class libhg_Command_Revert_Base extends libhg_Command_Base {
 	/**
 	 * set rev
 	 *
-	 * @param  string $rev
+	 * @param  string $rev                the single rev argument
 	 * @return libhg_Command_Revert_Base  self
 	 */
 	public function rev($rev) {
@@ -271,7 +238,7 @@ abstract class libhg_Command_Revert_Base extends libhg_Command_Base {
 	/**
 	 * set date
 	 *
-	 * @param  string $date
+	 * @param  string $date               the single date argument
 	 * @return libhg_Command_Revert_Base  self
 	 */
 	public function date($date) {
@@ -280,9 +247,9 @@ abstract class libhg_Command_Revert_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set all
+	 * set or unset all flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Revert_Base  self
 	 */
 	public function all($flag = true) {
@@ -291,9 +258,9 @@ abstract class libhg_Command_Revert_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set noBackup
+	 * set or unset noBackup flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Revert_Base  self
 	 */
 	public function noBackup($flag = true) {
@@ -302,9 +269,9 @@ abstract class libhg_Command_Revert_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set dryRun
+	 * set or unset dryRun flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Revert_Base  self
 	 */
 	public function dryRun($flag = true) {

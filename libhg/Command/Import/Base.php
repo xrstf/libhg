@@ -233,27 +233,16 @@ abstract class libhg_Command_Import_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple patches
+	 * append a single or multiple patches
 	 *
-	 * @param  array $patches
+	 * @param  mixed $patches             a single (scalar) or multiple (array) patches
 	 * @return libhg_Command_Import_Base  self
 	 */
-	public function patches(array $patches) {
-		foreach ($patches as $val) {
+	public function patch($patches) {
+		foreach ((array) $patches as $val) {
 			$this->patches[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single patch
-	 *
-	 * @param  array $patch
-	 * @return libhg_Command_Import_Base  self
-	 */
-	public function patch($patch) {
-		$this->patches[] = $patch;
 		return $this;
 	}
 
@@ -270,7 +259,7 @@ abstract class libhg_Command_Import_Base extends libhg_Command_Base {
 	/**
 	 * set strip
 	 *
-	 * @param  string $strip
+	 * @param  string $strip              the single strip argument
 	 * @return libhg_Command_Import_Base  self
 	 */
 	public function strip($strip) {
@@ -281,7 +270,7 @@ abstract class libhg_Command_Import_Base extends libhg_Command_Base {
 	/**
 	 * set message
 	 *
-	 * @param  string $message
+	 * @param  string $message            the single message argument
 	 * @return libhg_Command_Import_Base  self
 	 */
 	public function message($message) {
@@ -292,7 +281,7 @@ abstract class libhg_Command_Import_Base extends libhg_Command_Base {
 	/**
 	 * set logfile
 	 *
-	 * @param  string $logfile
+	 * @param  string $logfile            the single logfile argument
 	 * @return libhg_Command_Import_Base  self
 	 */
 	public function logfile($logfile) {
@@ -303,7 +292,7 @@ abstract class libhg_Command_Import_Base extends libhg_Command_Base {
 	/**
 	 * set date
 	 *
-	 * @param  string $date
+	 * @param  string $date               the single date argument
 	 * @return libhg_Command_Import_Base  self
 	 */
 	public function date($date) {
@@ -314,7 +303,7 @@ abstract class libhg_Command_Import_Base extends libhg_Command_Base {
 	/**
 	 * set user
 	 *
-	 * @param  string $user
+	 * @param  string $user               the single user argument
 	 * @return libhg_Command_Import_Base  self
 	 */
 	public function user($user) {
@@ -325,7 +314,7 @@ abstract class libhg_Command_Import_Base extends libhg_Command_Base {
 	/**
 	 * set similarity
 	 *
-	 * @param  string $similarity
+	 * @param  string $similarity         the single similarity argument
 	 * @return libhg_Command_Import_Base  self
 	 */
 	public function similarity($similarity) {
@@ -334,9 +323,9 @@ abstract class libhg_Command_Import_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set edit
+	 * set or unset edit flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Import_Base  self
 	 */
 	public function edit($flag = true) {
@@ -345,9 +334,9 @@ abstract class libhg_Command_Import_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set force
+	 * set or unset force flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Import_Base  self
 	 */
 	public function force($flag = true) {
@@ -356,9 +345,9 @@ abstract class libhg_Command_Import_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set noCommit
+	 * set or unset noCommit flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Import_Base  self
 	 */
 	public function noCommit($flag = true) {
@@ -367,9 +356,9 @@ abstract class libhg_Command_Import_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set bypass
+	 * set or unset bypass flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Import_Base  self
 	 */
 	public function bypass($flag = true) {
@@ -378,9 +367,9 @@ abstract class libhg_Command_Import_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set exact
+	 * set or unset exact flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Import_Base  self
 	 */
 	public function exact($flag = true) {
@@ -389,9 +378,9 @@ abstract class libhg_Command_Import_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set importBranch
+	 * set or unset importBranch flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Import_Base  self
 	 */
 	public function importBranch($flag = true) {

@@ -219,7 +219,7 @@ abstract class libhg_Command_Log_Base extends libhg_Command_Base {
 	/**
 	 * set file
 	 *
-	 * @param  string $file
+	 * @param  string $file            the single file argument
 	 * @return libhg_Command_Log_Base  self
 	 */
 	public function file($file) {
@@ -228,27 +228,16 @@ abstract class libhg_Command_Log_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple keywords
+	 * append a single or multiple keywords
 	 *
-	 * @param  array $keywords
+	 * @param  mixed $keywords         a single (scalar) or multiple (array) keywords
 	 * @return libhg_Command_Log_Base  self
 	 */
-	public function keywords(array $keywords) {
-		foreach ($keywords as $val) {
+	public function keyword($keywords) {
+		foreach ((array) $keywords as $val) {
 			$this->keywords[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single keyword
-	 *
-	 * @param  array $keyword
-	 * @return libhg_Command_Log_Base  self
-	 */
-	public function keyword($keyword) {
-		$this->keywords[] = $keyword;
 		return $this;
 	}
 
@@ -263,27 +252,16 @@ abstract class libhg_Command_Log_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple revs
+	 * append a single or multiple revs
 	 *
-	 * @param  array $revs
+	 * @param  mixed $revs             a single (scalar) or multiple (array) revs
 	 * @return libhg_Command_Log_Base  self
 	 */
-	public function revs(array $revs) {
-		foreach ($revs as $val) {
+	public function rev($revs) {
+		foreach ((array) $revs as $val) {
 			$this->revs[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single rev
-	 *
-	 * @param  array $rev
-	 * @return libhg_Command_Log_Base  self
-	 */
-	public function rev($rev) {
-		$this->revs[] = $rev;
 		return $this;
 	}
 
@@ -298,27 +276,16 @@ abstract class libhg_Command_Log_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple users
+	 * append a single or multiple users
 	 *
-	 * @param  array $users
+	 * @param  mixed $users            a single (scalar) or multiple (array) users
 	 * @return libhg_Command_Log_Base  self
 	 */
-	public function users(array $users) {
-		foreach ($users as $val) {
+	public function user($users) {
+		foreach ((array) $users as $val) {
 			$this->users[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single user
-	 *
-	 * @param  array $user
-	 * @return libhg_Command_Log_Base  self
-	 */
-	public function user($user) {
-		$this->users[] = $user;
 		return $this;
 	}
 
@@ -333,27 +300,16 @@ abstract class libhg_Command_Log_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple branches
+	 * append a single or multiple branches
 	 *
-	 * @param  array $branches
+	 * @param  mixed $branches         a single (scalar) or multiple (array) branches
 	 * @return libhg_Command_Log_Base  self
 	 */
-	public function branches(array $branches) {
-		foreach ($branches as $val) {
+	public function branch($branches) {
+		foreach ((array) $branches as $val) {
 			$this->branches[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single branch
-	 *
-	 * @param  array $branch
-	 * @return libhg_Command_Log_Base  self
-	 */
-	public function branch($branch) {
-		$this->branches[] = $branch;
 		return $this;
 	}
 
@@ -368,27 +324,16 @@ abstract class libhg_Command_Log_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple prunes
+	 * append a single or multiple prunes
 	 *
-	 * @param  array $prunes
+	 * @param  mixed $prunes           a single (scalar) or multiple (array) prunes
 	 * @return libhg_Command_Log_Base  self
 	 */
-	public function prunes(array $prunes) {
-		foreach ($prunes as $val) {
+	public function prune($prunes) {
+		foreach ((array) $prunes as $val) {
 			$this->prunes[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single prune
-	 *
-	 * @param  array $prune
-	 * @return libhg_Command_Log_Base  self
-	 */
-	public function prune($prune) {
-		$this->prunes[] = $prune;
 		return $this;
 	}
 
@@ -405,7 +350,7 @@ abstract class libhg_Command_Log_Base extends libhg_Command_Base {
 	/**
 	 * set date
 	 *
-	 * @param  string $date
+	 * @param  string $date            the single date argument
 	 * @return libhg_Command_Log_Base  self
 	 */
 	public function date($date) {
@@ -416,7 +361,7 @@ abstract class libhg_Command_Log_Base extends libhg_Command_Base {
 	/**
 	 * set limit
 	 *
-	 * @param  string $limit
+	 * @param  string $limit           the single limit argument
 	 * @return libhg_Command_Log_Base  self
 	 */
 	public function limit($limit) {
@@ -425,9 +370,9 @@ abstract class libhg_Command_Log_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set follow
+	 * set or unset follow flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag           true to set the flag, false to unset it
 	 * @return libhg_Command_Log_Base  self
 	 */
 	public function follow($flag = true) {
@@ -436,9 +381,9 @@ abstract class libhg_Command_Log_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set copies
+	 * set or unset copies flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag           true to set the flag, false to unset it
 	 * @return libhg_Command_Log_Base  self
 	 */
 	public function copies($flag = true) {
@@ -447,9 +392,9 @@ abstract class libhg_Command_Log_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set removed
+	 * set or unset removed flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag           true to set the flag, false to unset it
 	 * @return libhg_Command_Log_Base  self
 	 */
 	public function removed($flag = true) {
@@ -458,9 +403,9 @@ abstract class libhg_Command_Log_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set noMerges
+	 * set or unset noMerges flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag           true to set the flag, false to unset it
 	 * @return libhg_Command_Log_Base  self
 	 */
 	public function noMerges($flag = true) {

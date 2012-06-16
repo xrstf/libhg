@@ -251,7 +251,7 @@ abstract class libhg_Command_Convert_Base extends libhg_Command_Base {
 	/**
 	 * set source
 	 *
-	 * @param  string $source
+	 * @param  string $source              the single source argument
 	 * @return libhg_Command_Convert_Base  self
 	 */
 	public function source($source) {
@@ -262,7 +262,7 @@ abstract class libhg_Command_Convert_Base extends libhg_Command_Base {
 	/**
 	 * set dest
 	 *
-	 * @param  string $dest
+	 * @param  string $dest                the single dest argument
 	 * @return libhg_Command_Convert_Base  self
 	 */
 	public function dest($dest) {
@@ -273,7 +273,7 @@ abstract class libhg_Command_Convert_Base extends libhg_Command_Base {
 	/**
 	 * set revmap
 	 *
-	 * @param  string $revmap
+	 * @param  string $revmap              the single revmap argument
 	 * @return libhg_Command_Convert_Base  self
 	 */
 	public function revmap($revmap) {
@@ -282,27 +282,16 @@ abstract class libhg_Command_Convert_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple configs
+	 * append a single or multiple configs
 	 *
-	 * @param  array $configs
+	 * @param  mixed $configs              a single (scalar) or multiple (array) configs
 	 * @return libhg_Command_Convert_Base  self
 	 */
-	public function configs(array $configs) {
-		foreach ($configs as $val) {
+	public function config($configs) {
+		foreach ((array) $configs as $val) {
 			$this->configs[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single config
-	 *
-	 * @param  array $config
-	 * @return libhg_Command_Convert_Base  self
-	 */
-	public function config($config) {
-		$this->configs[] = $config;
 		return $this;
 	}
 
@@ -319,7 +308,7 @@ abstract class libhg_Command_Convert_Base extends libhg_Command_Base {
 	/**
 	 * set sourceType
 	 *
-	 * @param  string $sourceType
+	 * @param  string $sourceType          the single sourceType argument
 	 * @return libhg_Command_Convert_Base  self
 	 */
 	public function sourceType($sourceType) {
@@ -330,7 +319,7 @@ abstract class libhg_Command_Convert_Base extends libhg_Command_Base {
 	/**
 	 * set destType
 	 *
-	 * @param  string $destType
+	 * @param  string $destType            the single destType argument
 	 * @return libhg_Command_Convert_Base  self
 	 */
 	public function destType($destType) {
@@ -341,7 +330,7 @@ abstract class libhg_Command_Convert_Base extends libhg_Command_Base {
 	/**
 	 * set rev
 	 *
-	 * @param  string $rev
+	 * @param  string $rev                 the single rev argument
 	 * @return libhg_Command_Convert_Base  self
 	 */
 	public function rev($rev) {
@@ -352,7 +341,7 @@ abstract class libhg_Command_Convert_Base extends libhg_Command_Base {
 	/**
 	 * set authormap
 	 *
-	 * @param  string $authormap
+	 * @param  string $authormap           the single authormap argument
 	 * @return libhg_Command_Convert_Base  self
 	 */
 	public function authormap($authormap) {
@@ -363,7 +352,7 @@ abstract class libhg_Command_Convert_Base extends libhg_Command_Base {
 	/**
 	 * set filemap
 	 *
-	 * @param  string $filemap
+	 * @param  string $filemap             the single filemap argument
 	 * @return libhg_Command_Convert_Base  self
 	 */
 	public function filemap($filemap) {
@@ -374,7 +363,7 @@ abstract class libhg_Command_Convert_Base extends libhg_Command_Base {
 	/**
 	 * set splicemap
 	 *
-	 * @param  string $splicemap
+	 * @param  string $splicemap           the single splicemap argument
 	 * @return libhg_Command_Convert_Base  self
 	 */
 	public function splicemap($splicemap) {
@@ -385,7 +374,7 @@ abstract class libhg_Command_Convert_Base extends libhg_Command_Base {
 	/**
 	 * set branchmap
 	 *
-	 * @param  string $branchmap
+	 * @param  string $branchmap           the single branchmap argument
 	 * @return libhg_Command_Convert_Base  self
 	 */
 	public function branchmap($branchmap) {
@@ -394,9 +383,9 @@ abstract class libhg_Command_Convert_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set branchsort
+	 * set or unset branchsort flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag               true to set the flag, false to unset it
 	 * @return libhg_Command_Convert_Base  self
 	 */
 	public function branchsort($flag = true) {
@@ -405,9 +394,9 @@ abstract class libhg_Command_Convert_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set datesort
+	 * set or unset datesort flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag               true to set the flag, false to unset it
 	 * @return libhg_Command_Convert_Base  self
 	 */
 	public function datesort($flag = true) {
@@ -416,9 +405,9 @@ abstract class libhg_Command_Convert_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set sourcesort
+	 * set or unset sourcesort flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag               true to set the flag, false to unset it
 	 * @return libhg_Command_Convert_Base  self
 	 */
 	public function sourcesort($flag = true) {

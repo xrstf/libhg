@@ -34,7 +34,7 @@ abstract class libhg_Command_Copy_Base extends libhg_Command_Base {
 	 *
 	 * @var array
 	 */
-	protected $include = array();
+	protected $incl = array();
 
 	/**
 	 * optional 'exclude' options (-X)
@@ -88,7 +88,7 @@ abstract class libhg_Command_Copy_Base extends libhg_Command_Base {
 	 * @return array  set include or array() if not set
 	 */
 	public function getInclude() {
-		return $this->include;
+		return $this->incl;
 	}
 
 	/**
@@ -137,27 +137,16 @@ abstract class libhg_Command_Copy_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple sources
+	 * append a single or multiple sources
 	 *
-	 * @param  array $sources
+	 * @param  mixed $sources           a single (scalar) or multiple (array) sources
 	 * @return libhg_Command_Copy_Base  self
 	 */
-	public function sources(array $sources) {
-		foreach ($sources as $val) {
+	public function source($sources) {
+		foreach ((array) $sources as $val) {
 			$this->sources[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single source
-	 *
-	 * @param  array $source
-	 * @return libhg_Command_Copy_Base  self
-	 */
-	public function source($source) {
-		$this->sources[] = $source;
 		return $this;
 	}
 
@@ -174,7 +163,7 @@ abstract class libhg_Command_Copy_Base extends libhg_Command_Base {
 	/**
 	 * set dest
 	 *
-	 * @param  string $dest
+	 * @param  string $dest             the single dest argument
 	 * @return libhg_Command_Copy_Base  self
 	 */
 	public function dest($dest) {
@@ -183,27 +172,16 @@ abstract class libhg_Command_Copy_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple include
+	 * append a single or multiple include
 	 *
-	 * @param  array $include
-	 * @return libhg_Command_Copy_Base  self
-	 */
-	public function include(array $include) {
-		foreach ($include as $val) {
-			$this->include[] = $val;
-		}
-
-		return $this;
-	}
-
-	/**
-	 * append a single incl
-	 *
-	 * @param  array $incl
+	 * @param  mixed $incl              a single (scalar) or multiple (array) include
 	 * @return libhg_Command_Copy_Base  self
 	 */
 	public function incl($incl) {
-		$this->include[] = $incl;
+		foreach ((array) $incl as $val) {
+			$this->incl[] = $val;
+		}
+
 		return $this;
 	}
 
@@ -213,32 +191,21 @@ abstract class libhg_Command_Copy_Base extends libhg_Command_Base {
 	 * @return libhg_Command_Copy_Base  self
 	 */
 	public function resetInclude() {
-		$this->include = array();
+		$this->incl = array();
 		return $this;
 	}
 
 	/**
-	 * append multiple exclude
+	 * append a single or multiple exclude
 	 *
-	 * @param  array $exclude
+	 * @param  mixed $exclude           a single (scalar) or multiple (array) exclude
 	 * @return libhg_Command_Copy_Base  self
 	 */
-	public function exclude(array $exclude) {
-		foreach ($exclude as $val) {
+	public function excl($exclude) {
+		foreach ((array) $exclude as $val) {
 			$this->exclude[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single excl
-	 *
-	 * @param  array $excl
-	 * @return libhg_Command_Copy_Base  self
-	 */
-	public function excl($excl) {
-		$this->exclude[] = $excl;
 		return $this;
 	}
 
@@ -253,9 +220,9 @@ abstract class libhg_Command_Copy_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set after
+	 * set or unset after flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag            true to set the flag, false to unset it
 	 * @return libhg_Command_Copy_Base  self
 	 */
 	public function after($flag = true) {
@@ -264,9 +231,9 @@ abstract class libhg_Command_Copy_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set force
+	 * set or unset force flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag            true to set the flag, false to unset it
 	 * @return libhg_Command_Copy_Base  self
 	 */
 	public function force($flag = true) {
@@ -275,9 +242,9 @@ abstract class libhg_Command_Copy_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set dryRun
+	 * set or unset dryRun flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag            true to set the flag, false to unset it
 	 * @return libhg_Command_Copy_Base  self
 	 */
 	public function dryRun($flag = true) {

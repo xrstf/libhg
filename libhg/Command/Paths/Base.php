@@ -43,7 +43,7 @@ abstract class libhg_Command_Paths_Base extends libhg_Command_Base {
 	/**
 	 * set name
 	 *
-	 * @param  string $name
+	 * @param  string $name              the single name argument
 	 * @return libhg_Command_Paths_Base  self
 	 */
 	public function name($name) {

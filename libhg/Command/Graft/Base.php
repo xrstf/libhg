@@ -169,27 +169,16 @@ abstract class libhg_Command_Graft_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple revisions
+	 * append a single or multiple revisions
 	 *
-	 * @param  array $revisions
+	 * @param  mixed $revisions          a single (scalar) or multiple (array) revisions
 	 * @return libhg_Command_Graft_Base  self
 	 */
-	public function revisions(array $revisions) {
-		foreach ($revisions as $val) {
+	public function rev($revisions) {
+		foreach ((array) $revisions as $val) {
 			$this->revisions[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single rev
-	 *
-	 * @param  array $rev
-	 * @return libhg_Command_Graft_Base  self
-	 */
-	public function rev($rev) {
-		$this->revisions[] = $rev;
 		return $this;
 	}
 
@@ -206,7 +195,7 @@ abstract class libhg_Command_Graft_Base extends libhg_Command_Base {
 	/**
 	 * set user
 	 *
-	 * @param  string $user
+	 * @param  string $user              the single user argument
 	 * @return libhg_Command_Graft_Base  self
 	 */
 	public function user($user) {
@@ -217,7 +206,7 @@ abstract class libhg_Command_Graft_Base extends libhg_Command_Base {
 	/**
 	 * set date
 	 *
-	 * @param  string $date
+	 * @param  string $date              the single date argument
 	 * @return libhg_Command_Graft_Base  self
 	 */
 	public function date($date) {
@@ -228,7 +217,7 @@ abstract class libhg_Command_Graft_Base extends libhg_Command_Base {
 	/**
 	 * set tool
 	 *
-	 * @param  string $tool
+	 * @param  string $tool              the single tool argument
 	 * @return libhg_Command_Graft_Base  self
 	 */
 	public function tool($tool) {
@@ -237,9 +226,9 @@ abstract class libhg_Command_Graft_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set continue
+	 * set or unset continue flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Graft_Base  self
 	 */
 	public function continue($flag = true) {
@@ -248,9 +237,9 @@ abstract class libhg_Command_Graft_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set edit
+	 * set or unset edit flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Graft_Base  self
 	 */
 	public function edit($flag = true) {
@@ -259,9 +248,9 @@ abstract class libhg_Command_Graft_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set currentdate
+	 * set or unset currentdate flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Graft_Base  self
 	 */
 	public function currentdate($flag = true) {
@@ -270,9 +259,9 @@ abstract class libhg_Command_Graft_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set currentuser
+	 * set or unset currentuser flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Graft_Base  self
 	 */
 	public function currentuser($flag = true) {
@@ -281,9 +270,9 @@ abstract class libhg_Command_Graft_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set dryRun
+	 * set or unset dryRun flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Graft_Base  self
 	 */
 	public function dryRun($flag = true) {

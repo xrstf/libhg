@@ -203,7 +203,7 @@ abstract class libhg_Command_Bundle_Base extends libhg_Command_Base {
 	/**
 	 * set file
 	 *
-	 * @param  string $file
+	 * @param  string $file               the single file argument
 	 * @return libhg_Command_Bundle_Base  self
 	 */
 	public function file($file) {
@@ -214,7 +214,7 @@ abstract class libhg_Command_Bundle_Base extends libhg_Command_Base {
 	/**
 	 * set dest
 	 *
-	 * @param  string $dest
+	 * @param  string $dest               the single dest argument
 	 * @return libhg_Command_Bundle_Base  self
 	 */
 	public function dest($dest) {
@@ -223,27 +223,16 @@ abstract class libhg_Command_Bundle_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple revs
+	 * append a single or multiple revs
 	 *
-	 * @param  array $revs
+	 * @param  mixed $revs                a single (scalar) or multiple (array) revs
 	 * @return libhg_Command_Bundle_Base  self
 	 */
-	public function revs(array $revs) {
-		foreach ($revs as $val) {
+	public function rev($revs) {
+		foreach ((array) $revs as $val) {
 			$this->revs[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single rev
-	 *
-	 * @param  array $rev
-	 * @return libhg_Command_Bundle_Base  self
-	 */
-	public function rev($rev) {
-		$this->revs[] = $rev;
 		return $this;
 	}
 
@@ -258,27 +247,16 @@ abstract class libhg_Command_Bundle_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple branches
+	 * append a single or multiple branches
 	 *
-	 * @param  array $branches
+	 * @param  mixed $branches            a single (scalar) or multiple (array) branches
 	 * @return libhg_Command_Bundle_Base  self
 	 */
-	public function branches(array $branches) {
-		foreach ($branches as $val) {
+	public function branch($branches) {
+		foreach ((array) $branches as $val) {
 			$this->branches[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single branch
-	 *
-	 * @param  array $branch
-	 * @return libhg_Command_Bundle_Base  self
-	 */
-	public function branch($branch) {
-		$this->branches[] = $branch;
 		return $this;
 	}
 
@@ -293,27 +271,16 @@ abstract class libhg_Command_Bundle_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple bases
+	 * append a single or multiple bases
 	 *
-	 * @param  array $bases
+	 * @param  mixed $bases               a single (scalar) or multiple (array) bases
 	 * @return libhg_Command_Bundle_Base  self
 	 */
-	public function bases(array $bases) {
-		foreach ($bases as $val) {
+	public function base($bases) {
+		foreach ((array) $bases as $val) {
 			$this->bases[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single base
-	 *
-	 * @param  array $base
-	 * @return libhg_Command_Bundle_Base  self
-	 */
-	public function base($base) {
-		$this->bases[] = $base;
 		return $this;
 	}
 
@@ -330,7 +297,7 @@ abstract class libhg_Command_Bundle_Base extends libhg_Command_Base {
 	/**
 	 * set type
 	 *
-	 * @param  string $type
+	 * @param  string $type               the single type argument
 	 * @return libhg_Command_Bundle_Base  self
 	 */
 	public function type($type) {
@@ -341,7 +308,7 @@ abstract class libhg_Command_Bundle_Base extends libhg_Command_Base {
 	/**
 	 * set ssh
 	 *
-	 * @param  string $ssh
+	 * @param  string $ssh                the single ssh argument
 	 * @return libhg_Command_Bundle_Base  self
 	 */
 	public function ssh($ssh) {
@@ -352,7 +319,7 @@ abstract class libhg_Command_Bundle_Base extends libhg_Command_Base {
 	/**
 	 * set remoteCmd
 	 *
-	 * @param  string $remoteCmd
+	 * @param  string $remoteCmd          the single remoteCmd argument
 	 * @return libhg_Command_Bundle_Base  self
 	 */
 	public function remoteCmd($remoteCmd) {
@@ -361,9 +328,9 @@ abstract class libhg_Command_Bundle_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set force
+	 * set or unset force flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Bundle_Base  self
 	 */
 	public function force($flag = true) {
@@ -372,9 +339,9 @@ abstract class libhg_Command_Bundle_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set all
+	 * set or unset all flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Bundle_Base  self
 	 */
 	public function all($flag = true) {
@@ -383,9 +350,9 @@ abstract class libhg_Command_Bundle_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set insecure
+	 * set or unset insecure flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Bundle_Base  self
 	 */
 	public function insecure($flag = true) {

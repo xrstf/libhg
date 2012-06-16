@@ -153,27 +153,16 @@ abstract class libhg_Command_Tag_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple names
+	 * append a single or multiple names
 	 *
-	 * @param  array $names
+	 * @param  mixed $names            a single (scalar) or multiple (array) names
 	 * @return libhg_Command_Tag_Base  self
 	 */
-	public function names(array $names) {
-		foreach ($names as $val) {
+	public function name($names) {
+		foreach ((array) $names as $val) {
 			$this->names[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single name
-	 *
-	 * @param  array $name
-	 * @return libhg_Command_Tag_Base  self
-	 */
-	public function name($name) {
-		$this->names[] = $name;
 		return $this;
 	}
 
@@ -190,7 +179,7 @@ abstract class libhg_Command_Tag_Base extends libhg_Command_Base {
 	/**
 	 * set rev
 	 *
-	 * @param  string $rev
+	 * @param  string $rev             the single rev argument
 	 * @return libhg_Command_Tag_Base  self
 	 */
 	public function rev($rev) {
@@ -201,7 +190,7 @@ abstract class libhg_Command_Tag_Base extends libhg_Command_Base {
 	/**
 	 * set message
 	 *
-	 * @param  string $message
+	 * @param  string $message         the single message argument
 	 * @return libhg_Command_Tag_Base  self
 	 */
 	public function message($message) {
@@ -212,7 +201,7 @@ abstract class libhg_Command_Tag_Base extends libhg_Command_Base {
 	/**
 	 * set date
 	 *
-	 * @param  string $date
+	 * @param  string $date            the single date argument
 	 * @return libhg_Command_Tag_Base  self
 	 */
 	public function date($date) {
@@ -223,7 +212,7 @@ abstract class libhg_Command_Tag_Base extends libhg_Command_Base {
 	/**
 	 * set user
 	 *
-	 * @param  string $user
+	 * @param  string $user            the single user argument
 	 * @return libhg_Command_Tag_Base  self
 	 */
 	public function user($user) {
@@ -232,9 +221,9 @@ abstract class libhg_Command_Tag_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set force
+	 * set or unset force flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag           true to set the flag, false to unset it
 	 * @return libhg_Command_Tag_Base  self
 	 */
 	public function force($flag = true) {
@@ -243,9 +232,9 @@ abstract class libhg_Command_Tag_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set local
+	 * set or unset local flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag           true to set the flag, false to unset it
 	 * @return libhg_Command_Tag_Base  self
 	 */
 	public function local($flag = true) {
@@ -254,9 +243,9 @@ abstract class libhg_Command_Tag_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set remove
+	 * set or unset remove flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag           true to set the flag, false to unset it
 	 * @return libhg_Command_Tag_Base  self
 	 */
 	public function remove($flag = true) {

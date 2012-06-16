@@ -286,6 +286,7 @@ abstract class libhg_Option {
 		$default = $this->getDefault();
 		$name    = $this->getName();
 		$upper   = ucfirst($name);
+		$safe    = $this->getSafeName();
 		$desc    = $type === 'array' ? "set $name or $default if not set" : "set value or $default if not set";
 
 		fwrite($fp, "
@@ -295,7 +296,7 @@ abstract class libhg_Option {
 	 * @return $type  $desc
 	 */
 	public function get$upper() {
-		return \$this->$name;
+		return \$this->$safe;
 	}
 ");
 	}
@@ -304,12 +305,24 @@ abstract class libhg_Option {
 		return $this->type;
 	}
 
+	public function getSafeName() {
+		$name = $this->getName();
+
+		switch (true) {
+			case $name === 'include':  return 'incl';
+			case $name === 'require':  return 'req';
+			case $name === 'function': return 'func';
+		}
+
+		return $name;
+	}
+
 	public function getName() {
 		return $this->name;
 	}
 
 	public function getVarName() {
-		return '$'.$this->name;
+		return '$'.$this->getSafeName();
 	}
 
 	public function getDefault() {
@@ -372,20 +385,44 @@ class libhg_SingleArgument extends libhg_Option {
 			: "'$this->name' argument";
 	}
 
+	public function writeAligned($list, $glue = "\n\t * ", $space = 2) {
+		$result = array();
+		$maxLen = 0;
+
+		foreach ($list as $row) {
+			list ($left, $right) = $row;
+			if (strlen($left) > $maxLen) $maxLen = strlen($left);
+		}
+
+		$format = '%-'.($maxLen+2).'s%s';
+
+		foreach ($list as $row) {
+			list ($left, $right) = $row;
+
+			$result[] = sprintf($format, $left, $right);
+		}
+
+		return implode($glue, $result);
+	}
+
 	public function writeSetter($fp, $className) {
 		$type    = $this->getType();
 		$name    = $this->getName();
+		$safe    = $this->getSafeName();
 		$varName = $this->getVarName();
+		$docs    = $this->writeAligned(array(
+			array("@param  $type $varName", "the single $this->name argument"),
+			array("@return $className",     "self")
+		));
 
 		fwrite($fp, "
 	/**
 	 * set $this->name
 	 *
-	 * @param  $type $varName
-	 * @return $className  self
+	 * $docs
 	 */
-	public function $name($varName) {
-		\$this->$name = $varName;
+	public function $safe($varName) {
+		\$this->$safe = $varName;
 		return \$this;
 	}
 ");
@@ -421,42 +458,28 @@ class libhg_MultiArgument extends libhg_SingleArgument {
 
 	public function writeSetter($fp, $className) {
 		$name    = $this->getName();
+		$safe    = $this->getSafeName();
+		$method  = $this->alias ? $this->alias : $safe;
 		$varName = $this->getVarName();
+		$docs    = $this->writeAligned(array(
+			array("@param  mixed $varName", "a single (scalar) or multiple (array) $name"),
+			array("@return $className",     "self")
+		));
 
 		fwrite($fp, "
 	/**
-	 * append multiple $name
+	 * append a single or multiple $name
 	 *
-	 * @param  array $varName
-	 * @return $className  self
+	 * $docs
 	 */
-	public function $name(array $varName) {
-		foreach ($varName as \$val) {
-			\$this->{$name}[] = \$val;
+	public function $method($varName) {
+		foreach ((array) $varName as \$val) {
+			\$this->{$safe}[] = \$val;
 		}
 
 		return \$this;
 	}
 ");
-
-		if ($this->alias) {
-			$alias     = $this->alias;
-			$type      = $this->getType();
-			$aliasName = '$'.$alias;
-
-			fwrite($fp, "
-	/**
-	 * append a single $alias
-	 *
-	 * @param  $type $aliasName
-	 * @return $className  self
-	 */
-	public function $alias($aliasName) {
-		\$this->{$name}[] = $aliasName;
-		return \$this;
-	}
-");
-		}
 
 		$upper = ucfirst($name);
 
@@ -467,7 +490,7 @@ class libhg_MultiArgument extends libhg_SingleArgument {
 	 * @return $className  self
 	 */
 	public function reset$upper() {
-		\$this->{$name} = array();
+		\$this->{$safe} = array();
 		return \$this;
 	}
 ");
@@ -476,9 +499,10 @@ class libhg_MultiArgument extends libhg_SingleArgument {
 	public function writeOptions($fp) {
 		$name = $this->name;
 		$cli  = $this->cliName;
+		$safe = $this->getSafeName();
 
 		fwrite($fp, "\t\tif (!empty(\$this->$name)) {
-			foreach (\$this->$name as \$val) {
+			foreach (\$this->$safe as \$val) {
 				\$options->addArgument(\$val);
 			}
 		}
@@ -531,13 +555,16 @@ class libhg_Flag extends libhg_SingleArgument {
 
 	public function writeSetter($fp, $className) {
 		$name = $this->getName();
+		$docs = $this->writeAligned(array(
+			array("@param  boolean \$flag", "true to set the flag, false to unset it"),
+			array("@return $className",     "self")
+		));
 
 		fwrite($fp, "
 	/**
-	 * set $name
+	 * set or unset $name flag
 	 *
-	 * @param  boolean \$flag
-	 * @return $className  self
+	 * $docs
 	 */
 	public function $name(\$flag = true) {
 		\$this->$name = (boolean) \$flag;

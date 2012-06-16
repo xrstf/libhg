@@ -249,27 +249,16 @@ abstract class libhg_Command_Rebase_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple revs
+	 * append a single or multiple revs
 	 *
-	 * @param  array $revs
+	 * @param  mixed $revs                a single (scalar) or multiple (array) revs
 	 * @return libhg_Command_Rebase_Base  self
 	 */
-	public function revs(array $revs) {
-		foreach ($revs as $val) {
+	public function rev($revs) {
+		foreach ((array) $revs as $val) {
 			$this->revs[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single rev
-	 *
-	 * @param  array $rev
-	 * @return libhg_Command_Rebase_Base  self
-	 */
-	public function rev($rev) {
-		$this->revs[] = $rev;
 		return $this;
 	}
 
@@ -286,7 +275,7 @@ abstract class libhg_Command_Rebase_Base extends libhg_Command_Base {
 	/**
 	 * set source
 	 *
-	 * @param  string $source
+	 * @param  string $source             the single source argument
 	 * @return libhg_Command_Rebase_Base  self
 	 */
 	public function source($source) {
@@ -297,7 +286,7 @@ abstract class libhg_Command_Rebase_Base extends libhg_Command_Base {
 	/**
 	 * set base
 	 *
-	 * @param  string $base
+	 * @param  string $base               the single base argument
 	 * @return libhg_Command_Rebase_Base  self
 	 */
 	public function base($base) {
@@ -308,7 +297,7 @@ abstract class libhg_Command_Rebase_Base extends libhg_Command_Base {
 	/**
 	 * set dest
 	 *
-	 * @param  string $dest
+	 * @param  string $dest               the single dest argument
 	 * @return libhg_Command_Rebase_Base  self
 	 */
 	public function dest($dest) {
@@ -319,7 +308,7 @@ abstract class libhg_Command_Rebase_Base extends libhg_Command_Base {
 	/**
 	 * set message
 	 *
-	 * @param  string $message
+	 * @param  string $message            the single message argument
 	 * @return libhg_Command_Rebase_Base  self
 	 */
 	public function message($message) {
@@ -330,7 +319,7 @@ abstract class libhg_Command_Rebase_Base extends libhg_Command_Base {
 	/**
 	 * set logfile
 	 *
-	 * @param  string $logfile
+	 * @param  string $logfile            the single logfile argument
 	 * @return libhg_Command_Rebase_Base  self
 	 */
 	public function logfile($logfile) {
@@ -341,7 +330,7 @@ abstract class libhg_Command_Rebase_Base extends libhg_Command_Base {
 	/**
 	 * set tool
 	 *
-	 * @param  string $tool
+	 * @param  string $tool               the single tool argument
 	 * @return libhg_Command_Rebase_Base  self
 	 */
 	public function tool($tool) {
@@ -350,9 +339,9 @@ abstract class libhg_Command_Rebase_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set collapse
+	 * set or unset collapse flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Rebase_Base  self
 	 */
 	public function collapse($flag = true) {
@@ -361,9 +350,9 @@ abstract class libhg_Command_Rebase_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set edit
+	 * set or unset edit flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Rebase_Base  self
 	 */
 	public function edit($flag = true) {
@@ -372,9 +361,9 @@ abstract class libhg_Command_Rebase_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set keep
+	 * set or unset keep flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Rebase_Base  self
 	 */
 	public function keep($flag = true) {
@@ -383,9 +372,9 @@ abstract class libhg_Command_Rebase_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set keepBranches
+	 * set or unset keepBranches flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Rebase_Base  self
 	 */
 	public function keepBranches($flag = true) {
@@ -394,9 +383,9 @@ abstract class libhg_Command_Rebase_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set detach
+	 * set or unset detach flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Rebase_Base  self
 	 */
 	public function detach($flag = true) {
@@ -405,9 +394,9 @@ abstract class libhg_Command_Rebase_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set continue
+	 * set or unset continue flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Rebase_Base  self
 	 */
 	public function continue($flag = true) {
@@ -416,9 +405,9 @@ abstract class libhg_Command_Rebase_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set abort
+	 * set or unset abort flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Rebase_Base  self
 	 */
 	public function abort($flag = true) {

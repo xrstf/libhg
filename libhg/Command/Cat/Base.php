@@ -27,7 +27,7 @@ abstract class libhg_Command_Cat_Base extends libhg_Command_Base {
 	 *
 	 * @var array
 	 */
-	protected $include = array();
+	protected $incl = array();
 
 	/**
 	 * optional 'exclude' options (-X)
@@ -72,7 +72,7 @@ abstract class libhg_Command_Cat_Base extends libhg_Command_Base {
 	 * @return array  set include or array() if not set
 	 */
 	public function getInclude() {
-		return $this->include;
+		return $this->incl;
 	}
 
 	/**
@@ -121,27 +121,16 @@ abstract class libhg_Command_Cat_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple files
+	 * append a single or multiple files
 	 *
-	 * @param  array $files
+	 * @param  mixed $files            a single (scalar) or multiple (array) files
 	 * @return libhg_Command_Cat_Base  self
 	 */
-	public function files(array $files) {
-		foreach ($files as $val) {
+	public function file($files) {
+		foreach ((array) $files as $val) {
 			$this->files[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single file
-	 *
-	 * @param  array $file
-	 * @return libhg_Command_Cat_Base  self
-	 */
-	public function file($file) {
-		$this->files[] = $file;
 		return $this;
 	}
 
@@ -156,27 +145,16 @@ abstract class libhg_Command_Cat_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple include
+	 * append a single or multiple include
 	 *
-	 * @param  array $include
-	 * @return libhg_Command_Cat_Base  self
-	 */
-	public function include(array $include) {
-		foreach ($include as $val) {
-			$this->include[] = $val;
-		}
-
-		return $this;
-	}
-
-	/**
-	 * append a single incl
-	 *
-	 * @param  array $incl
+	 * @param  mixed $incl             a single (scalar) or multiple (array) include
 	 * @return libhg_Command_Cat_Base  self
 	 */
 	public function incl($incl) {
-		$this->include[] = $incl;
+		foreach ((array) $incl as $val) {
+			$this->incl[] = $val;
+		}
+
 		return $this;
 	}
 
@@ -186,32 +164,21 @@ abstract class libhg_Command_Cat_Base extends libhg_Command_Base {
 	 * @return libhg_Command_Cat_Base  self
 	 */
 	public function resetInclude() {
-		$this->include = array();
+		$this->incl = array();
 		return $this;
 	}
 
 	/**
-	 * append multiple exclude
+	 * append a single or multiple exclude
 	 *
-	 * @param  array $exclude
+	 * @param  mixed $exclude          a single (scalar) or multiple (array) exclude
 	 * @return libhg_Command_Cat_Base  self
 	 */
-	public function exclude(array $exclude) {
-		foreach ($exclude as $val) {
+	public function excl($exclude) {
+		foreach ((array) $exclude as $val) {
 			$this->exclude[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single excl
-	 *
-	 * @param  array $excl
-	 * @return libhg_Command_Cat_Base  self
-	 */
-	public function excl($excl) {
-		$this->exclude[] = $excl;
 		return $this;
 	}
 
@@ -228,7 +195,7 @@ abstract class libhg_Command_Cat_Base extends libhg_Command_Base {
 	/**
 	 * set output
 	 *
-	 * @param  string $output
+	 * @param  string $output          the single output argument
 	 * @return libhg_Command_Cat_Base  self
 	 */
 	public function output($output) {
@@ -239,7 +206,7 @@ abstract class libhg_Command_Cat_Base extends libhg_Command_Base {
 	/**
 	 * set rev
 	 *
-	 * @param  string $rev
+	 * @param  string $rev             the single rev argument
 	 * @return libhg_Command_Cat_Base  self
 	 */
 	public function rev($rev) {
@@ -248,9 +215,9 @@ abstract class libhg_Command_Cat_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set decode
+	 * set or unset decode flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag           true to set the flag, false to unset it
 	 * @return libhg_Command_Cat_Base  self
 	 */
 	public function decode($flag = true) {

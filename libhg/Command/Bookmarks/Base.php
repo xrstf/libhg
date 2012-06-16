@@ -123,7 +123,7 @@ abstract class libhg_Command_Bookmarks_Base extends libhg_Command_Base {
 	/**
 	 * set name
 	 *
-	 * @param  string $name
+	 * @param  string $name                  the single name argument
 	 * @return libhg_Command_Bookmarks_Base  self
 	 */
 	public function name($name) {
@@ -134,7 +134,7 @@ abstract class libhg_Command_Bookmarks_Base extends libhg_Command_Base {
 	/**
 	 * set rev
 	 *
-	 * @param  string $rev
+	 * @param  string $rev                   the single rev argument
 	 * @return libhg_Command_Bookmarks_Base  self
 	 */
 	public function rev($rev) {
@@ -145,7 +145,7 @@ abstract class libhg_Command_Bookmarks_Base extends libhg_Command_Base {
 	/**
 	 * set rename
 	 *
-	 * @param  string $rename
+	 * @param  string $rename                the single rename argument
 	 * @return libhg_Command_Bookmarks_Base  self
 	 */
 	public function rename($rename) {
@@ -154,9 +154,9 @@ abstract class libhg_Command_Bookmarks_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set force
+	 * set or unset force flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag                 true to set the flag, false to unset it
 	 * @return libhg_Command_Bookmarks_Base  self
 	 */
 	public function force($flag = true) {
@@ -165,9 +165,9 @@ abstract class libhg_Command_Bookmarks_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set delete
+	 * set or unset delete flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag                 true to set the flag, false to unset it
 	 * @return libhg_Command_Bookmarks_Base  self
 	 */
 	public function delete($flag = true) {
@@ -176,9 +176,9 @@ abstract class libhg_Command_Bookmarks_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set inactive
+	 * set or unset inactive flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag                 true to set the flag, false to unset it
 	 * @return libhg_Command_Bookmarks_Base  self
 	 */
 	public function inactive($flag = true) {

@@ -57,27 +57,16 @@ abstract class libhg_Command_Showconfig_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple names
+	 * append a single or multiple names
 	 *
-	 * @param  array $names
+	 * @param  mixed $names                   a single (scalar) or multiple (array) names
 	 * @return libhg_Command_Showconfig_Base  self
 	 */
-	public function names(array $names) {
-		foreach ($names as $val) {
+	public function name($names) {
+		foreach ((array) $names as $val) {
 			$this->names[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single name
-	 *
-	 * @param  array $name
-	 * @return libhg_Command_Showconfig_Base  self
-	 */
-	public function name($name) {
-		$this->names[] = $name;
 		return $this;
 	}
 
@@ -92,9 +81,9 @@ abstract class libhg_Command_Showconfig_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set untrusted
+	 * set or unset untrusted flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag                  true to set the flag, false to unset it
 	 * @return libhg_Command_Showconfig_Base  self
 	 */
 	public function untrusted($flag = true) {

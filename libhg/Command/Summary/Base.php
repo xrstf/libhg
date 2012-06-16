@@ -41,9 +41,9 @@ abstract class libhg_Command_Summary_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set remote
+	 * set or unset remote flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag               true to set the flag, false to unset it
 	 * @return libhg_Command_Summary_Base  self
 	 */
 	public function remote($flag = true) {

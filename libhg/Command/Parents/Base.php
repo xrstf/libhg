@@ -59,7 +59,7 @@ abstract class libhg_Command_Parents_Base extends libhg_Command_Base {
 	/**
 	 * set file
 	 *
-	 * @param  string $file
+	 * @param  string $file                the single file argument
 	 * @return libhg_Command_Parents_Base  self
 	 */
 	public function file($file) {
@@ -70,7 +70,7 @@ abstract class libhg_Command_Parents_Base extends libhg_Command_Base {
 	/**
 	 * set rev
 	 *
-	 * @param  string $rev
+	 * @param  string $rev                 the single rev argument
 	 * @return libhg_Command_Parents_Base  self
 	 */
 	public function rev($rev) {

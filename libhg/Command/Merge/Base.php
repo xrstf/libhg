@@ -91,7 +91,7 @@ abstract class libhg_Command_Merge_Base extends libhg_Command_Base {
 	/**
 	 * set rev
 	 *
-	 * @param  string $rev
+	 * @param  string $rev               the single rev argument
 	 * @return libhg_Command_Merge_Base  self
 	 */
 	public function rev($rev) {
@@ -102,7 +102,7 @@ abstract class libhg_Command_Merge_Base extends libhg_Command_Base {
 	/**
 	 * set tool
 	 *
-	 * @param  string $tool
+	 * @param  string $tool              the single tool argument
 	 * @return libhg_Command_Merge_Base  self
 	 */
 	public function tool($tool) {
@@ -111,9 +111,9 @@ abstract class libhg_Command_Merge_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set force
+	 * set or unset force flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Merge_Base  self
 	 */
 	public function force($flag = true) {
@@ -122,9 +122,9 @@ abstract class libhg_Command_Merge_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set preview
+	 * set or unset preview flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Merge_Base  self
 	 */
 	public function preview($flag = true) {

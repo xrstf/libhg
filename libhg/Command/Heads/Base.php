@@ -89,27 +89,16 @@ abstract class libhg_Command_Heads_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * append multiple revs
+	 * append a single or multiple revs
 	 *
-	 * @param  array $revs
+	 * @param  mixed $revs               a single (scalar) or multiple (array) revs
 	 * @return libhg_Command_Heads_Base  self
 	 */
-	public function revs(array $revs) {
-		foreach ($revs as $val) {
+	public function rev($revs) {
+		foreach ((array) $revs as $val) {
 			$this->revs[] = $val;
 		}
 
-		return $this;
-	}
-
-	/**
-	 * append a single rev
-	 *
-	 * @param  array $rev
-	 * @return libhg_Command_Heads_Base  self
-	 */
-	public function rev($rev) {
-		$this->revs[] = $rev;
 		return $this;
 	}
 
@@ -126,7 +115,7 @@ abstract class libhg_Command_Heads_Base extends libhg_Command_Base {
 	/**
 	 * set startrev
 	 *
-	 * @param  string $startrev
+	 * @param  string $startrev          the single startrev argument
 	 * @return libhg_Command_Heads_Base  self
 	 */
 	public function startrev($startrev) {
@@ -135,9 +124,9 @@ abstract class libhg_Command_Heads_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set topo
+	 * set or unset topo flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Heads_Base  self
 	 */
 	public function topo($flag = true) {
@@ -146,9 +135,9 @@ abstract class libhg_Command_Heads_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set closed
+	 * set or unset closed flag
 	 *
-	 * @param  boolean $flag
+	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Heads_Base  self
 	 */
 	public function closed($flag = true) {
