@@ -69,14 +69,7 @@ class libhg_HgrcTest extends PHPUnit_Framework_TestCase {
 		$this->assertTrue($hgrc->has('numeric', '34'));
 		$this->assertTrue($hgrc->has('spaced group', 'key with spaces'));
 
-		// ini support is broken in 5.2
-		if (version_compare(phpversion(), '5.3', '<')) {
-			$this->assertEquals(array('mykey' => 'hello world', 'foo-bar' => 'with \quotes'), $hgrc->get('mygroup'));
-		}
-		else {
-			$this->assertEquals(array('mykey' => 'hello world', 'foo-bar' => 'with " quotes'), $hgrc->get('mygroup'));
-		}
-
+		$this->assertEquals(array('mykey' => 'hello world', 'foo-bar' => 'with " quotes'), $hgrc->get('mygroup'));
 		$this->assertEquals('hello world', $hgrc->get('mygroup', 'mykey'));
 
 		$this->assertNull($hgrc->get('mYGroup'));
