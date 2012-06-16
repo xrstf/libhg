@@ -27,19 +27,11 @@ class libhg_Command_Status_Result {
 		$files  = array_filter(explode("\n", $output));
 		$result = array();
 
-		if (!$cmd->getNoStatus()) {
-			foreach ($files as $line) {
-				$line  = str_replace('\\', '/', $line);
-				$parts = explode(' ', $line, 2);
+		foreach ($files as $line) {
+			$line  = str_replace('\\', '/', $line);
+			$parts = explode(' ', $line, 2);
 
-				$result[$parts[1]] = $parts[0];
-			}
-		}
-		else {
-			foreach ($files as $file) {
-				$file = str_replace('\\', '/', $file);
-				$result[$file] = self::STATUS_UNKNOWN;
-			}
+			$result[$parts[1]] = $parts[0];
 		}
 
 		return new self($result);

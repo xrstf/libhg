@@ -107,13 +107,6 @@ abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 	protected $ignored = false;
 
 	/**
-	 * 'noStatus' flag (-n)
-	 *
-	 * @var boolean
-	 */
-	protected $noStatus = false;
-
-	/**
 	 * 'copies' flag (-C)
 	 *
 	 * @var boolean
@@ -242,15 +235,6 @@ abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 	 */
 	public function getIgnored() {
 		return $this->ignored;
-	}
-
-	/**
-	 * get noStatus
-	 *
-	 * @return boolean  set value or false if not set
-	 */
-	public function getNoStatus() {
-		return $this->noStatus;
 	}
 
 	/**
@@ -520,17 +504,6 @@ abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set noStatus
-	 *
-	 * @param  boolean $flag
-	 * @return libhg_Command_Status_Base  self
-	 */
-	public function noStatus($flag = true) {
-		$this->noStatus = (boolean) $flag;
-		return $this;
-	}
-
-	/**
 	 * set copies
 	 *
 	 * @param  boolean $flag
@@ -577,7 +550,6 @@ abstract class libhg_Command_Status_Base extends libhg_Command_Base {
 		if ($this->clean) $options->setFlag('-c');
 		if ($this->unknown) $options->setFlag('-u');
 		if ($this->ignored) $options->setFlag('-i');
-		if ($this->noStatus) $options->setFlag('-n');
 		if ($this->copies) $options->setFlag('-C');
 		if ($this->subrepos) $options->setFlag('-S');
 

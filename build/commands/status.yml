@@ -16,6 +16,6 @@ flags:
    clean:    { cli: '-c' }
    unknown:  { cli: '-u', default: true }
    ignored:  { cli: '-i' }
-   noStatus: { cli: '-n' }
+#  noStatus: { cli: '-n' }
    copies:   { cli: '-C' }
    subrepos: { cli: '-S' }
