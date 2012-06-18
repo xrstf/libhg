@@ -68,7 +68,7 @@ class libhg_Client_Logging extends libhg_Client {
 			$repo = null;
 		}
 
-		$format = "%s> hg %s (%0.2Fs)\n";
+		$format = "%s> hg %s (%0.2Fs)%s\n";
 
 		// make sure no repository is given in the command line
 		$options->setRepository(null);
@@ -77,16 +77,27 @@ class libhg_Client_Logging extends libhg_Client {
 		$options = $options->toArray();
 		array_unshift($options, $name);
 		$options = implode(' ', $options);
+		$error   = '';
 
-		// execute command
-		$start  = microtime(true);
-		$retval = parent::run($command, $repository);
-		$time   = microtime(true) - $start;
+		try {
+			// execute command
+			$start  = microtime(true);
+			$retval = parent::run($command, $repository);
+			$time   = microtime(true) - $start;
+		}
+		catch (Exception $e) {
+			$time  = microtime(true) - $start;
+			$error = ' => ERROR: '.$e->getMessage();
+		}
 
 		// log it
 		$path = $repo ? $repo->getDirectory() : '(hg)';
-		$line = sprintf($format, $path, $options, $time);
+		$line = sprintf($format, $path, $options, $time, $error);
 		file_put_contents($this->logfile, $line, FILE_APPEND);
+
+		if ($error) {
+			throw $e;
+		}
 
 		return $retval;
 	}
