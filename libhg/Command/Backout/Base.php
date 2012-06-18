@@ -302,7 +302,7 @@ abstract class libhg_Command_Backout_Base extends libhg_Command_Base {
 		$options = new libhg_Options_Container();
 
 		if ($this->rev !== null) $options->addArgument($this->rev);
-		if (!empty($this->include)) $options->setMultiple('-I', $this->include);
+		if (!empty($this->incl)) $options->setMultiple('-I', $this->incl);
 		if (!empty($this->exclude)) $options->setMultiple('-X', $this->exclude);
 		if ($this->tool !== null) $options->setSingle('-t', $this->tool);
 		if ($this->message !== null) $options->setSingle('-m', $this->message);

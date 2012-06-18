@@ -265,7 +265,7 @@ abstract class libhg_Command_Purge_Base extends libhg_Command_Base {
 				$options->addArgument($val);
 			}
 		}
-		if (!empty($this->include)) $options->setMultiple('-I', $this->include);
+		if (!empty($this->incl)) $options->setMultiple('-I', $this->incl);
 		if (!empty($this->exclude)) $options->setMultiple('-X', $this->exclude);
 		if ($this->abortOnError) $options->setFlag('-a');
 		if ($this->all) $options->setFlag('--all');

@@ -238,7 +238,7 @@ abstract class libhg_Command_Cat_Base extends libhg_Command_Base {
 				$options->addArgument($val);
 			}
 		}
-		if (!empty($this->include)) $options->setMultiple('-I', $this->include);
+		if (!empty($this->incl)) $options->setMultiple('-I', $this->incl);
 		if (!empty($this->exclude)) $options->setMultiple('-X', $this->exclude);
 		if ($this->output !== null) $options->setSingle('-o', $this->output);
 		if ($this->rev !== null) $options->setSingle('-r', $this->rev);

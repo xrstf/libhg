@@ -429,10 +429,10 @@ class libhg_SingleArgument extends libhg_Option {
 	}
 
 	public function writeOptions($fp) {
-		$name = $this->name;
+		$safe = $this->getSafeName();
 		$cli  = $this->cliName;
 
-		fwrite($fp, "\t\tif (\$this->$name !== null) \$options->addArgument(\$this->$name);\n");
+		fwrite($fp, "\t\tif (\$this->$safe !== null) \$options->addArgument(\$this->$safe);\n");
 	}
 }
 
@@ -533,10 +533,10 @@ class libhg_MultiOption extends libhg_MultiArgument {
 	}
 
 	public function writeOptions($fp) {
-		$name = $this->name;
+		$safe = $this->getSafeName();
 		$cli  = $this->cliName;
 
-		fwrite($fp, "\t\tif (!empty(\$this->$name)) \$options->setMultiple('$cli', \$this->$name);\n");
+		fwrite($fp, "\t\tif (!empty(\$this->$safe)) \$options->setMultiple('$cli', \$this->$safe);\n");
 	}
 }
 

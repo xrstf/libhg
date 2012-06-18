@@ -58,6 +58,20 @@ abstract class libhg_Command_Log_Base extends libhg_Command_Base {
 	protected $prunes = array();
 
 	/**
+	 * optional 'include' options (-I)
+	 *
+	 * @var array
+	 */
+	protected $incl = array();
+
+	/**
+	 * optional 'exclude' options (-X)
+	 *
+	 * @var array
+	 */
+	protected $exclude = array();
+
+	/**
 	 * optional 'date' option (-d)
 	 *
 	 * @var string
@@ -151,6 +165,24 @@ abstract class libhg_Command_Log_Base extends libhg_Command_Base {
 	 */
 	public function getPrunes() {
 		return $this->prunes;
+	}
+
+	/**
+	 * get include
+	 *
+	 * @return array  set include or array() if not set
+	 */
+	public function getInclude() {
+		return $this->incl;
+	}
+
+	/**
+	 * get exclude
+	 *
+	 * @return array  set exclude or array() if not set
+	 */
+	public function getExclude() {
+		return $this->exclude;
 	}
 
 	/**
@@ -348,6 +380,54 @@ abstract class libhg_Command_Log_Base extends libhg_Command_Base {
 	}
 
 	/**
+	 * append a single or multiple include
+	 *
+	 * @param  mixed $incl             a single (scalar) or multiple (array) include
+	 * @return libhg_Command_Log_Base  self
+	 */
+	public function incl($incl) {
+		foreach ((array) $incl as $val) {
+			$this->incl[] = $val;
+		}
+
+		return $this;
+	}
+
+	/**
+	 * reset include
+	 *
+	 * @return libhg_Command_Log_Base  self
+	 */
+	public function resetInclude() {
+		$this->incl = array();
+		return $this;
+	}
+
+	/**
+	 * append a single or multiple exclude
+	 *
+	 * @param  mixed $exclude          a single (scalar) or multiple (array) exclude
+	 * @return libhg_Command_Log_Base  self
+	 */
+	public function excl($exclude) {
+		foreach ((array) $exclude as $val) {
+			$this->exclude[] = $val;
+		}
+
+		return $this;
+	}
+
+	/**
+	 * reset exclude
+	 *
+	 * @return libhg_Command_Log_Base  self
+	 */
+	public function resetExclude() {
+		$this->exclude = array();
+		return $this;
+	}
+
+	/**
 	 * set date
 	 *
 	 * @param  string $date            the single date argument
@@ -427,6 +507,8 @@ abstract class libhg_Command_Log_Base extends libhg_Command_Base {
 		if (!empty($this->users)) $options->setMultiple('-u', $this->users);
 		if (!empty($this->branches)) $options->setMultiple('-b', $this->branches);
 		if (!empty($this->prunes)) $options->setMultiple('-P', $this->prunes);
+		if (!empty($this->incl)) $options->setMultiple('-I', $this->incl);
+		if (!empty($this->exclude)) $options->setMultiple('-X', $this->exclude);
 		if ($this->date !== null) $options->setSingle('-d', $this->date);
 		if ($this->limit !== null) $options->setSingle('-l', $this->limit);
 		if ($this->follow) $options->setFlag('-f');

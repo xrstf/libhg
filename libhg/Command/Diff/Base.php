@@ -522,7 +522,7 @@ abstract class libhg_Command_Diff_Base extends libhg_Command_Base {
 			}
 		}
 		if (!empty($this->revs)) $options->setMultiple('-r', $this->revs);
-		if (!empty($this->include)) $options->setMultiple('-I', $this->include);
+		if (!empty($this->incl)) $options->setMultiple('-I', $this->incl);
 		if (!empty($this->exclude)) $options->setMultiple('-X', $this->exclude);
 		if ($this->change !== null) $options->setSingle('-c', $this->change);
 		if ($this->unified !== null) $options->setSingle('-U', $this->unified);
