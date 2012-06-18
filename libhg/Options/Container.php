@@ -21,7 +21,7 @@
  *     ('--rev 123 --rev 456 --rev 789')
  *
  * Additionally, each container can be associated with a repository. This makes
- * the container include the '-R' option when doing toArray().
+ * the container include the '--cwd' option when doing toArray().
  */
 class libhg_Options_Container implements libhg_Options_Interface {
 	protected $args    = array(); ///< array
@@ -36,8 +36,8 @@ class libhg_Options_Container implements libhg_Options_Interface {
 	 * set the repository
 	 *
 	 * The repository will be included in toString() and toArray() as the
-	 * '-R' option. It can be overwritten by explicitely setting a single
-	 * '-R' option, but this is highly discouraged.
+	 * '--cwd' option. It can be overwritten by explicitely setting a single
+	 * '--cwd' option, but this is highly discouraged.
 	 *
 	 * @param  libhg_Repository_Interface $repo
 	 * @return libhg_Options_Container           self
@@ -70,14 +70,14 @@ class libhg_Options_Container implements libhg_Options_Interface {
 	 * Multiple single-character flags ('-f', '-a') are joined together ('-fa').
 	 *
 	 * @return array  list of all options, flags and arguments
-	 *                ([-R, /path/to/repo, --flag1, --flag2, --option, optionval, ...])
+	 *                ([--cwd, /path/to/repo, --flag1, --flag2, --option, optionval, ...])
 	 */
 	public function toArray() {
 		$result = array();
 		$chars  = '';
 
 		if ($this->repo) {
-			$result[] = '-R';
+			$result[] = '--cwd';
 			$result[] = $this->repo->getDirectory();
 		}
 
@@ -115,7 +115,7 @@ class libhg_Options_Container implements libhg_Options_Interface {
 	 * spaces.
 	 *
 	 * @return string  the options as a long string
-	 *                 ('-R /path/to/repo --flag --flag --option val arg1 arg2')
+	 *                 ('--cwd /path/to/repo --flag --flag --option val arg1 arg2')
 	 */
 	public function __toString() {
 		$options = array_filter($this->toArray());

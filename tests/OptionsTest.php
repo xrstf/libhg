@@ -88,7 +88,7 @@ class libhg_OptionsTest extends PHPUnit_Framework_TestCase {
 		$repo    = new libhg_Repository(LIBHG_REPOS.'/sally');
 
 		$options->setRepository($repo);
-		$this->assertEquals('-R '.$repo->getDirectory(), (string) $options);
+		$this->assertEquals('--cwd '.$repo->getDirectory(), (string) $options);
 
 		$options->setRepository(null);
 		$this->assertEquals('', (string) $options);

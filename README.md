@@ -93,8 +93,8 @@ A minimal example:
         print $change->node.": ".$change->desc."\n";
     }
 
-Since the client will always send the `-R` option, you can use a single client
-to perform commands on multiple repositories (you don't need one client,
+Since the client will always send the `--cwd` option, you can use a single
+client to perform commands on multiple repositories (you don't need one client,
 meaning one hg instance, per repository).
 
     :::php
