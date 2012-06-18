@@ -7,6 +7,8 @@ multi-opts:
    users:    { cli: '-u',    alias: user    }
    branches: { cli: '-b',    alias: branch  }
    prunes:   { cli: '-P',    alias: prune   }
+   include:  { cli: '-I',    alias: incl    }
+   exclude:  { cli: '-X',    alias: excl    }
 single-opts:
    date:  { cli: '-d' }
    limit: { cli: '-l' }
