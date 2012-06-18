@@ -9,11 +9,11 @@
  */
 
 class libhg_Command_Addremove_Result {
-	public $added;
+	public $files;
 	public $code;
 
-	public function __construct(array $added, $code) {
-		$this->added = $added;
+	public function __construct(array $files, $code) {
+		$this->files = $files;
 		$this->code  = $code;
 	}
 }

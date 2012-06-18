@@ -23,7 +23,7 @@ class libhg_Repository implements libhg_Repository_Interface {
 	 *
 	 * @param string $path  full path to a working directory (without the '/.hg')
 	 */
-	public function __construct($path) {
+	public function __construct($path, libhg_Client $client = null) {
 		$repo = is_string($path) && !empty($path) ? realpath($path) : false;
 
 		if ($repo === false || !is_dir($repo)) {
@@ -38,7 +38,7 @@ class libhg_Repository implements libhg_Repository_Interface {
 		}
 
 		$this->path   = rtrim($repo, DIRECTORY_SEPARATOR);
-		$this->client = null;
+		$this->client = $client;
 	}
 
 	/**
@@ -95,6 +95,18 @@ class libhg_Repository implements libhg_Repository_Interface {
 	 */
 	public function run(libhg_Command_Interface $command) {
 		return $this->getClient()->run($command, $this);
+	}
+
+	/**
+	 * starts a status command
+	 *
+	 * @return libhg_Command_Status_Cmd
+	 */
+	public function status($modified = true, $added = true, $deleted = true, $removed = true) {
+		$cmd    = new libhg_Command_Status_Cmd();
+		$client = $this->getClient()->setRepository($this);
+
+		return $cmd->setClient($client)->modified($modified)->added($added)->deleted($deleted)->removed($removed);
 	}
 
 	/**
