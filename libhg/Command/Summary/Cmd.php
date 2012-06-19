@@ -43,6 +43,7 @@ class libhg_Command_Summary_Cmd extends libhg_Command_Summary_Base {
 		$bookmarks = array();
 		$branch    = null;
 		$status    = null;
+		$remote    = null;
 		$update    = null;
 
 		while (!empty($lines)) {
@@ -82,12 +83,16 @@ class libhg_Command_Summary_Cmd extends libhg_Command_Summary_Base {
 					$bookmarks = explode(' ', $value);
 					break;
 
+				case 'remote':
+					$remote = trim($value);
+					break;
+
 				default:
 					throw new libhg_Exception('Found unknown row "'.$line.'".');
 					break;
 			}
 		}
 
-		return new libhg_Command_Summary_Result($parents, $branch, $status, $update, $bookmarks, $code);
+		return new libhg_Command_Summary_Result($parents, $branch, $status, $update, $bookmarks, $remote, $code);
 	}
 }

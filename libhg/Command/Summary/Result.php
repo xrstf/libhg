@@ -13,14 +13,16 @@ class libhg_Command_Summary_Result {
 	public $branch;
 	public $status;
 	public $update;
+	public $remote;
 	public $retval;
 
-	public function __construct(array $parents, $branch, $status, $update, array $bookmarks, $retval) {
+	public function __construct(array $parents, $branch, $status, $update, array $bookmarks, $remote, $retval) {
 		$this->parents   = $parents;
 		$this->branch    = $branch;
 		$this->status    = $status;
 		$this->update    = $update;
 		$this->bookmarks = $bookmarks;
+		$this->remote    = $remote;
 		$this->retval    = $retval;
 	}
 
