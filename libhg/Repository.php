@@ -102,7 +102,7 @@ class libhg_Repository implements libhg_Repository_Interface {
 	 *
 	 * Class names must be named like 'libhg_Command_[$command]_Cmd'.
 	 *
-	 * @return string $commandName      like 'status' or 'push'
+	 * @param  string $commandName      like 'status' or 'push'
 	 * @return libhg_Command_Interface
 	 */
 	public function cmd($commandName) {
