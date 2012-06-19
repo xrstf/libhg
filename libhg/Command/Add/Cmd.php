@@ -22,6 +22,13 @@ class libhg_Command_Add_Cmd extends libhg_Command_Add_Base {
 		$files = empty($files) ? array() : explode("\n", $files);
 		$code  = $reader->readReturnValue();
 
+		// cut off the 'adding ' prefix
+		foreach ($files as $idx => $file) {
+			if (substr($file, 0, 7) === 'adding ') {
+				$files[$idx] = substr($file, 7);
+			}
+		}
+
 		return new libhg_Command_Add_Result($files, $code);
 	}
 }
