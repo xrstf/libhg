@@ -109,7 +109,7 @@ class libhg_Repository implements libhg_Repository_Interface {
 		$className = 'libhg_Command_'.ucfirst(strtolower($commandName)).'_Cmd';
 
 		if (!class_exists($className)) {
-			throw new libhg_Exception('Could not find class "'.$className.' for "'.$commandName.'" command.');
+			throw new libhg_Exception('Could not find class "'.$className.'" for "'.$commandName.'" command.');
 		}
 
 		$cmd    = new $className();
