@@ -137,15 +137,17 @@ class libhg_Client implements libhg_Client_Interface {
 	public function connect($errorLog = null, $forceMqExtension = true) {
 		if ($this->open) $this->close();
 
+		$oldLang     = getenv('LANG');
+		$oldLanguage = getenv('LANGUAGE');
+		$oldHgEnc    = getenv('HGENCODING');
+
+		putenv('LANG=C');
+		putenv('LANGUAGE=C');
+		putenv('HGENCODING=UTF-8');
+
 		$cmd   = 'hg serve '.($forceMqExtension ? '--config extensions.mq="" ' : '').'--cmdserver pipe';
 		$cwd   = $this->repo->getDirectory();
 		$pipes = null;
-		$env   = array(
-			'LANG'       => 'C',
-			'LANGUAGE'   => 'C',
-			'PATH'       => getenv('PATH'),
-			'HGENCODING' => 'UTF-8'
-		);
 		$descr = array(
 			libhg_Stream::STDIN  => array('pipe', 'r'),
 			libhg_Stream::STDOUT => array('pipe', 'w')
@@ -155,7 +157,7 @@ class libhg_Client implements libhg_Client_Interface {
 			$descr[libhg_Stream::STDERR] = array('file', $errorLog, 'a');
 		}
 
-		$this->process = proc_open($cmd, $descr, $pipes, $cwd, $env);
+		$this->process = proc_open($cmd, $descr, $pipes, $cwd);
 
 		if (!is_resource($this->process)) {
 			throw new libhg_Exception('Could not start command server.');
@@ -167,6 +169,10 @@ class libhg_Client implements libhg_Client_Interface {
 
 		// read hello message and capabilities
 		$this->readHello();
+
+		putenv('LANG='.$oldLang);
+		putenv('LANGUAGE='.$oldLanguage);
+		putenv('HGENCODING='.$oldHgEnc);
 
 		return $this;
 	}
@@ -198,7 +204,7 @@ class libhg_Client implements libhg_Client_Interface {
 		$result = $cmd->evaluate($reader, $writer, $this->repo);
 
 		if ($result->encoding !== 'UTF-8') {
-			throw new libhg_Exception('Encoding mismatch. Server must be using UTF-8, but uses '.$enc.'.');
+			throw new libhg_Exception('Encoding mismatch. Server must be using UTF-8, but uses '.$result->encoding.'.');
 		}
 
 		if (!in_array('runcommand', $result->capabilities)) {
