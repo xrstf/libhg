@@ -312,6 +312,8 @@ abstract class libhg_Option {
 			case $name === 'include':  return 'incl';
 			case $name === 'require':  return 'req';
 			case $name === 'function': return 'func';
+			case $name === 'continue': return 'cont';
+			case $name === 'public':   return 'publ';
 		}
 
 		return $name;
@@ -555,6 +557,7 @@ class libhg_Flag extends libhg_SingleArgument {
 
 	public function writeSetter($fp, $className) {
 		$name = $this->getName();
+		$safe = $this->getSafeName();
 		$docs = $this->writeAligned(array(
 			array("@param  boolean \$flag", "true to set the flag, false to unset it"),
 			array("@return $className",     "self")
@@ -566,15 +569,15 @@ class libhg_Flag extends libhg_SingleArgument {
 	 *
 	 * $docs
 	 */
-	public function $name(\$flag = true) {
-		\$this->$name = (boolean) \$flag;
+	public function $safe(\$flag = true) {
+		\$this->$safe = (boolean) \$flag;
 		return \$this;
 	}
 ");
 	}
 
 	public function writeOptions($fp) {
-		$name = $this->name;
+		$name = $this->getSafeName();
 		$cli  = $this->cliName;
 
 		fwrite($fp, "\t\tif (\$this->$name) \$options->setFlag('$cli');\n");

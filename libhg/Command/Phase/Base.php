@@ -27,7 +27,7 @@ abstract class libhg_Command_Phase_Base extends libhg_Command_Base {
 	 *
 	 * @var boolean
 	 */
-	protected $public = false;
+	protected $publ = false;
 
 	/**
 	 * 'draft' flag (-d)
@@ -65,7 +65,7 @@ abstract class libhg_Command_Phase_Base extends libhg_Command_Base {
 	 * @return boolean  set value or false if not set
 	 */
 	public function getPublic() {
-		return $this->public;
+		return $this->publ;
 	}
 
 	/**
@@ -134,8 +134,8 @@ abstract class libhg_Command_Phase_Base extends libhg_Command_Base {
 	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Phase_Base  self
 	 */
-	public function public($flag = true) {
-		$this->public = (boolean) $flag;
+	public function publ($flag = true) {
+		$this->publ = (boolean) $flag;
 		return $this;
 	}
 
@@ -185,7 +185,7 @@ abstract class libhg_Command_Phase_Base extends libhg_Command_Base {
 				$options->addArgument($val);
 			}
 		}
-		if ($this->public) $options->setFlag('-p');
+		if ($this->publ) $options->setFlag('-p');
 		if ($this->draft) $options->setFlag('-d');
 		if ($this->secret) $options->setFlag('-s');
 		if ($this->force) $options->setFlag('-f');

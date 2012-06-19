@@ -51,11 +51,11 @@ abstract class libhg_Command_Purge_Base extends libhg_Command_Base {
 	protected $all = false;
 
 	/**
-	 * 'print' flag (-p)
+	 * 'printFiles' flag (-p)
 	 *
 	 * @var boolean
 	 */
-	protected $print = false;
+	protected $printFiles = false;
 
 	/**
 	 * 'print0' flag (-0)
@@ -110,12 +110,12 @@ abstract class libhg_Command_Purge_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * get print
+	 * get printFiles
 	 *
 	 * @return boolean  set value or false if not set
 	 */
-	public function getPrint() {
-		return $this->print;
+	public function getPrintFiles() {
+		return $this->printFiles;
 	}
 
 	/**
@@ -231,13 +231,13 @@ abstract class libhg_Command_Purge_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set or unset print flag
+	 * set or unset printFiles flag
 	 *
 	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Purge_Base  self
 	 */
-	public function print($flag = true) {
-		$this->print = (boolean) $flag;
+	public function printFiles($flag = true) {
+		$this->printFiles = (boolean) $flag;
 		return $this;
 	}
 
@@ -269,7 +269,7 @@ abstract class libhg_Command_Purge_Base extends libhg_Command_Base {
 		if (!empty($this->exclude)) $options->setMultiple('-X', $this->exclude);
 		if ($this->abortOnError) $options->setFlag('-a');
 		if ($this->all) $options->setFlag('--all');
-		if ($this->print) $options->setFlag('-p');
+		if ($this->printFiles) $options->setFlag('-p');
 		if ($this->print0) $options->setFlag('-0');
 
 		return $options;

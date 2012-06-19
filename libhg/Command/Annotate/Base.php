@@ -65,11 +65,11 @@ abstract class libhg_Command_Annotate_Base extends libhg_Command_Base {
 	protected $user = false;
 
 	/**
-	 * 'file' flag (-f)
+	 * 'filename' flag (-f)
 	 *
 	 * @var boolean
 	 */
-	protected $file = false;
+	protected $filename = false;
 
 	/**
 	 * 'date' flag (-d)
@@ -191,12 +191,12 @@ abstract class libhg_Command_Annotate_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * get file
+	 * get filename
 	 *
 	 * @return boolean  set value or false if not set
 	 */
-	public function getFile() {
-		return $this->file;
+	public function getFilename() {
+		return $this->filename;
 	}
 
 	/**
@@ -410,13 +410,13 @@ abstract class libhg_Command_Annotate_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set or unset file flag
+	 * set or unset filename flag
 	 *
 	 * @param  boolean $flag                true to set the flag, false to unset it
 	 * @return libhg_Command_Annotate_Base  self
 	 */
-	public function file($flag = true) {
-		$this->file = (boolean) $flag;
+	public function filename($flag = true) {
+		$this->filename = (boolean) $flag;
 		return $this;
 	}
 
@@ -527,7 +527,7 @@ abstract class libhg_Command_Annotate_Base extends libhg_Command_Base {
 		if ($this->noFollow) $options->setFlag('--no-follow');
 		if ($this->text) $options->setFlag('-a');
 		if ($this->user) $options->setFlag('-u');
-		if ($this->file) $options->setFlag('-f');
+		if ($this->filename) $options->setFlag('-f');
 		if ($this->date) $options->setFlag('-d');
 		if ($this->dateShort) $options->setFlag('-q');
 		if ($this->number) $options->setFlag('-n');

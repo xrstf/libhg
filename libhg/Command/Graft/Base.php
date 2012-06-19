@@ -48,7 +48,7 @@ abstract class libhg_Command_Graft_Base extends libhg_Command_Base {
 	 *
 	 * @var boolean
 	 */
-	protected $continue = false;
+	protected $cont = false;
 
 	/**
 	 * 'edit' flag (-e)
@@ -120,7 +120,7 @@ abstract class libhg_Command_Graft_Base extends libhg_Command_Base {
 	 * @return boolean  set value or false if not set
 	 */
 	public function getContinue() {
-		return $this->continue;
+		return $this->cont;
 	}
 
 	/**
@@ -231,8 +231,8 @@ abstract class libhg_Command_Graft_Base extends libhg_Command_Base {
 	 * @param  boolean $flag             true to set the flag, false to unset it
 	 * @return libhg_Command_Graft_Base  self
 	 */
-	public function continue($flag = true) {
-		$this->continue = (boolean) $flag;
+	public function cont($flag = true) {
+		$this->cont = (boolean) $flag;
 		return $this;
 	}
 
@@ -296,7 +296,7 @@ abstract class libhg_Command_Graft_Base extends libhg_Command_Base {
 		if ($this->user !== null) $options->setSingle('-u', $this->user);
 		if ($this->date !== null) $options->setSingle('-d', $this->date);
 		if ($this->tool !== null) $options->setSingle('-t', $this->tool);
-		if ($this->continue) $options->setFlag('-c');
+		if ($this->cont) $options->setFlag('-c');
 		if ($this->edit) $options->setFlag('-e');
 		if ($this->currentdate) $options->setFlag('-D');
 		if ($this->currentuser) $options->setFlag('-U');

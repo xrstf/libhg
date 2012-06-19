@@ -104,7 +104,7 @@ abstract class libhg_Command_Rebase_Base extends libhg_Command_Base {
 	 *
 	 * @var boolean
 	 */
-	protected $continue = false;
+	protected $cont = false;
 
 	/**
 	 * 'abort' flag (-a)
@@ -227,7 +227,7 @@ abstract class libhg_Command_Rebase_Base extends libhg_Command_Base {
 	 * @return boolean  set value or false if not set
 	 */
 	public function getContinue() {
-		return $this->continue;
+		return $this->cont;
 	}
 
 	/**
@@ -399,8 +399,8 @@ abstract class libhg_Command_Rebase_Base extends libhg_Command_Base {
 	 * @param  boolean $flag              true to set the flag, false to unset it
 	 * @return libhg_Command_Rebase_Base  self
 	 */
-	public function continue($flag = true) {
-		$this->continue = (boolean) $flag;
+	public function cont($flag = true) {
+		$this->cont = (boolean) $flag;
 		return $this;
 	}
 
@@ -435,7 +435,7 @@ abstract class libhg_Command_Rebase_Base extends libhg_Command_Base {
 		if ($this->keep) $options->setFlag('--keep');
 		if ($this->keepBranches) $options->setFlag('--keepbranches');
 		if ($this->detach) $options->setFlag('-D');
-		if ($this->continue) $options->setFlag('-c');
+		if ($this->cont) $options->setFlag('-c');
 		if ($this->abort) $options->setFlag('-a');
 
 		return $options;

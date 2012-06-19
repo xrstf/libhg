@@ -9,7 +9,7 @@ flags:
    noFollow:          ~
    text:              { cli: '-a' }
    user:              { cli: '-u' }
-   file:              { cli: '-f' }
+   filename:          { cli: '-f' } # conflicts with 'files' argument
    date:              { cli: '-d' }
    dateShort:         { cli: '-q' }
    number:            { cli: '-n' }

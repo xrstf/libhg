@@ -8,5 +8,5 @@ multi-opts:
 flags:
    abortOnError: { cli: '-a' }
    all:          ~
-   print:        { cli: '-p' }
+   printFiles:   { cli: '-p' } # PHP restriction on using 'print'
    print0:       { cli: '-0' }

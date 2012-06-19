@@ -51,11 +51,11 @@ abstract class libhg_Command_Resolve_Base extends libhg_Command_Base {
 	protected $all = false;
 
 	/**
-	 * 'list' flag (-l)
+	 * 'listState' flag (-l)
 	 *
 	 * @var boolean
 	 */
-	protected $list = false;
+	protected $listState = false;
 
 	/**
 	 * 'mark' flag (-m)
@@ -124,12 +124,12 @@ abstract class libhg_Command_Resolve_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * get list
+	 * get listState
 	 *
 	 * @return boolean  set value or false if not set
 	 */
-	public function getList() {
-		return $this->list;
+	public function getListState() {
+		return $this->listState;
 	}
 
 	/**
@@ -263,13 +263,13 @@ abstract class libhg_Command_Resolve_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set or unset list flag
+	 * set or unset listState flag
 	 *
 	 * @param  boolean $flag               true to set the flag, false to unset it
 	 * @return libhg_Command_Resolve_Base  self
 	 */
-	public function list($flag = true) {
-		$this->list = (boolean) $flag;
+	public function listState($flag = true) {
+		$this->listState = (boolean) $flag;
 		return $this;
 	}
 
@@ -323,7 +323,7 @@ abstract class libhg_Command_Resolve_Base extends libhg_Command_Base {
 		if (!empty($this->exclude)) $options->setMultiple('-X', $this->exclude);
 		if ($this->tool !== null) $options->setSingle('-t', $this->tool);
 		if ($this->all) $options->setFlag('-a');
-		if ($this->list) $options->setFlag('-l');
+		if ($this->listState) $options->setFlag('-l');
 		if ($this->mark) $options->setFlag('-m');
 		if ($this->unmark) $options->setFlag('-u');
 		if ($this->noStatus) $options->setFlag('-n');

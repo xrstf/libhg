@@ -7,8 +7,8 @@ multi-opts:
 single-opts:
    tool: { cli: '-t' }
 flags:
-   all:      { cli: '-a' }
-   list:     { cli: '-l' }
-   mark:     { cli: '-m' }
-   unmark:   { cli: '-u' }
-   noStatus: { cli: '-n' }
+   all:       { cli: '-a' }
+   listState: { cli: '-l' } # PHP restriction on using 'list'
+   mark:      { cli: '-m' }
+   unmark:    { cli: '-u' }
+   noStatus:  { cli: '-n' }
