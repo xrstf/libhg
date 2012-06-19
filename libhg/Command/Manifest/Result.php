@@ -11,8 +11,8 @@
 /**
  * Generated result class for `hg manifest`
  *
- * @see       http://selenic.com/hg/help/manifest
- * @generated 2012-06-04 04:14
+ * @generated
+ * @see http://selenic.com/hg/help/manifest
  */
 class libhg_Command_Manifest_Result {
 	/**

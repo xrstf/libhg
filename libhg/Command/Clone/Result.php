@@ -11,8 +11,8 @@
 /**
  * Generated result class for `hg clone`
  *
- * @see       http://selenic.com/hg/help/clone
- * @generated 2012-06-04 03:27
+ * @generated
+ * @see http://selenic.com/hg/help/clone
  */
 class libhg_Command_Clone_Result {
 	/**

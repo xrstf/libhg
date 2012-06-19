@@ -11,8 +11,8 @@
 /**
  * Generated result class for `hg export`
  *
- * @see       http://selenic.com/hg/help/export
- * @generated 2012-06-04 03:27
+ * @generated
+ * @see http://selenic.com/hg/help/export
  */
 class libhg_Command_Export_Result {
 	/**

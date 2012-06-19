@@ -11,8 +11,8 @@
 /**
  * Generated result class for `hg tip`
  *
- * @see       http://selenic.com/hg/help/tip
- * @generated 2012-06-04 04:14
+ * @generated
+ * @see http://selenic.com/hg/help/tip
  */
 class libhg_Command_Tip_Result {
 	/**

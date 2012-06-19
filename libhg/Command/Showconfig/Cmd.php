@@ -11,8 +11,8 @@
 /**
  * Generated command class for `hg showconfig`
  *
- * @see       http://selenic.com/hg/help/showconfig
- * @generated 2012-06-04 03:27
+ * @generated
+ * @see http://selenic.com/hg/help/showconfig
  */
 class libhg_Command_Showconfig_Cmd extends libhg_Command_Showconfig_Base {
 	/**

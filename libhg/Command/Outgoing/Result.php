@@ -11,8 +11,8 @@
 /**
  * Generated result class for `hg outgoing`
  *
- * @see       http://selenic.com/hg/help/outgoing
- * @generated 2012-06-08 02:30
+ * @generated
+ * @see http://selenic.com/hg/help/outgoing
  */
 class libhg_Command_Outgoing_Result {
 	/**

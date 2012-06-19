@@ -11,8 +11,8 @@
 /**
  * Generated command class for `hg resolve`
  *
- * @see       http://selenic.com/hg/help/resolve
- * @generated 2012-06-08 02:30
+ * @generated
+ * @see http://selenic.com/hg/help/resolve
  */
 class libhg_Command_Resolve_Cmd extends libhg_Command_Resolve_Base {
 	/**

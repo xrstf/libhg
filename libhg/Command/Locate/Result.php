@@ -11,8 +11,8 @@
 /**
  * Generated result class for `hg locate`
  *
- * @see       http://selenic.com/hg/help/locate
- * @generated 2012-06-08 02:30
+ * @generated
+ * @see http://selenic.com/hg/help/locate
  */
 class libhg_Command_Locate_Result {
 	/**

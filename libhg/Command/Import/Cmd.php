@@ -11,8 +11,8 @@
 /**
  * Generated command class for `hg import`
  *
- * @see       http://selenic.com/hg/help/import
- * @generated 2012-06-08 02:30
+ * @generated
+ * @see http://selenic.com/hg/help/import
  */
 class libhg_Command_Import_Cmd extends libhg_Command_Import_Base {
 	/**

@@ -11,8 +11,8 @@
 /**
  * Generated result class for `hg identify`
  *
- * @see       http://selenic.com/hg/help/identify
- * @generated 2012-06-04 04:14
+ * @generated
+ * @see http://selenic.com/hg/help/identify
  */
 class libhg_Command_Identify_Result {
 	/**

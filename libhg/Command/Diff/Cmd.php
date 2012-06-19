@@ -11,8 +11,8 @@
 /**
  * Generated command class for `hg diff`
  *
- * @see       http://selenic.com/hg/help/diff
- * @generated 2012-06-04 03:27
+ * @generated
+ * @see http://selenic.com/hg/help/diff
  */
 class libhg_Command_Diff_Cmd extends libhg_Command_Diff_Base {
 	/**

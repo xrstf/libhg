@@ -11,8 +11,8 @@
 /**
  * Generated result class for `hg unbundle`
  *
- * @see       http://selenic.com/hg/help/unbundle
- * @generated 2012-06-08 02:30
+ * @generated
+ * @see http://selenic.com/hg/help/unbundle
  */
 class libhg_Command_Unbundle_Result {
 	/**

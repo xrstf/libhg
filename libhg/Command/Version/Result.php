@@ -11,8 +11,8 @@
 /**
  * Generated result class for `hg version`
  *
- * @see       http://selenic.com/hg/help/version
- * @generated 2012-06-04 04:14
+ * @generated
+ * @see http://selenic.com/hg/help/version
  */
 class libhg_Command_Version_Result {
 	/**

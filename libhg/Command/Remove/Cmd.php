@@ -11,8 +11,8 @@
 /**
  * Generated command class for `hg remove`
  *
- * @see       http://selenic.com/hg/help/remove
- * @generated 2012-06-04 04:14
+ * @generated
+ * @see http://selenic.com/hg/help/remove
  */
 class libhg_Command_Remove_Cmd extends libhg_Command_Remove_Base {
 	/**

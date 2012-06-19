@@ -11,8 +11,8 @@
 /**
  * Generated command class for `hg root`
  *
- * @see       http://selenic.com/hg/help/root
- * @generated 2012-06-04 04:14
+ * @generated
+ * @see http://selenic.com/hg/help/root
  */
 class libhg_Command_Root_Cmd extends libhg_Command_Root_Base {
 	/**

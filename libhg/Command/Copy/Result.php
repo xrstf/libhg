@@ -11,8 +11,8 @@
 /**
  * Generated result class for `hg copy`
  *
- * @see       http://selenic.com/hg/help/copy
- * @generated 2012-06-04 03:27
+ * @generated
+ * @see http://selenic.com/hg/help/copy
  */
 class libhg_Command_Copy_Result {
 	/**

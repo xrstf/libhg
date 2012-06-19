@@ -11,8 +11,8 @@
 /**
  * Generated command class for `hg revert`
  *
- * @see       http://selenic.com/hg/help/revert
- * @generated 2012-06-08 02:30
+ * @generated
+ * @see http://selenic.com/hg/help/revert
  */
 class libhg_Command_Revert_Cmd extends libhg_Command_Revert_Base {
 	/**

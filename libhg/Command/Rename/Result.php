@@ -11,8 +11,8 @@
 /**
  * Generated result class for `hg rename`
  *
- * @see       http://selenic.com/hg/help/rename
- * @generated 2012-06-08 02:30
+ * @generated
+ * @see http://selenic.com/hg/help/rename
  */
 class libhg_Command_Rename_Result {
 	/**

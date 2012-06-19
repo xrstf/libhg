@@ -11,8 +11,8 @@
 /**
  * Generated command class for `hg paths`
  *
- * @see       http://selenic.com/hg/help/paths
- * @generated 2012-06-08 02:30
+ * @generated
+ * @see http://selenic.com/hg/help/paths
  */
 class libhg_Command_Paths_Cmd extends libhg_Command_Paths_Base {
 	/**

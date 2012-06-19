@@ -11,8 +11,8 @@
 /**
  * Generated result class for `hg graft`
  *
- * @see       http://selenic.com/hg/help/graft
- * @generated 2012-06-08 02:30
+ * @generated
+ * @see http://selenic.com/hg/help/graft
  */
 class libhg_Command_Graft_Result {
 	/**

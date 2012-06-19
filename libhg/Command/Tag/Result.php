@@ -11,8 +11,8 @@
 /**
  * Generated result class for `hg tag`
  *
- * @see       http://selenic.com/hg/help/tag
- * @generated 2012-06-04 04:14
+ * @generated
+ * @see http://selenic.com/hg/help/tag
  */
 class libhg_Command_Tag_Result {
 	/**

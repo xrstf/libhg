@@ -11,8 +11,8 @@
 /**
  * Generated result class for `hg update`
  *
- * @see       http://selenic.com/hg/help/update
- * @generated 2012-06-04 04:14
+ * @generated
+ * @see http://selenic.com/hg/help/update
  */
 class libhg_Command_Update_Result {
 	/**
