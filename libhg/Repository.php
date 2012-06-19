@@ -98,15 +98,42 @@ class libhg_Repository implements libhg_Repository_Interface {
 	}
 
 	/**
+	 * instantiate a new command instance
+	 *
+	 * Class names must be named like 'libhg_Command_[$command]_Cmd'.
+	 *
+	 * @return string $commandName      like 'status' or 'push'
+	 * @return libhg_Command_Interface
+	 */
+	public function cmd($commandName) {
+		$className = 'libhg_Command_'.ucfirst(strtolower($commandName)).'_Cmd';
+
+		if (!class_exists($className)) {
+			throw new libhg_Exception('Could not find class "'.$className.' for "'.$commandName.'" command.');
+		}
+
+		$cmd    = new $className();
+		$client = $this->getClient()->setRepository($this);
+
+		return $cmd->setClient($client);
+	}
+
+	/**
+	 * starts a summary command
+	 *
+	 * @return libhg_Command_Summary_Cmd
+	 */
+	public function summary($remote = false) {
+		return $this->cmd('summary')->remote($remote);
+	}
+
+	/**
 	 * starts a status command
 	 *
 	 * @return libhg_Command_Status_Cmd
 	 */
 	public function status($modified = true, $added = true, $deleted = true, $removed = true) {
-		$cmd    = new libhg_Command_Status_Cmd();
-		$client = $this->getClient()->setRepository($this);
-
-		return $cmd->setClient($client)->modified($modified)->added($added)->deleted($deleted)->removed($removed);
+		return $this->cmd('status')->modified($modified)->added($added)->deleted($deleted)->removed($removed);
 	}
 
 	/**
@@ -115,10 +142,7 @@ class libhg_Repository implements libhg_Repository_Interface {
 	 * @return libhg_Command_Log_Cmd
 	 */
 	public function log() {
-		$cmd    = new libhg_Command_Log_Cmd();
-		$client = $this->getClient()->setRepository($this);
-
-		return $cmd->setClient($client);
+		return $this->cmd('log');
 	}
 
 	/**
@@ -127,10 +151,7 @@ class libhg_Repository implements libhg_Repository_Interface {
 	 * @return libhg_Command_Update_Cmd
 	 */
 	public function update($rev = null, $clean = false, $check = false) {
-		$cmd    = new libhg_Command_Log_Cmd();
-		$client = $this->getClient()->setRepository($this);
-
-		return $cmd->setClient($client)->rev($rev)->clean($clean)->check($check);
+		return $this->cmd('update')->rev($rev)->clean($clean)->check($check);
 	}
 
 	/**
@@ -139,9 +160,6 @@ class libhg_Repository implements libhg_Repository_Interface {
 	 * @return libhg_Command_Tag_Cmd
 	 */
 	public function tag($name = null, $force = false) {
-		$cmd    = new libhg_Command_Tag_Cmd();
-		$client = $this->getClient()->setRepository($this);
-
-		return $cmd->setClient($client)->name($name)->force($force);
+		return $this->cmd('tag')->name($name)->force($force);
 	}
 }
