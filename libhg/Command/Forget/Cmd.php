@@ -15,6 +15,11 @@
  * @see http://selenic.com/hg/help/forget
  */
 class libhg_Command_Forget_Cmd extends libhg_Command_Forget_Base {
+	public function getCommandOptions() {
+		// make hg show the removed files
+		return parent::getCommandOptions()->setFlag('-v');
+	}
+
 	/**
 	 * evaluate server's respond to runcommand
 	 *
@@ -24,9 +29,17 @@ class libhg_Command_Forget_Cmd extends libhg_Command_Forget_Base {
 	 * @return libhg_Command_Forget_Result
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
-		$output = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
-		$code   = $reader->readReturnValue();
+		$files = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
+		$files = empty($files) ? array() : explode("\n", $files);
+		$code  = $reader->readReturnValue();
 
-		return new libhg_Command_Forget_Result($output, $code);
+		// cut off the 'removing ' prefix
+		foreach ($files as $idx => $file) {
+			if (substr($file, 0, 7) === 'removing ') {
+				$files[$idx] = substr($file, 7);
+			}
+		}
+
+		return new libhg_Command_Forget_Result($files, $code);
 	}
 }

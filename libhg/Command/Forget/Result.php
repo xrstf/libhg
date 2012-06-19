@@ -9,18 +9,17 @@
  */
 
 /**
- * Generated result class for `hg forget`
+ * Result class for `hg forget`
  *
- * @generated
  * @see http://selenic.com/hg/help/forget
  */
 class libhg_Command_Forget_Result {
 	/**
-	 * command output
+	 * removed files
 	 *
-	 * @var string
+	 * @var array
 	 */
-	public $output;
+	public $files;
 
 	/**
 	 * command return code
@@ -32,11 +31,11 @@ class libhg_Command_Forget_Result {
 	/**
 	 * Constructor
 	 *
-	 * @param string $output  command's output
-	 * @param int    $code    command's return code
+	 * @param array $files  list of forgotten files
+	 * @param int   $code   command's return code
 	 */
-	public function __construct($output, $code) {
-		$this->output = $output;
-		$this->code   = $code;
+	public function __construct(array $files, $code) {
+		$this->files = $files;
+		$this->code  = $code;
 	}
 }

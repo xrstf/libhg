@@ -8,12 +8,34 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Result class for `hg result`
+ *
+ * @see http://selenic.com/hg/help/forget
+ */
 class libhg_Command_Add_Result {
-	public $added;
+	/**
+	 * added files
+	 *
+	 * @var array
+	 */
+	public $files;
+
+	/**
+	 * command return code
+	 *
+	 * @var int
+	 */
 	public $code;
 
-	public function __construct(array $added, $code) {
-		$this->added = $added;
+	/**
+	 * Constructor
+	 *
+	 * @param array $files  list of added files
+	 * @param int   $code   command's return code
+	 */
+	public function __construct(array $files, $code) {
+		$this->files = $files;
 		$this->code  = $code;
 	}
 }
