@@ -62,9 +62,15 @@ class libhg_Command_Summary_Cmd extends libhg_Command_Summary_Base {
 						throw new libhg_Exception('Found invalid parent row "'.$line.'".');
 					}
 
-					$tags      = !empty($match[3]) ? explode(' ', trim($match[3])) : array();
-					$message   = trim(array_shift($lines));
-					$parents[] = new libhg_Changeset($repo, $match[2], (int) $match[1], null, null, null, $message, null, $tags);
+					$rev = (int) $match[1];
+
+					// if no rev is checked out or the repository is empty, don't add a parent and don't consume the next line
+					if ($rev !== -1) {
+						$tags      = !empty($match[3]) ? explode(' ', trim($match[3])) : array();
+						$message   = trim(array_shift($lines));
+						$parents[] = new libhg_Changeset($repo, $match[2], $rev, null, null, null, $message, null, $tags);
+					}
+
 					break;
 
 				case 'branch':
