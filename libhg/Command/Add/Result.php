@@ -9,9 +9,9 @@
  */
 
 /**
- * Result class for `hg result`
+ * Result class for `hg add`
  *
- * @see http://selenic.com/hg/help/forget
+ * @see http://selenic.com/hg/help/add
  */
 class libhg_Command_Add_Result {
 	/**

@@ -18,10 +18,30 @@ class libhg_Command_Addremove_Cmd extends libhg_Command_Addremove_Base {
 	 * @return libhg_Command_Addremove_Result
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
-		$files = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
-		$files = empty($files) ? array() : explode("\n", $files);
-		$code  = $reader->readReturnValue();
+		$lines   = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
+		$lines   = empty($lines) ? array() : explode("\n", $lines);
+		$code    = $reader->readReturnValue();
+		$added   = array();
+		$removed = array();
+		$renames = array();
 
-		return new libhg_Command_Addremove_Result($files, $code);
+		// parse lines
+		foreach ($lines as $idx => $line) {
+			if (substr($line, 0, 7) === 'adding ') {
+				$added[] = substr($line, 7);
+			}
+			elseif (substr($line, 0, 9) === 'removing ') {
+				$added[] = substr($line, 9);
+			}
+			elseif (preg_match('/^recording removal of (.+?) as rename to (.+?) \(([0-9]+)% similar\)$/', $line, $match)) {
+				$renames[] = array(
+					'from' => trim($match[1]),
+					'to'   => trim($match[2]),
+					'sim'  => (int) $match[3]
+				);
+			}
+		}
+
+		return new libhg_Command_Addremove_Result($added, $removed, $renames, $code);
 	}
 }

@@ -35,8 +35,8 @@ class libhg_Command_Forget_Cmd extends libhg_Command_Forget_Base {
 
 		// cut off the 'removing ' prefix
 		foreach ($files as $idx => $file) {
-			if (substr($file, 0, 7) === 'removing ') {
-				$files[$idx] = substr($file, 7);
+			if (substr($file, 0, 9) === 'removing ') {
+				$files[$idx] = substr($file, 9);
 			}
 		}
 
