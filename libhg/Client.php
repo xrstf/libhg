@@ -137,18 +137,25 @@ class libhg_Client implements libhg_Client_Interface {
 	public function connect($errorLog = null, $forceMqExtension = true) {
 		if ($this->open) $this->close();
 
-		$cmd         = 'hg serve '.($forceMqExtension ? '--config extensions.mq="" ' : '').'--cmdserver pipe';
-		$pipes       = null;
-		$descriptors = array(
+		$cmd   = 'hg serve '.($forceMqExtension ? '--config extensions.mq="" ' : '').'--cmdserver pipe';
+		$cwd   = $this->repo->getDirectory();
+		$pipes = null;
+		$env   = array(
+			'LANG'       => 'C',
+			'LANGUAGE'   => 'C',
+			'PATH'       => getenv('PATH'),
+			'HGENCODING' => 'UTF-8'
+		);
+		$descr = array(
 			libhg_Stream::STDIN  => array('pipe', 'r'),
 			libhg_Stream::STDOUT => array('pipe', 'w')
 		);
 
 		if ($errorLog !== null) {
-			$descriptors[libhg_Stream::STDERR] = array('file', $errorLog, 'a');
+			$descr[libhg_Stream::STDERR] = array('file', $errorLog, 'a');
 		}
 
-		$this->process = proc_open($cmd, $descriptors, $pipes, $this->repo->getDirectory());
+		$this->process = proc_open($cmd, $descr, $pipes, $cwd, $env);
 
 		if (!is_resource($this->process)) {
 			throw new libhg_Exception('Could not start command server.');
