@@ -25,6 +25,69 @@ class libhg_Command_Summary_Cmd extends libhg_Command_Summary_Base {
 		$output = $reader->readString(libhg_Stream::CHANNEL_OUTPUT);
 		$code   = $reader->readReturnValue();
 
-		return new libhg_Command_Summary_Result($output, $code);
+		return $this->parseOutput($output, $code, $repo);
+	}
+
+	/**
+	 * parse command output
+	 *
+	 * @param  string                     $output  output
+	 * @param  int                        $code    return value
+	 * @param  libhg_Repository_Interface $repo    used repository
+	 * @return libhg_Command_Summary_Result
+	 */
+	protected function parseOutput($output, $code, libhg_Repository_Interface $repo) {
+		$output    = trim($output);
+		$lines     = explode("\n", $output);
+		$parents   = array();
+		$bookmarks = array();
+		$branch    = null;
+		$status    = null;
+		$update    = null;
+
+		while (!empty($lines)) {
+			$line  = array_shift($lines);
+			$parts = explode(': ', $line, 2);
+
+			if (count($parts) !== 2) {
+				throw new libhg_Exception('Could not parse command output. Expected identifier row, but found "'.$line.'".');
+			}
+
+			list ($identifier, $value) = $parts;
+
+			switch ($identifier) {
+				case 'parent':
+					if (!preg_match('/^([0-9-]+):([0-9a-f]+)( .+)?$/', $value, $match)) {
+						throw new libhg_Exception('Found invalid parent row "'.$line.'".');
+					}
+
+					$tags      = !empty($match[3]) ? explode(' ', trim($match[3])) : array();
+					$message   = trim(array_shift($lines));
+					$parents[] = new libhg_Changeset($repo, $match[2], (int) $match[1], null, null, null, $message, null, $tags);
+					break;
+
+				case 'branch':
+					$branch = trim($value);
+					break;
+
+				case 'commit':
+					$status = trim($value);
+					break;
+
+				case 'update':
+					$update = trim($value);
+					break;
+
+				case 'bookmarks':
+					$bookmarks = explode(' ', $value);
+					break;
+
+				default:
+					throw new libhg_Exception('Found unknown row "'.$line.'".');
+					break;
+			}
+		}
+
+		return new libhg_Command_Summary_Result($parents, $branch, $status, $update, $bookmarks, $code);
 	}
 }
