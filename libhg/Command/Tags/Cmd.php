@@ -27,6 +27,30 @@ class libhg_Command_Tags_Cmd extends libhg_Command_Tags_Base {
 		$output = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
 		$code   = $reader->readReturnValue();
 
-		return new libhg_Command_Tags_Result($output, $code);
+		return $this->parseOutput($output, $code, $repo);
+	}
+
+	/**
+	 * parse command output
+	 *
+	 * @param  string                     $output  output
+	 * @param  int                        $code    return value
+	 * @param  libhg_Repository_Interface $repo    used repository
+	 * @return libhg_Command_Tags_Result
+	 */
+	protected function parseOutput($output, $code, libhg_Repository_Interface $repo) {
+		$lines = array_filter(explode("\n", $output));
+		$tags  = array();
+
+		foreach ($lines as $line) {
+			preg_match('/^(.*?)\s([0-9]+):([0-9a-f]+)$/', $line, $match);
+
+			$changeset = new libhg_Changeset($repo, $match[3], (int) $match[2]);
+			$tagName   = trim($match[1]);
+
+			$tags[$tagName] = $changeset;
+		}
+
+		return new libhg_Command_Tags_Result($tags, $code);
 	}
 }

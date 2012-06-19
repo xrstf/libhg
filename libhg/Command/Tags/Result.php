@@ -16,11 +16,11 @@
  */
 class libhg_Command_Tags_Result {
 	/**
-	 * command output
+	 * tag list: {tagname: changeset-object, tagname: changeset-object, ...}
 	 *
-	 * @var string
+	 * @var array
 	 */
-	public $output;
+	public $tags;
 
 	/**
 	 * command return code
@@ -32,11 +32,11 @@ class libhg_Command_Tags_Result {
 	/**
 	 * Constructor
 	 *
-	 * @param string $output  command's output
-	 * @param int    $code    command's return code
+	 * @param array $tags  parsed tag list
+	 * @param int   $code  command's return code
 	 */
-	public function __construct($output, $code) {
-		$this->output = $output;
-		$this->code   = $code;
+	public function __construct($tags, $code) {
+		$this->tags = $tags;
+		$this->code = $code;
 	}
 }
