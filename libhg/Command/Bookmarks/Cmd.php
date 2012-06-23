@@ -8,6 +8,11 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Command class for `hg bookmarks`
+ *
+ * @see http://selenic.com/hg/help/bookmarks
+ */
 class libhg_Command_Bookmarks_Cmd extends libhg_Command_Bookmarks_Base {
 	/**
 	 * evaluate server's respond to runcommand

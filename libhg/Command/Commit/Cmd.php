@@ -8,6 +8,11 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Command class for `hg commit`
+ *
+ * @see http://selenic.com/hg/help/commit
+ */
 class libhg_Command_Commit_Cmd extends libhg_Command_Commit_Base {
 	public function __construct($message = null, $isFile = false, $user = null, $files = null, $addremove = false, $closeBranch = false) {
 		if ($message) {

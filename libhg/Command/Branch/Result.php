@@ -8,12 +8,27 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-class libhg_Command_Branch_Result {
-	public $output;
-	public $code;
+/**
+ * Result class for `hg branch`
+ *
+ * @see http://selenic.com/hg/help/branch
+ */
+class libhg_Command_Branch_Result extends libhg_Command_BaseResult {
+	/**
+	 * current branch name (after possibly changing it)
+	 *
+	 * @var string
+	 */
+	public $branch;
 
-	public function __construct($output, $code) {
-		$this->output = $output;
-		$this->code   = $code;
+	/**
+	 * Constructor
+	 *
+	 * @param string $branch  current branch name
+	 * @param int    $code    command's return code
+	 */
+	public function __construct($branch, $code) {
+		parent::__construct($code);
+		$this->branch = $branch;
 	}
 }

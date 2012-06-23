@@ -8,7 +8,17 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Result class for `hg bundle`
+ *
+ * @see http://selenic.com/hg/help/bundle
+ */
 class libhg_Command_Bundle_Result extends libhg_Command_BaseResult {
+	/**
+	 * command output
+	 *
+	 * @var string
+	 */
 	public $text;
 
 	public function __construct($text, $code) {

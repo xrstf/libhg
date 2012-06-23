@@ -8,9 +8,19 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Command class for `hg branch`
+ *
+ * @see http://selenic.com/hg/help/branch
+ */
 class libhg_Command_Branch_Cmd extends libhg_Command_Branch_Base {
 	public function __construct($name = null) {
 		$this->name($name);
+	}
+
+	public function getCommandOptions() {
+		$options = parent::getCommandOptions();
+		return $options->setFlag('-q'); // ignore 'was this really what you wanted?' output
 	}
 
 	/**
@@ -25,6 +35,14 @@ class libhg_Command_Branch_Cmd extends libhg_Command_Branch_Base {
 		$output = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
 		$code   = $reader->readReturnValue();
 
-		return new libhg_Command_Branch_Result($output, $code);
+		$newBranch = $output;
+		$options   = $this->getCommandOptions();
+		$args      = $options->getArguments();
+
+		if (!empty($args)) {
+			$newBranch = reset($args);
+		}
+
+		return new libhg_Command_Branch_Result($newBranch, $code);
 	}
 }

@@ -8,6 +8,11 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Command class for `hg backout`
+ *
+ * @see http://selenic.com/hg/help/backout
+ */
 class libhg_Command_Backout_Cmd extends libhg_Command_Backout_Base {
 	public function __construct($rev) {
 		$this->rev($rev);
@@ -34,9 +39,9 @@ class libhg_Command_Backout_Cmd extends libhg_Command_Backout_Base {
 	 * @return libhg_Command_Backout_Result
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
-		$annotation = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
-		$code       = $reader->readReturnValue();
+		$reader->readString(libhg_Stream::CHANNEL_OUTPUT);
+		$code = $reader->readReturnValue();
 
-		return new libhg_Command_Backout_Result($annotation, $code);
+		return new libhg_Command_Backout_Result($code);
 	}
 }

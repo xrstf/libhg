@@ -8,12 +8,27 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-class libhg_Command_Branches_Result {
+/**
+ * Result class for `hg branches`
+ *
+ * @see http://selenic.com/hg/help/branches
+ */
+class libhg_Command_Branches_Result extends libhg_Command_BaseResult {
+	/**
+	 * list of bookmarks
+	 *
+	 * @var array
+	 */
 	public $branches;
-	public $code;
 
+	/**
+	 * Constructor
+	 *
+	 * @param array $branches  list of branches
+	 * @param int   $code      command's return code
+	 */
 	public function __construct(array $branches, $code) {
+		parent::__construct($code);
 		$this->branches = $branches;
-		$this->code     = $code;
 	}
 }

@@ -29,6 +29,12 @@ class libhg_Command_Diff_Result {
 	 */
 	public $code;
 
+	/**
+	 * Constructor
+	 *
+	 * @param string $output  command's output
+	 * @param int    $code    command's return code
+	 */
 	public function __construct($output, $code) {
 		$this->output = $output;
 		$this->code   = $code;

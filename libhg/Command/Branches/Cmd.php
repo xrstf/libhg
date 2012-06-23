@@ -8,6 +8,11 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Command class for `hg branches`
+ *
+ * @see http://selenic.com/hg/help/branches
+ */
 class libhg_Command_Branches_Cmd extends libhg_Command_Branches_Base {
 	/**
 	 * evaluate server's respond to runcommand

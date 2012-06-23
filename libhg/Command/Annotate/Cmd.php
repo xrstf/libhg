@@ -8,6 +8,11 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Command class for `hg annotate`
+ *
+ * @see http://selenic.com/hg/help/annotate
+ */
 class libhg_Command_Annotate_Cmd extends libhg_Command_Annotate_Base {
 	public function __construct($initialFile) {
 		$this->files((array) $initialFile);

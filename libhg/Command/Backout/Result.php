@@ -8,11 +8,11 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Result class for `hg backout`
+ *
+ * @see http://selenic.com/hg/help/backout
+ */
 class libhg_Command_Backout_Result extends libhg_Command_BaseResult {
-	public $text;
-
-	public function __construct($text, $code) {
-		parent::__construct($code);
-		$this->text = $text;
-	}
+	/* empty yet */
 }

@@ -8,6 +8,11 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Command class for `hg cat`
+ *
+ * @see http://selenic.com/hg/help/cat
+ */
 class libhg_Command_Cat_Cmd extends libhg_Command_Cat_Base {
 	public function __construct($files) {
 		$this->files((array) $files);

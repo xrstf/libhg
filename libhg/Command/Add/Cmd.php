@@ -8,6 +8,11 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Command class for `hg add`
+ *
+ * @see http://selenic.com/hg/help/add
+ */
 class libhg_Command_Add_Cmd extends libhg_Command_Add_Base {
 	/**
 	 * evaluate server's respond to runcommand

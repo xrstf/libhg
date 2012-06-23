@@ -8,7 +8,17 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Result class for `hg cat`
+ *
+ * @see http://selenic.com/hg/help/cat
+ */
 class libhg_Command_Cat_Result extends libhg_Command_BaseResult {
+	/**
+	 * cat output
+	 *
+	 * @var string
+	 */
 	public $text;
 
 	public function __construct($text, $code) {

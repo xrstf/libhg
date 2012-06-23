@@ -8,6 +8,11 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Command class for `hg addremove`
+ *
+ * @see http://selenic.com/hg/help/addremove
+ */
 class libhg_Command_Addremove_Cmd extends libhg_Command_Addremove_Base {
 	/**
 	 * evaluate server's respond to runcommand

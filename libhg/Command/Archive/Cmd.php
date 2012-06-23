@@ -8,6 +8,11 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Command class for `hg archive`
+ *
+ * @see http://selenic.com/hg/help/archive
+ */
 class libhg_Command_Archive_Cmd extends libhg_Command_Archive_Base {
 	public function __construct($destination, $type = null) {
 		$this->dest($destination);

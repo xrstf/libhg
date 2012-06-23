@@ -9,21 +9,10 @@
  */
 
 /**
- * Generated result class for `hg clone`
+ * Result class for `hg clone`
  *
- * @generated
  * @see http://selenic.com/hg/help/clone
  */
 class libhg_Command_Clone_Result extends libhg_Command_BaseResult {
-	/**
-	 * command output
-	 *
-	 * @var string
-	 */
-	public $output;
-
-	public function __construct($output, $code) {
-		parent::__construct($code);
-		$this->output = $output;
-	}
+	/* empty yet */
 }
