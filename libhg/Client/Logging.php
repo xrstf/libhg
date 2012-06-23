@@ -36,17 +36,26 @@ class libhg_Client_Logging extends libhg_Client {
 	 * @return libhg_Client               self
 	 */
 	public function connect($errorLog = null, $forceMqExtension = true) {
-		$format = "%s> CONNECT (%0.2Fs)\n";
+		$format = "%s> CONNECT %s\n";
 
 		// connect
-		$start = microtime(true);
-		parent::connect($errorLog, $forceMqExtension);
-		$time = microtime(true) - $start;
+		try {
+			$start = microtime(true);
+			parent::connect($errorLog, $forceMqExtension);
+			$result = sprintf('(%0.2F)', microtime(true) - $start);
+		}
+		catch (Exception $e) {
+			$result = sprintf(' failed: %s', $e->getMessage());
+		}
 
 		// log it
 		$path = $this->repo->getDirectory();
-		$line = sprintf($format, $path, $time);
+		$line = sprintf($format, $path, $result);
 		file_put_contents($this->logfile, $line, FILE_APPEND);
+
+		if (isset($e)) {
+			throw $e;
+		}
 
 		return $this;
 	}
