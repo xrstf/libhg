@@ -17,7 +17,7 @@ The library consists of some helper classes and a large amount of command
 classes. All command classes are derived from YAML files inside
 `build/commands`, where all arguments, options and flags are defined.
 
-The most important classes are `libhg_Repository`, which represents are
+The most important classes are `libhg_Repository`, which represents a
 repository on the local disk and `libhg_Client`, which opens and holds the
 connection to a command server.
 
