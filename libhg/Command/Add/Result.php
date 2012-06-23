@@ -13,7 +13,7 @@
  *
  * @see http://selenic.com/hg/help/add
  */
-class libhg_Command_Add_Result {
+class libhg_Command_Add_Result extends libhg_Command_BaseResult {
 	/**
 	 * added files
 	 *
@@ -22,20 +22,13 @@ class libhg_Command_Add_Result {
 	public $files;
 
 	/**
-	 * command return code
-	 *
-	 * @var int
-	 */
-	public $code;
-
-	/**
 	 * Constructor
 	 *
 	 * @param array $files  list of added files
 	 * @param int   $code   command's return code
 	 */
 	public function __construct(array $files, $code) {
+		parent::__construct($code);
 		$this->files = $files;
-		$this->code  = $code;
 	}
 }

@@ -103,19 +103,35 @@ class libhg_Repository implements libhg_Repository_Interface {
 	 * Class names must be named like 'libhg_Command_[$command]_Cmd'.
 	 *
 	 * @param  string $commandName      like 'status' or 'push'
+	 * @param  mixed  $ctrArg           optional argument for the constructor
 	 * @return libhg_Command_Interface
 	 */
-	public function cmd($commandName) {
+	public function cmd($commandName, $ctrArg = null) {
 		$className = 'libhg_Command_'.ucfirst(strtolower($commandName)).'_Cmd';
 
 		if (!class_exists($className)) {
 			throw new libhg_Exception('Could not find class "'.$className.'" for "'.$commandName.'" command.');
 		}
 
-		$cmd    = new $className();
+		if ($ctrArg === null) {
+			$cmd = new $className();
+		}
+		else {
+			$cmd = new $className($ctrArg);
+		}
+
 		$client = $this->getClient()->setRepository($this);
 
 		return $cmd->setClient($client);
+	}
+
+	/**
+	 * starts an archive command
+	 *
+	 * @return libhg_Command_Archive_Cmd
+	 */
+	public function archive($destination, $type = null) {
+		return $this->cmd('archive', $destination)->type($type);
 	}
 
 	/**

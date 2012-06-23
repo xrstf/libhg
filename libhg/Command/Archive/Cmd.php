@@ -15,6 +15,21 @@ class libhg_Command_Archive_Cmd extends libhg_Command_Archive_Base {
 	}
 
 	/**
+	 * set type
+	 *
+	 * @param  string $type               the single type argument
+	 * @return libhg_Command_Archive_Cmd  self
+	 */
+	public function type($type) {
+		if ($type !== null && !in_array($type, array('files', 'tar', 'tbz2', 'tgz', 'uzip', 'zip'))) {
+			throw new libhg_Exception('Invalid type "'.$type.'" given.');
+		}
+
+		$this->type = $type;
+		return $this;
+	}
+
+	/**
 	 * evaluate server's respond to runcommand
 	 *
 	 * @param  libhg_Stream_Readable      $reader  readable stream
@@ -23,9 +38,9 @@ class libhg_Command_Archive_Cmd extends libhg_Command_Archive_Base {
 	 * @return libhg_Command_Archive_Result
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
-		$annotation = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
-		$code       = $reader->readReturnValue();
+		$reader->readString(libhg_Stream::CHANNEL_OUTPUT);
+		$code = $reader->readReturnValue();
 
-		return new libhg_Command_Archive_Result($annotation, $code);
+		return new libhg_Command_Archive_Result($code);
 	}
 }

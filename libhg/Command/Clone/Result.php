@@ -14,7 +14,7 @@
  * @generated
  * @see http://selenic.com/hg/help/clone
  */
-class libhg_Command_Clone_Result {
+class libhg_Command_Clone_Result extends libhg_Command_BaseResult {
 	/**
 	 * command output
 	 *
@@ -22,15 +22,8 @@ class libhg_Command_Clone_Result {
 	 */
 	public $output;
 
-	/**
-	 * command return code
-	 *
-	 * @var int
-	 */
-	public $code;
-
 	public function __construct($output, $code) {
+		parent::__construct($code);
 		$this->output = $output;
-		$this->code   = $code;
 	}
 }

@@ -8,12 +8,11 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-class libhg_Command_Backout_Result {
+class libhg_Command_Backout_Result extends libhg_Command_BaseResult {
 	public $text;
-	public $code;
 
 	public function __construct($text, $code) {
+		parent::__construct($code);
 		$this->text = $text;
-		$this->code = $code;
 	}
 }

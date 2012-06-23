@@ -13,7 +13,7 @@
  *
  * @see http://selenic.com/hg/help/addremove
  */
-class libhg_Command_Addremove_Result {
+class libhg_Command_Addremove_Result extends libhg_Command_BaseResult {
 	/**
 	 * added files
 	 *
@@ -36,13 +36,6 @@ class libhg_Command_Addremove_Result {
 	public $renames;
 
 	/**
-	 * command return code
-	 *
-	 * @var int
-	 */
-	public $code;
-
-	/**
 	 * Constructor
 	 *
 	 * @param array $added    list of added files
@@ -51,6 +44,8 @@ class libhg_Command_Addremove_Result {
 	 * @param int   $code     command's return code
 	 */
 	public function __construct(array $added, array $removed, array $renames, $code) {
+		parent::__construct($code);
+
 		$this->added   = $added;
 		$this->removed = $removed;
 		$this->renames = $renames;
