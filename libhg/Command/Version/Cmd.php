@@ -27,6 +27,10 @@ class libhg_Command_Version_Cmd extends libhg_Command_Version_Base {
 		$output = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
 		$code   = $reader->readReturnValue();
 
-		return new libhg_Command_Version_Result($output, $code);
+		if (!preg_match('/^Mercurial Distributed SCM \(version (.+?)\)$/m', $output, $match)) {
+			throw new libhg_Exception('Could not idenfity version.');
+		}
+
+		return new libhg_Command_Version_Result($match[1]);
 	}
 }

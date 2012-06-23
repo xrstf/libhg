@@ -16,27 +16,66 @@
  */
 class libhg_Command_Version_Result {
 	/**
-	 * command output
+	 * full hg version
 	 *
 	 * @var string
 	 */
-	public $output;
+	public $version;
 
 	/**
-	 * command return code
+	 * major version
 	 *
 	 * @var int
 	 */
-	public $code;
+	public $major;
+
+	/**
+	 * minor version
+	 *
+	 * @var int
+	 */
+	public $minor;
+
+	/**
+	 * bugfix version
+	 *
+	 * @var int
+	 */
+	public $bugfix;
+
+	/**
+	 * extra version specifier (distribution specific)
+	 *
+	 * @var string
+	 */
+	public $extra;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $output  command's output
-	 * @param int    $code    command's return code
+	 * @param string $version  full hg version
 	 */
-	public function __construct($output, $code) {
-		$this->output = $output;
-		$this->code   = $code;
+	public function __construct($version) {
+		$this->version = $version;
+
+		$parts = explode('.', $version, 3);
+
+		$this->major = (int) $parts[0];
+		$this->minor = (int) $parts[1];
+
+		$parts = preg_split('/[+-]/', $parts[2], 2);
+
+		$this->bugfix = (int) $parts[0];
+		$this->extra  = isset($parts[1]) ? $parts[1] : '';
+	}
+
+	/**
+	 * get formatted version
+	 *
+	 * @param  string $format  format like 'X.Y.Z' for '1.9.1'
+	 * @return string          format with replaced placeholders
+	 */
+	public function format($format) {
+		return str_replace(array('X', 'Y', 'Z'), array($this->major, $this->minor, $this->bugfix), $format);
 	}
 }
