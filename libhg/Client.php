@@ -145,7 +145,13 @@ class libhg_Client implements libhg_Client_Interface {
 		putenv('LANGUAGE=C');
 		putenv('HGENCODING=UTF-8');
 
-		$cmd   = 'hg serve '.($forceMqExtension ? '--config extensions.mq="" ' : '').'--cmdserver pipe';
+		$options = array_filter(array(
+			$forceMqExtension ? '--config extensions.mq=""' : '',
+			'--config extensions.progress=!',
+			'--cmdserver pipe'
+		));
+
+		$cmd   = 'hg serve '.implode(' ', $options);
 		$cwd   = $this->repo->getDirectory();
 		$pipes = null;
 		$descr = array(
