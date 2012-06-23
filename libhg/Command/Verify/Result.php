@@ -15,28 +15,39 @@
  * @see http://selenic.com/hg/help/verify
  */
 class libhg_Command_Verify_Result {
-	/**
-	 * command output
-	 *
-	 * @var string
-	 */
-	public $output;
+	const VALID  = 0;
+	const BROKEN = 1;
 
 	/**
-	 * command return code
+	 * repository status (valid or broken)
 	 *
 	 * @var int
 	 */
-	public $code;
+	public $status;
+
+	/**
+	 * error if status = broken
+	 *
+	 * @var string
+	 */
+	public $error;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $output  command's output
-	 * @param int    $code    command's return code
+	 * @param int    $status  BROKEN oder VALID
+	 * @param string $error   error message if BROKEN
 	 */
-	public function __construct($output, $code) {
-		$this->output = $output;
-		$this->code   = $code;
+	public function __construct($status, $error = null) {
+		$this->status = $status;
+		$this->error  = $error;
+	}
+
+	public function isBroken() {
+		return $this->status === self::BROKEN;
+	}
+
+	public function isValid() {
+		return !$this->isBroken();
 	}
 }

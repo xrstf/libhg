@@ -24,9 +24,16 @@ class libhg_Command_Verify_Cmd extends libhg_Command_Verify_Base {
 	 * @return libhg_Command_Verify_Result
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
-		$output = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
-		$code   = $reader->readReturnValue();
+		// failing is an expected case here
 
-		return new libhg_Command_Verify_Result($output, $code);
+		try {
+			$reader->readString(libhg_Stream::CHANNEL_OUTPUT);
+			$reader->readReturnValue();
+		}
+		catch (Exception $e) {
+			return new libhg_Command_Verify_Result(libhg_Command_Verify_Result::BROKEN, $e->getMessage());
+		}
+
+		return new libhg_Command_Verify_Result(libhg_Command_Verify_Result::VALID);
 	}
 }
