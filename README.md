@@ -45,6 +45,9 @@ You can use [Composer][composer] to install libhg. The package name is
 Usage
 -----
 
+See the [generated API docs][api] for a complete overview over all available
+commands.
+
 Since the API is mostly "fluid", you can chain almost anything.
 
     :::php
@@ -135,3 +138,4 @@ libhg is licensed under the MIT License - see the LICENSE file for details
 [composer]: https://getcomposer.org/
 [bb]: https://bitbucket.org/xrstf/libhg
 [github]: https://github.com/xrstf/libhg
+[api]: http://xrstf.bitbucket.org/docs/libhg
