@@ -21,8 +21,17 @@ class libhg_Command_Cat_Result extends libhg_Command_BaseResult {
 	 */
 	public $text;
 
-	public function __construct($text, $code) {
+	/**
+	 * true if $this->text contains the output format parameter
+	 *
+	 * @var boolean
+	 */
+	public $isFile;
+
+	public function __construct($text, $isFile, $code) {
 		parent::__construct($code);
-		$this->text = $text;
+
+		$this->text   = $text;
+		$this->isFile = (boolean) $isFile;
 	}
 }

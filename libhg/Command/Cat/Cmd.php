@@ -27,9 +27,16 @@ class libhg_Command_Cat_Cmd extends libhg_Command_Cat_Base {
 	 * @return libhg_Command_Cat_Result
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
-		$annotation = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
-		$code       = $reader->readReturnValue();
+		$text    = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
+		$code    = $reader->readReturnValue();
+		$options = $this->getCommandOptions();
+		$output  = $options->getSingle('-o');
 
-		return new libhg_Command_Cat_Result($annotation, $code);
+		// output was redirected into a file
+		if ($output !== null) {
+			return new libhg_Command_Cat_Result($output, true, $code);
+		}
+
+		return new libhg_Command_Cat_Result($text, false, $code);
 	}
 }
