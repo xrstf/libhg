@@ -39,7 +39,8 @@ class libhg_Command_Commit_Cmd extends libhg_Command_Commit_Base {
 			}
 		}
 
-		return parent::getCommandOptions();
+		$options = parent::getCommandOptions();
+		return $options->setFlag('-v'); // make hg print the commit changeset ID if possible
 	}
 
 	/**
@@ -51,9 +52,16 @@ class libhg_Command_Commit_Cmd extends libhg_Command_Commit_Base {
 	 * @return libhg_Command_Commit_Result
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
-		$output = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
-		$code   = $reader->readReturnValue();
+		$output   = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
+		$code     = $reader->readReturnValue();
+		$lines    = explode("\n", $output);
+		$lastLine = end($lines);
 
-		return new libhg_Command_Commit_Result($output, $code);
+		if (preg_match('/^committed changeset (\d+):([0-9a-f]+)$/', $lastLine, $match)) {
+			$changeset = new libhg_Changeset($repo, $match[2], $match[1]);
+			return new libhg_Command_Commit_Result($changeset);
+		}
+
+		throw new libhg_Exception('Could not parse `commit` output: "'.$lastLine.'".');
 	}
 }

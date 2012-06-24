@@ -15,20 +15,19 @@
  */
 class libhg_Command_Commit_Result extends libhg_Command_BaseResult {
 	/**
-	 * command output
+	 * the changeset created by committing
 	 *
-	 * @var string
+	 * @var libhg_Changeset
 	 */
-	public $output;
+	public $changeset;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $output  command output
-	 * @param int    $code    command's return code
+	 * @param libhg_Changeset $changeset  the changeset created by committing
 	 */
-	public function __construct($output, $code) {
-		$this->output = $output;
-		$this->code   = $code;
+	public function __construct(libhg_Changeset $changeset) {
+		parent::__construct(self::SUCCESS);
+		$this->changeset = $changeset;
 	}
 }
