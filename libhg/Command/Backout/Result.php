@@ -14,5 +14,24 @@
  * @see http://selenic.com/hg/help/backout
  */
 class libhg_Command_Backout_Result extends libhg_Command_BaseResult {
-	/* empty yet */
+	const CLEAN = 0;
+	const DIRTY = 1;
+
+	protected $status;
+	protected $changeset;
+
+	public function __construct($status, libhg_Changeset $changeset = null) {
+		parent::__construct(self::SUCCESS);
+
+		$this->status    = $status;
+		$this->changeset = $changeset;
+	}
+
+	public function isClean() {
+		return $this->status === self::CLEAN;
+	}
+
+	public function isDirty() {
+		return !$this->isClean();
+	}
 }

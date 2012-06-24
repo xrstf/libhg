@@ -45,7 +45,7 @@ class libhg_Changeset {
 	 */
 	public function __construct(libhg_Repository_Interface $repo, $node, $rev = null, array $parents = null, $date = null, $author = null, $desc = null, $branch = null, array $tags = null, array $modified = null, array $added = null, array $deleted = null) {
 		$this->repo     = $repo;
-		$this->rev      = $rev;
+		$this->rev      = $rev === null ? null : (int) $rev;
 		$this->node     = $node;
 		$this->parents  = $parents;
 		$this->date     = $date;
