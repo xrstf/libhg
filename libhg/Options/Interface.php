@@ -8,6 +8,11 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Options interface
+ *
+ * @package libhg.Options
+ */
 interface libhg_Options_Interface {
 	public function __toString();
 	public function toArray();

@@ -8,6 +8,13 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Result class for `hg summary`
+ *
+ * @generated
+ * @see     http://selenic.com/hg/help/summary
+ * @package libhg.Command.Summary
+ */
 class libhg_Command_Summary_Result {
 	public $parents;
 	public $branch;

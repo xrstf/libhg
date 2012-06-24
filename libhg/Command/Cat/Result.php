@@ -11,7 +11,8 @@
 /**
  * Result class for `hg cat`
  *
- * @see http://selenic.com/hg/help/cat
+ * @see     http://selenic.com/hg/help/cat
+ * @package libhg.Command.Cat
  */
 class libhg_Command_Cat_Result extends libhg_Command_BaseResult {
 	/**

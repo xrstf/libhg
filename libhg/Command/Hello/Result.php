@@ -8,6 +8,11 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Result class for server's hello message
+ *
+ * @package libhg.Command.Hello
+ */
 class libhg_Command_Hello_Result {
 	public $encoding;
 	public $capabilities;

@@ -12,7 +12,8 @@
  * Generated base class for `hg export`
  *
  * @generated
- * @see http://selenic.com/hg/help/export
+ * @see     http://selenic.com/hg/help/export
+ * @package libhg.Command.Export
  */
 abstract class libhg_Command_Export_Base extends libhg_Command_Base {
 	/**

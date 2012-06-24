@@ -11,7 +11,8 @@
 /**
  * Result class for `hg backout`
  *
- * @see http://selenic.com/hg/help/backout
+ * @see     http://selenic.com/hg/help/backout
+ * @package libhg.Command.Backout
  */
 class libhg_Command_Backout_Result extends libhg_Command_BaseResult {
 	const CLEAN = 0;

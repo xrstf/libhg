@@ -8,6 +8,12 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Command class for `hg bundle`
+ *
+ * @see     http://selenic.com/hg/help/bundle
+ * @package libhg.Command.Bundle
+ */
 class libhg_Command_Bundle_Cmd extends libhg_Command_Bundle_Base {
 	public function __construct($file) {
 		$this->file($file);

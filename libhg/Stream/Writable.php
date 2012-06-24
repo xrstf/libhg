@@ -10,6 +10,8 @@
 
 /**
  * Stream that supports writing data to it
+ *
+ * @package libhg.Stream
  */
 interface libhg_Stream_Writable {
 	/**

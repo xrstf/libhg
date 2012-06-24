@@ -8,6 +8,11 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Command interface
+ *
+ * @package libhg.Command
+ */
 interface libhg_Command_Interface {
 	/**
 	 * to string

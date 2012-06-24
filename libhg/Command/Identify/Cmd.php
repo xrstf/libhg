@@ -12,7 +12,8 @@
  * Generated command class for `hg identify`
  *
  * @generated
- * @see http://selenic.com/hg/help/identify
+ * @see     http://selenic.com/hg/help/identify
+ * @package libhg.Command.Identify
  */
 class libhg_Command_Identify_Cmd extends libhg_Command_Identify_Base {
 	/**

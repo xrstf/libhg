@@ -12,7 +12,8 @@
  * Generated base class for `hg tip`
  *
  * @generated
- * @see http://selenic.com/hg/help/tip
+ * @see     http://selenic.com/hg/help/tip
+ * @package libhg.Command.Tip
  */
 abstract class libhg_Command_Tip_Base extends libhg_Command_Base {
 	/**

@@ -10,6 +10,8 @@
 
 /**
  * Command server client
+ *
+ * @package libhg.Client
  */
 class libhg_Client implements libhg_Client_Interface {
 	private $process; ///< resource

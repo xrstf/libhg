@@ -12,7 +12,8 @@
  * Generated result class for `hg revert`
  *
  * @generated
- * @see http://selenic.com/hg/help/revert
+ * @see     http://selenic.com/hg/help/revert
+ * @package libhg.Command.Revert
  */
 class libhg_Command_Revert_Result {
 	/**

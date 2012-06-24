@@ -12,9 +12,20 @@
  * Generated command class for `hg tip`
  *
  * @generated
- * @see http://selenic.com/hg/help/tip
+ * @see     http://selenic.com/hg/help/tip
+ * @package libhg.Command.Tip
  */
 class libhg_Command_Tip_Cmd extends libhg_Command_Tip_Base {
+	public function getCommandOptions() {
+		$options = parent::getCommandOptions();
+
+		// make sure we have a output format we can understand
+		$options->setSingle('--style', realpath(dirname(__FILE__).'/default.style'));
+		$options->setFlag('--debug'); // make hg show trivial parents (i.e. non-merge parents)
+
+		return $options;
+	}
+
 	/**
 	 * evaluate server's respond to runcommand
 	 *

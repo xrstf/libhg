@@ -12,7 +12,8 @@
  * Generated result class for `hg graft`
  *
  * @generated
- * @see http://selenic.com/hg/help/graft
+ * @see     http://selenic.com/hg/help/graft
+ * @package libhg.Command.Graft
  */
 class libhg_Command_Graft_Result {
 	/**

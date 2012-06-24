@@ -12,7 +12,8 @@
  * Generated command class for `hg copy`
  *
  * @generated
- * @see http://selenic.com/hg/help/copy
+ * @see     http://selenic.com/hg/help/copy
+ * @package libhg.Command.Copy
  */
 class libhg_Command_Copy_Cmd extends libhg_Command_Copy_Base {
 	/**

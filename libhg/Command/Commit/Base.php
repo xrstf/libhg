@@ -12,7 +12,8 @@
  * Generated base class for `hg commit`
  *
  * @generated
- * @see http://selenic.com/hg/help/commit
+ * @see     http://selenic.com/hg/help/commit
+ * @package libhg.Command.Commit
  */
 abstract class libhg_Command_Commit_Base extends libhg_Command_Base {
 	/**

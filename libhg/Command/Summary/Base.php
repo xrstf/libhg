@@ -12,7 +12,8 @@
  * Generated base class for `hg summary`
  *
  * @generated
- * @see http://selenic.com/hg/help/summary
+ * @see     http://selenic.com/hg/help/summary
+ * @package libhg.Command.Summary
  */
 abstract class libhg_Command_Summary_Base extends libhg_Command_Base {
 	/**

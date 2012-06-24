@@ -11,7 +11,8 @@
 /**
  * Result class for `hg bundle`
  *
- * @see http://selenic.com/hg/help/bundle
+ * @see     http://selenic.com/hg/help/bundle
+ * @package libhg.Command.Bundle
  */
 class libhg_Command_Bundle_Result extends libhg_Command_BaseResult {
 	/**

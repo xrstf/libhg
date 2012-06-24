@@ -12,7 +12,8 @@
  * Generated base class for `hg tags`
  *
  * @generated
- * @see http://selenic.com/hg/help/tags
+ * @see     http://selenic.com/hg/help/tags
+ * @package libhg.Command.Tags
  */
 abstract class libhg_Command_Tags_Base extends libhg_Command_Base {
 	/**

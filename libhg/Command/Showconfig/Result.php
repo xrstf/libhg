@@ -12,7 +12,8 @@
  * Generated result class for `hg showconfig`
  *
  * @generated
- * @see http://selenic.com/hg/help/showconfig
+ * @see     http://selenic.com/hg/help/showconfig
+ * @package libhg.Command.Showconfig
  */
 class libhg_Command_Showconfig_Result {
 	/**

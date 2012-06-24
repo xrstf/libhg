@@ -12,7 +12,8 @@
  * Generated result class for `hg phase`
  *
  * @generated
- * @see http://selenic.com/hg/help/phase
+ * @see     http://selenic.com/hg/help/phase
+ * @package libhg.Command.Phase
  */
 class libhg_Command_Phase_Result {
 	/**

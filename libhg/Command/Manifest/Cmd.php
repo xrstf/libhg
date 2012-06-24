@@ -12,7 +12,8 @@
  * Generated command class for `hg manifest`
  *
  * @generated
- * @see http://selenic.com/hg/help/manifest
+ * @see     http://selenic.com/hg/help/manifest
+ * @package libhg.Command.Manifest
  */
 class libhg_Command_Manifest_Cmd extends libhg_Command_Manifest_Base {
 	/**

@@ -12,7 +12,8 @@
  * Generated result class for `hg fetch`
  *
  * @generated
- * @see http://selenic.com/hg/help/fetch
+ * @see     http://selenic.com/hg/help/fetch
+ * @package libhg.Command.Fetch
  */
 class libhg_Command_Fetch_Result {
 	/**

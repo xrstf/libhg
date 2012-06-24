@@ -10,6 +10,8 @@
 
 /**
  * Stream that supports reading data from it
+ *
+ * @package libhg.Stream
  */
 interface libhg_Stream_Readable {
 	/**

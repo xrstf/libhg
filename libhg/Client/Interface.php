@@ -8,6 +8,11 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Client interface
+ *
+ * @package libhg.Client
+ */
 interface libhg_Client_Interface {
 	/**
 	 * connect

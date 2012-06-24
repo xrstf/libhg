@@ -12,7 +12,8 @@
  * Generated command class for `hg rebase`
  *
  * @generated
- * @see http://selenic.com/hg/help/rebase
+ * @see     http://selenic.com/hg/help/rebase
+ * @package libhg.Command.Rebase
  */
 class libhg_Command_Rebase_Cmd extends libhg_Command_Rebase_Base {
 	/**

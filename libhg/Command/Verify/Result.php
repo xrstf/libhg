@@ -12,7 +12,8 @@
  * Generated result class for `hg verify`
  *
  * @generated
- * @see http://selenic.com/hg/help/verify
+ * @see     http://selenic.com/hg/help/verify
+ * @package libhg.Command.Verify
  */
 class libhg_Command_Verify_Result {
 	const VALID  = 0;

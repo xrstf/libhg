@@ -12,7 +12,8 @@
  * Generated base class for `hg merge`
  *
  * @generated
- * @see http://selenic.com/hg/help/merge
+ * @see     http://selenic.com/hg/help/merge
+ * @package libhg.Command.Merge
  */
 abstract class libhg_Command_Merge_Base extends libhg_Command_Base {
 	/**

@@ -11,7 +11,8 @@
 /**
  * Command class for `hg branch`
  *
- * @see http://selenic.com/hg/help/branch
+ * @see     http://selenic.com/hg/help/branch
+ * @package libhg.Command.Branch
  */
 class libhg_Command_Branch_Cmd extends libhg_Command_Branch_Base {
 	public function __construct($name = null) {

@@ -12,7 +12,8 @@
  * Generated result class for `hg diff`
  *
  * @generated
- * @see http://selenic.com/hg/help/diff
+ * @see     http://selenic.com/hg/help/diff
+ * @package libhg.Command.Diff
  */
 class libhg_Command_Diff_Result {
 	/**

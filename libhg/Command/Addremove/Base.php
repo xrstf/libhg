@@ -12,7 +12,8 @@
  * Generated base class for `hg addremove`
  *
  * @generated
- * @see http://selenic.com/hg/help/addremove
+ * @see     http://selenic.com/hg/help/addremove
+ * @package libhg.Command.Addremove
  */
 abstract class libhg_Command_Addremove_Base extends libhg_Command_Base {
 	/**

@@ -12,7 +12,8 @@
  * Generated result class for `hg tag`
  *
  * @generated
- * @see http://selenic.com/hg/help/tag
+ * @see     http://selenic.com/hg/help/tag
+ * @package libhg.Command.Tag
  */
 class libhg_Command_Tag_Result {
 	/**

@@ -10,6 +10,8 @@
 
 /**
  * Base exception class
+ *
+ * @package libhg
  */
 class libhg_Exception extends Exception {
 

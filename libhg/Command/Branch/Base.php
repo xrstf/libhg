@@ -12,7 +12,8 @@
  * Generated base class for `hg branch`
  *
  * @generated
- * @see http://selenic.com/hg/help/branch
+ * @see     http://selenic.com/hg/help/branch
+ * @package libhg.Command.Branch
  */
 abstract class libhg_Command_Branch_Base extends libhg_Command_Base {
 	/**

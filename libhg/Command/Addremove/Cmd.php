@@ -11,7 +11,8 @@
 /**
  * Command class for `hg addremove`
  *
- * @see http://selenic.com/hg/help/addremove
+ * @see     http://selenic.com/hg/help/addremove
+ * @package libhg.Command.Addremove
  */
 class libhg_Command_Addremove_Cmd extends libhg_Command_Addremove_Base {
 	/**

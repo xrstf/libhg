@@ -10,6 +10,8 @@
 
 /**
  * A single changeset
+ *
+ * @package libhg
  */
 class libhg_Changeset {
 	public $repo     = null; ///< libhg_Repository_Interface

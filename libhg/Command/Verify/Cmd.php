@@ -12,7 +12,8 @@
  * Generated command class for `hg verify`
  *
  * @generated
- * @see http://selenic.com/hg/help/verify
+ * @see     http://selenic.com/hg/help/verify
+ * @package libhg.Command.Verify
  */
 class libhg_Command_Verify_Cmd extends libhg_Command_Verify_Base {
 	/**

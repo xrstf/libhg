@@ -12,7 +12,8 @@
  * Generated result class for `hg export`
  *
  * @generated
- * @see http://selenic.com/hg/help/export
+ * @see     http://selenic.com/hg/help/export
+ * @package libhg.Command.Export
  */
 class libhg_Command_Export_Result {
 	/**

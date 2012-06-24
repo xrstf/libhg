@@ -8,6 +8,12 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Command class for `hg init`
+ *
+ * @see     http://selenic.com/hg/help/init
+ * @package libhg.Command.Init
+ */
 class libhg_Command_Init_Cmd extends libhg_Command_Init_Base {
 	public function __construct($dest = null) {
 		$this->dest($dest);

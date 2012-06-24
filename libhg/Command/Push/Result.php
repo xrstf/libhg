@@ -12,7 +12,8 @@
  * Generated result class for `hg push`
  *
  * @generated
- * @see http://selenic.com/hg/help/push
+ * @see     http://selenic.com/hg/help/push
+ * @package libhg.Command.Push
  */
 class libhg_Command_Push_Result {
 	/**

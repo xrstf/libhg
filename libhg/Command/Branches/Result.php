@@ -11,7 +11,8 @@
 /**
  * Result class for `hg branches`
  *
- * @see http://selenic.com/hg/help/branches
+ * @see     http://selenic.com/hg/help/branches
+ * @package libhg.Command.Branches
  */
 class libhg_Command_Branches_Result extends libhg_Command_BaseResult {
 	/**

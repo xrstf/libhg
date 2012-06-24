@@ -12,7 +12,8 @@
  * Generated base class for `hg backout`
  *
  * @generated
- * @see http://selenic.com/hg/help/backout
+ * @see     http://selenic.com/hg/help/backout
+ * @package libhg.Command.Backout
  */
 abstract class libhg_Command_Backout_Base extends libhg_Command_Base {
 	/**

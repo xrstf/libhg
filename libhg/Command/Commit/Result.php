@@ -11,7 +11,8 @@
 /**
  * Result class for `hg commit`
  *
- * @see http://selenic.com/hg/help/commit
+ * @see     http://selenic.com/hg/help/commit
+ * @package libhg.Command.Commit
  */
 class libhg_Command_Commit_Result extends libhg_Command_BaseResult {
 	/**

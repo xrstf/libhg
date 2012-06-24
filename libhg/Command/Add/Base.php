@@ -12,7 +12,8 @@
  * Generated base class for `hg add`
  *
  * @generated
- * @see http://selenic.com/hg/help/add
+ * @see     http://selenic.com/hg/help/add
+ * @package libhg.Command.Add
  */
 abstract class libhg_Command_Add_Base extends libhg_Command_Base {
 	/**

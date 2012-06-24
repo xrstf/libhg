@@ -12,7 +12,8 @@
  * Generated base class for `hg graft`
  *
  * @generated
- * @see http://selenic.com/hg/help/graft
+ * @see     http://selenic.com/hg/help/graft
+ * @package libhg.Command.Graft
  */
 abstract class libhg_Command_Graft_Base extends libhg_Command_Base {
 	/**

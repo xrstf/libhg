@@ -12,7 +12,8 @@
  * Generated base class for `hg rename`
  *
  * @generated
- * @see http://selenic.com/hg/help/rename
+ * @see     http://selenic.com/hg/help/rename
+ * @package libhg.Command.Rename
  */
 abstract class libhg_Command_Rename_Base extends libhg_Command_Base {
 	/**

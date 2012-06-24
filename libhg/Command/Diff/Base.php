@@ -12,7 +12,8 @@
  * Generated base class for `hg diff`
  *
  * @generated
- * @see http://selenic.com/hg/help/diff
+ * @see     http://selenic.com/hg/help/diff
+ * @package libhg.Command.Diff
  */
 abstract class libhg_Command_Diff_Base extends libhg_Command_Base {
 	/**

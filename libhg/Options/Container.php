@@ -22,6 +22,8 @@
  *
  * Additionally, each container can be associated with a repository. This makes
  * the container include the '--cwd' option when doing toArray().
+ *
+ * @package libhg.Options
  */
 class libhg_Options_Container implements libhg_Options_Interface {
 	protected $args    = array(); ///< array

@@ -12,7 +12,8 @@
  * Generated result class for `hg remove`
  *
  * @generated
- * @see http://selenic.com/hg/help/remove
+ * @see     http://selenic.com/hg/help/remove
+ * @package libhg.Command.Remove
  */
 class libhg_Command_Remove_Result {
 	/**

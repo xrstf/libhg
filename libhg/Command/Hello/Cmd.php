@@ -8,6 +8,13 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Dummy command for reading the server's hello message
+ *
+ * This command cannot be used in userland code and is only for internal usage.
+ *
+ * @package libhg.Command.Hello
+ */
 class libhg_Command_Hello_Cmd implements libhg_Command_Interface {
 	public function __toString() {
 		return '(hello)';

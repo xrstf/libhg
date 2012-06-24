@@ -12,7 +12,8 @@
  * Generated result class for `hg locate`
  *
  * @generated
- * @see http://selenic.com/hg/help/locate
+ * @see     http://selenic.com/hg/help/locate
+ * @package libhg.Command.Locate
  */
 class libhg_Command_Locate_Result {
 	/**

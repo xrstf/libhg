@@ -10,6 +10,8 @@
 
 /**
  * Basic stream class with some helpers
+ *
+ * @package libhg.Stream
  */
 class libhg_Stream implements libhg_Stream_Readable, libhg_Stream_Writable {
 	private $fp;      ///< resource

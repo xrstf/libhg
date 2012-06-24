@@ -11,7 +11,8 @@
 /**
  * Result class for `hg archive`
  *
- * @see http://selenic.com/hg/help/archive
+ * @see     http://selenic.com/hg/help/archive
+ * @package libhg.Command.Archive
  */
 class libhg_Command_Archive_Result extends libhg_Command_BaseResult {
 	/* empty yet */

@@ -107,7 +107,8 @@ $nsLine
  * Generated base class for `hg $cmdName`
  *
  * @generated
- * @see http://selenic.com/hg/help/$cmdName
+ * @see     http://selenic.com/hg/help/$cmdName
+ * @package libhg.Command.$cmdNameU
  */
 $classSig");
 
@@ -185,7 +186,8 @@ $nsLine
  * Generated result class for `hg $cmdName`
  *
  * @generated
- * @see http://selenic.com/hg/help/$cmdName
+ * @see     http://selenic.com/hg/help/$cmdName
+ * @package libhg.Command.$cmdNameU
  */
 $sig {
 	/**
@@ -240,7 +242,8 @@ $nsLine
  * Generated command class for `hg $cmdName`
  *
  * @generated
- * @see http://selenic.com/hg/help/$cmdName
+ * @see     http://selenic.com/hg/help/$cmdName
+ * @package libhg.Command.$cmdNameU
  */
 $sig {
 	/**

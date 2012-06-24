@@ -12,7 +12,8 @@
  * Generated base class for `hg bookmarks`
  *
  * @generated
- * @see http://selenic.com/hg/help/bookmarks
+ * @see     http://selenic.com/hg/help/bookmarks
+ * @package libhg.Command.Bookmarks
  */
 abstract class libhg_Command_Bookmarks_Base extends libhg_Command_Base {
 	/**

@@ -10,6 +10,8 @@
 
 /**
  * Wrapper around hg config file
+ *
+ * @package libhg
  */
 class libhg_Hgrc {
 	protected $file;    ///< string

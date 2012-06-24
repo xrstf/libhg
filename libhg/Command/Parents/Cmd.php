@@ -12,7 +12,8 @@
  * Generated command class for `hg parents`
  *
  * @generated
- * @see http://selenic.com/hg/help/parents
+ * @see     http://selenic.com/hg/help/parents
+ * @package libhg.Command.Parents
  */
 class libhg_Command_Parents_Cmd extends libhg_Command_Parents_Base {
 	/**

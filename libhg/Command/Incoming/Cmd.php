@@ -12,7 +12,8 @@
  * Generated command class for `hg incoming`
  *
  * @generated
- * @see http://selenic.com/hg/help/incoming
+ * @see     http://selenic.com/hg/help/incoming
+ * @package libhg.Command.Incoming
  */
 class libhg_Command_Incoming_Cmd extends libhg_Command_Incoming_Base {
 	/**

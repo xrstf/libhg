@@ -12,7 +12,8 @@
  * Generated command class for `hg purge`
  *
  * @generated
- * @see http://selenic.com/hg/help/purge
+ * @see     http://selenic.com/hg/help/purge
+ * @package libhg.Command.Purge
  */
 class libhg_Command_Purge_Cmd extends libhg_Command_Purge_Base {
 	/**

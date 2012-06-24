@@ -8,6 +8,11 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Repository interface
+ *
+ * @package libhg.Repository
+ */
 interface libhg_Repository_Interface {
 	/**
 	 * get directory

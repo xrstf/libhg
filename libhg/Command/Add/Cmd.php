@@ -11,7 +11,8 @@
 /**
  * Command class for `hg add`
  *
- * @see http://selenic.com/hg/help/add
+ * @see     http://selenic.com/hg/help/add
+ * @package libhg.Command.Add
  */
 class libhg_Command_Add_Cmd extends libhg_Command_Add_Base {
 	/**

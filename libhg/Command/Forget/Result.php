@@ -11,7 +11,8 @@
 /**
  * Result class for `hg forget`
  *
- * @see http://selenic.com/hg/help/forget
+ * @see     http://selenic.com/hg/help/forget
+ * @package libhg.Command.Forget
  */
 class libhg_Command_Forget_Result {
 	/**

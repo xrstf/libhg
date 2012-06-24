@@ -12,7 +12,8 @@
  * Generated result class for `hg root`
  *
  * @generated
- * @see http://selenic.com/hg/help/root
+ * @see     http://selenic.com/hg/help/root
+ * @package libhg.Command.Root
  */
 class libhg_Command_Root_Result {
 	/**

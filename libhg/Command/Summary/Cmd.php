@@ -8,6 +8,13 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Command class for `hg summary`
+ *
+ * @generated
+ * @see     http://selenic.com/hg/help/summary
+ * @package libhg.Command.Summary
+ */
 class libhg_Command_Summary_Cmd extends libhg_Command_Summary_Base {
 	public function __construct($remote = false) {
 		$this->remote($remote);

@@ -11,7 +11,8 @@
 /**
  * Result class for `hg clone`
  *
- * @see http://selenic.com/hg/help/clone
+ * @see     http://selenic.com/hg/help/clone
+ * @package libhg.Command.Clone
  */
 class libhg_Command_Clone_Result extends libhg_Command_BaseResult {
 	/* empty yet */

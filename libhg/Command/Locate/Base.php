@@ -12,7 +12,8 @@
  * Generated base class for `hg locate`
  *
  * @generated
- * @see http://selenic.com/hg/help/locate
+ * @see     http://selenic.com/hg/help/locate
+ * @package libhg.Command.Locate
  */
 abstract class libhg_Command_Locate_Base extends libhg_Command_Base {
 	/**

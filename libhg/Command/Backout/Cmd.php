@@ -11,7 +11,8 @@
 /**
  * Command class for `hg backout`
  *
- * @see http://selenic.com/hg/help/backout
+ * @see     http://selenic.com/hg/help/backout
+ * @package libhg.Command.Backout
  */
 class libhg_Command_Backout_Cmd extends libhg_Command_Backout_Base {
 	public function __construct($rev) {

@@ -8,6 +8,13 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Generated result class for `hg init`
+ *
+ * @generated
+ * @see     http://selenic.com/hg/help/init
+ * @package libhg.Command.Init
+ */
 class libhg_Command_Init_Result {
 	public $output;
 	public $code;

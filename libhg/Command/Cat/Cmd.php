@@ -11,7 +11,8 @@
 /**
  * Command class for `hg cat`
  *
- * @see http://selenic.com/hg/help/cat
+ * @see     http://selenic.com/hg/help/cat
+ * @package libhg.Command.Cat
  */
 class libhg_Command_Cat_Cmd extends libhg_Command_Cat_Base {
 	public function __construct($files) {

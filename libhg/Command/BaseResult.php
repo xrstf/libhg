@@ -8,6 +8,11 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Base class for most results
+ *
+ * @package libhg.Command
+ */
 class libhg_Command_BaseResult {
 	public $code;
 

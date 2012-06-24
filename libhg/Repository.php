@@ -13,6 +13,8 @@
  *
  * This class wraps a single repository, given by the working directory's
  * path.
+ *
+ * @package libhg.Repository
  */
 class libhg_Repository implements libhg_Repository_Interface {
 	protected $path;   ///< string

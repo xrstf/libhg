@@ -8,6 +8,12 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Result class for `hg log`
+ *
+ * @see     http://selenic.com/hg/help/log
+ * @package libhg.Command.Log
+ */
 class libhg_Command_Log_Result {
 	public $changesets;
 	public $code;

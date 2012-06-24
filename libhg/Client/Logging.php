@@ -10,6 +10,8 @@
 
 /**
  * Command server client
+ *
+ * @package libhg.Client
  */
 class libhg_Client_Logging extends libhg_Client {
 	protected $logfile;

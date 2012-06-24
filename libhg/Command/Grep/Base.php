@@ -12,7 +12,8 @@
  * Generated base class for `hg grep`
  *
  * @generated
- * @see http://selenic.com/hg/help/grep
+ * @see     http://selenic.com/hg/help/grep
+ * @package libhg.Command.Grep
  */
 abstract class libhg_Command_Grep_Base extends libhg_Command_Base {
 	/**

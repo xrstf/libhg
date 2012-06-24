@@ -12,7 +12,8 @@
  * Generated base class for `hg bundle`
  *
  * @generated
- * @see http://selenic.com/hg/help/bundle
+ * @see     http://selenic.com/hg/help/bundle
+ * @package libhg.Command.Bundle
  */
 abstract class libhg_Command_Bundle_Base extends libhg_Command_Base {
 	/**

@@ -12,7 +12,8 @@
  * Generated result class for `hg update`
  *
  * @generated
- * @see http://selenic.com/hg/help/update
+ * @see     http://selenic.com/hg/help/update
+ * @package libhg.Command.Update
  */
 class libhg_Command_Update_Result {
 	/**

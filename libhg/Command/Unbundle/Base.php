@@ -12,7 +12,8 @@
  * Generated base class for `hg unbundle`
  *
  * @generated
- * @see http://selenic.com/hg/help/unbundle
+ * @see     http://selenic.com/hg/help/unbundle
+ * @package libhg.Command.Unbundle
  */
 abstract class libhg_Command_Unbundle_Base extends libhg_Command_Base {
 	/**

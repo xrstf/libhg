@@ -12,7 +12,8 @@
  * Generated result class for `hg resolve`
  *
  * @generated
- * @see http://selenic.com/hg/help/resolve
+ * @see     http://selenic.com/hg/help/resolve
+ * @package libhg.Command.Resolve
  */
 class libhg_Command_Resolve_Result {
 	/**

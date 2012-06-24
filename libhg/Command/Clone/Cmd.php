@@ -12,7 +12,8 @@
  * Generated command class for `hg clone`
  *
  * @generated
- * @see http://selenic.com/hg/help/clone
+ * @see     http://selenic.com/hg/help/clone
+ * @package libhg.Command.Clone
  */
 class libhg_Command_Clone_Cmd extends libhg_Command_Clone_Base {
 	/**

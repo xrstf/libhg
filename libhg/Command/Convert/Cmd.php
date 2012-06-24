@@ -12,7 +12,8 @@
  * Generated command class for `hg convert`
  *
  * @generated
- * @see http://selenic.com/hg/help/convert
+ * @see     http://selenic.com/hg/help/convert
+ * @package libhg.Command.Convert
  */
 class libhg_Command_Convert_Cmd extends libhg_Command_Convert_Base {
 	/**

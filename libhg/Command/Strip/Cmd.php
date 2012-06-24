@@ -12,7 +12,8 @@
  * Generated command class for `hg strip`
  *
  * @generated
- * @see http://selenic.com/hg/help/strip
+ * @see     http://selenic.com/hg/help/strip
+ * @package libhg.Command.Strip
  */
 class libhg_Command_Strip_Cmd extends libhg_Command_Strip_Base {
 	/**

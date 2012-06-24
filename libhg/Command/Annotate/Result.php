@@ -11,7 +11,8 @@
 /**
  * Result class for `hg annotate`
  *
- * @see http://selenic.com/hg/help/annotate
+ * @see     http://selenic.com/hg/help/annotate
+ * @package libhg.Command.Annotate
  */
 class libhg_Command_Annotate_Result extends libhg_Command_BaseResult {
 	/**

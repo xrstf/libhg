@@ -12,7 +12,8 @@
  * Generated base class for `hg fetch`
  *
  * @generated
- * @see http://selenic.com/hg/help/fetch
+ * @see     http://selenic.com/hg/help/fetch
+ * @package libhg.Command.Fetch
  */
 abstract class libhg_Command_Fetch_Base extends libhg_Command_Base {
 	/**

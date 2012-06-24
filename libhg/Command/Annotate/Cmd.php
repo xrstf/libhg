@@ -11,7 +11,8 @@
 /**
  * Command class for `hg annotate`
  *
- * @see http://selenic.com/hg/help/annotate
+ * @see     http://selenic.com/hg/help/annotate
+ * @package libhg.Command.Annotate
  */
 class libhg_Command_Annotate_Cmd extends libhg_Command_Annotate_Base {
 	public function __construct($initialFile) {

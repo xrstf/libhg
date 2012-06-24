@@ -8,6 +8,11 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Base class for most commands
+ *
+ * @package libhg.Command
+ */
 abstract class libhg_Command_Base implements libhg_Command_Interface {
 	protected $client;
 

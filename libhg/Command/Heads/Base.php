@@ -12,7 +12,8 @@
  * Generated base class for `hg heads`
  *
  * @generated
- * @see http://selenic.com/hg/help/heads
+ * @see     http://selenic.com/hg/help/heads
+ * @package libhg.Command.Heads
  */
 abstract class libhg_Command_Heads_Base extends libhg_Command_Base {
 	/**

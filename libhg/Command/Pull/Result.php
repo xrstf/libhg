@@ -12,7 +12,8 @@
  * Generated result class for `hg pull`
  *
  * @generated
- * @see http://selenic.com/hg/help/pull
+ * @see     http://selenic.com/hg/help/pull
+ * @package libhg.Command.Pull
  */
 class libhg_Command_Pull_Result {
 	/**

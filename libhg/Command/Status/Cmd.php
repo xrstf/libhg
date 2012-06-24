@@ -8,6 +8,13 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Command class for `hg status`
+ *
+ * @generated
+ * @see     http://selenic.com/hg/help/status
+ * @package libhg.Command.Status
+ */
 class libhg_Command_Status_Cmd extends libhg_Command_Status_Base {
 	/**
 	 * evaluate server's respond to runcommand

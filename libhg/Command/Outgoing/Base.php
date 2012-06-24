@@ -12,7 +12,8 @@
  * Generated base class for `hg outgoing`
  *
  * @generated
- * @see http://selenic.com/hg/help/outgoing
+ * @see     http://selenic.com/hg/help/outgoing
+ * @package libhg.Command.Outgoing
  */
 abstract class libhg_Command_Outgoing_Base extends libhg_Command_Base {
 	/**

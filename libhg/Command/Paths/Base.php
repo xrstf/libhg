@@ -12,7 +12,8 @@
  * Generated base class for `hg paths`
  *
  * @generated
- * @see http://selenic.com/hg/help/paths
+ * @see     http://selenic.com/hg/help/paths
+ * @package libhg.Command.Paths
  */
 abstract class libhg_Command_Paths_Base extends libhg_Command_Base {
 	/**

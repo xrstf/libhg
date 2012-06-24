@@ -12,7 +12,8 @@
  * Generated base class for `hg resolve`
  *
  * @generated
- * @see http://selenic.com/hg/help/resolve
+ * @see     http://selenic.com/hg/help/resolve
+ * @package libhg.Command.Resolve
  */
 abstract class libhg_Command_Resolve_Base extends libhg_Command_Base {
 	/**
