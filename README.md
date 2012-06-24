@@ -37,7 +37,7 @@ You can use [Composer][composer] to install libhg. The package name is
 
     :::json
     {
-       "requires": {
+       "require": {
           "xrstf/libhg": "*"
        }
     }
