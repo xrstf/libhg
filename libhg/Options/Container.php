@@ -164,7 +164,7 @@ class libhg_Options_Container implements libhg_Options_Interface {
 	 * The following rules apply:
 	 *
 	 * Arguments are taken from $options if not empty, else the options of $this
-	 * will be used. Arguments are never merged, as their cound is important.
+	 * will be used. Arguments are never merged, as their number is important.
 	 *
 	 * Flags are simply merged, as well as multiple options.
 	 *
