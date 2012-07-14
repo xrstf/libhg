@@ -9,9 +9,8 @@
  */
 
 /**
- * Generated command class for `hg tags`
+ * Command class for `hg tags`
  *
- * @generated
  * @see     http://selenic.com/hg/help/tags
  * @package libhg.Command.Tags
  */
