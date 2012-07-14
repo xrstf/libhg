@@ -25,9 +25,8 @@ class libhg_Command_Copy_Cmd extends libhg_Command_Copy_Base {
 	 * @return libhg_Command_Copy_Result
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
-		$output = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
-		$code   = $reader->readReturnValue();
+		$code = $reader->readReturnValue();
 
-		return new libhg_Command_Copy_Result($output, $code);
+		return new libhg_Command_Copy_Result($code);
 	}
 }

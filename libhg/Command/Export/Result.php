@@ -9,35 +9,30 @@
  */
 
 /**
- * Generated result class for `hg export`
+ * Result class for `hg export`
  *
- * @generated
  * @see     http://selenic.com/hg/help/export
  * @package libhg.Command.Export
  */
-class libhg_Command_Export_Result {
+class libhg_Command_Export_Result extends libhg_Command_BaseResult {
 	/**
-	 * command output
+	 * cat output
 	 *
 	 * @var string
 	 */
-	public $output;
+	public $text;
 
 	/**
-	 * command return code
+	 * true if $this->text contains the output format parameter
 	 *
-	 * @var int
+	 * @var boolean
 	 */
-	public $code;
+	public $isFile;
 
-	/**
-	 * Constructor
-	 *
-	 * @param string $output  command's output
-	 * @param int    $code    command's return code
-	 */
-	public function __construct($output, $code) {
-		$this->output = $output;
-		$this->code   = $code;
+	public function __construct($text, $isFile, $code) {
+		parent::__construct($code);
+
+		$this->text   = $text;
+		$this->isFile = (boolean) $isFile;
 	}
 }
