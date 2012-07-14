@@ -8,6 +8,12 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+/**
+ * Command class for `hg log`
+ *
+ * @see     http://selenic.com/hg/help/log
+ * @package libhg.Command.Log
+ */
 class libhg_Command_Log_Cmd extends libhg_Command_Log_Base {
 	public function getCommandOptions() {
 		$options = parent::getCommandOptions();
@@ -28,53 +34,9 @@ class libhg_Command_Log_Cmd extends libhg_Command_Log_Base {
 	 * @return libhg_Command_Log_Result
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
-		$changesets = array();
-
-		while ($chunk = $reader->readUntil("\n\n")) {
-			$changeset = explode("\n", trim($chunk));
-			$tags      = array();
-			$parents   = array();
-			$modified  = array();
-			$added     = array();
-			$deleted   = array();
-
-			$rev = $node = $date = $author = $desc = $branch = '';
-
-			foreach ($changeset as $row) {
-				list($key, $value) = explode(':', $row, 2);
-				$key = strtolower($key);
-
-				switch ($key) {
-					case 'desc':
-						$desc = urldecode($value);
-						break;
-
-					case 'rev':
-					case 'node':
-					case 'date':
-					case 'author':
-					case 'branch':
-						$$key = $value;
-						break;
-
-					case 'parent':
-						if (!preg_match('#^0+$#', $value)) {
-							$parents[] = $value;
-						}
-
-						break;
-
-					case 'tag':  $tags[]     = $value; break;
-					case 'file': $modified[] = $value; break;
-					case 'add':  $added[]    = $value; break;
-					case 'del':  $deleted[]  = $value; break;
-				}
-			}
-
-			$changesets[] = new libhg_Changeset($repo, $node, $rev, $parents, $date, $author, $desc, $branch, $tags, $modified, $added, $deleted);
-		}
-
-		$code = $reader->readReturnValue();
+		$parser     = new libhg_Parser_Changeset();
+		$changesets = $parser->parseOutput($reader, $repo);
+		$code       = $reader->readReturnValue();
 
 		return new libhg_Command_Log_Result($changesets, $code);
 	}
