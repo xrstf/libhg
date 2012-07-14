@@ -130,13 +130,15 @@ class libhg_Client implements libhg_Client_Interface {
 	/**
 	 * connect
 	 *
-	 * This spawns a new hg instance and connects to its STDIN/STDOUT.
+	 * This spawns a new hg instance and connects to its STDIN/STDOUT. By default
+	 * it will force mq, fetch, convert and rebase to be loaded and progress to
+	 * not be loaded.
 	 *
-	 * @param  string  $errorLog          optional error log filename
-	 * @param  boolean $forceMqExtension  if true, the hg process is spawned with '--config extensions.mq=""'
-	 * @return libhg_Client               self
+	 * @param  string $errorLog          optional error log filename
+	 * @param  array  $forcedExtensions  assoc array, key is extension name, value is true to force loading and false to force unloading
+	 * @return libhg_Client              self
 	 */
-	public function connect($errorLog = null, $forceMqExtension = true) {
+	public function connect($errorLog = null, array $forcedExtensions = null) {
 		if ($this->open) $this->close();
 
 		$oldLang     = getenv('LANG');
@@ -147,11 +149,15 @@ class libhg_Client implements libhg_Client_Interface {
 		putenv('LANGUAGE=C');
 		putenv('HGENCODING=UTF-8');
 
-		$options = array_filter(array(
-			$forceMqExtension ? '--config extensions.mq=""' : '',
-			'--config extensions.progress=!',
-			'--cmdserver pipe'
-		));
+		$options = array('--cmdserver pipe');
+
+		if ($forcedExtensions === null) {
+			$forcedExtensions = array('mq' => true, 'fetch' => true, 'convert' => true, 'rebase' => true, 'progress' => false);
+		}
+
+		foreach ($forcedExtensions as $ext => $enabled) {
+			$options[] = sprintf('--config extensions.%s=%s', $ext, $enabled ? '""' : '!');
+		}
 
 		$cmd   = 'hg serve '.implode(' ', $options);
 		$cwd   = $this->repo->getDirectory();

@@ -33,17 +33,17 @@ class libhg_Client_Logging extends libhg_Client {
 	 *
 	 * This spawns a new hg instance and connects to its STDIN/STDOUT.
 	 *
-	 * @param  string  $errorLog          optional error log filename
-	 * @param  boolean $forceMqExtension  if true, the hg process is spawned with '--config extensions.mq=""'
-	 * @return libhg_Client               self
+	 * @param  string $errorLog          optional error log filename
+	 * @param  array  $forcedExtensions  assoc array, key is extension name, value is true to force loading and false to force unloading
+	 * @return libhg_Client              self
 	 */
-	public function connect($errorLog = null, $forceMqExtension = true) {
+	public function connect($errorLog = null, array $forcedExtensions = null) {
 		$format = "%s> CONNECT %s\n";
 
 		// connect
 		try {
 			$start = microtime(true);
-			parent::connect($errorLog, $forceMqExtension);
+			parent::connect($errorLog, $forcedExtensions);
 			$result = sprintf('(%0.2F)', microtime(true) - $start);
 		}
 		catch (Exception $e) {
