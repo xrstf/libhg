@@ -32,4 +32,22 @@ class libhg_Command_Bookmarks_Result extends libhg_Command_BaseResult {
 		parent::__construct($code);
 		$this->bookmarks = $bookmarks;
 	}
+
+	public function getActive() {
+		foreach ($this->bookmarks as $bkmrk) {
+			if ($bkmrk['active']) return $bkmrk;
+		}
+
+		return null;
+	}
+
+	public function getActiveName() {
+		$active = $this->getActive();
+		return $active ? $active['name'] : null;
+	}
+
+	public function getActiveChangeset() {
+		$active = $this->getActive();
+		return $active ? $active['changeset'] : null;
+	}
 }
