@@ -11,11 +11,25 @@
 /**
  * Generated command class for `hg heads`
  *
- * @generated
  * @see     http://selenic.com/hg/help/heads
  * @package libhg.Command.Heads
  */
 class libhg_Command_Heads_Cmd extends libhg_Command_Heads_Base {
+	/**
+	 * get command options
+	 *
+	 * @return libhg_Options_Interface  options container
+	 */
+	public function getCommandOptions() {
+		$options = parent::getCommandOptions();
+
+		// make sure we have a output format we can understand
+		$options->setSingle('--style', realpath(dirname(__FILE__).'/../Log/default.style'));
+		$options->setFlag('--debug'); // make hg show trivial parents (i.e. non-merge parents)
+
+		return $options;
+	}
+
 	/**
 	 * evaluate server's respond to runcommand
 	 *
@@ -25,9 +39,10 @@ class libhg_Command_Heads_Cmd extends libhg_Command_Heads_Base {
 	 * @return libhg_Command_Heads_Result
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
-		$output = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
+		$parser = new libhg_Parser_Changeset();
+		$heads  = $parser->parseOutput($reader, $repo);
 		$code   = $reader->readReturnValue();
 
-		return new libhg_Command_Heads_Result($output, $code);
+		return new libhg_Command_Heads_Result($heads, $code);
 	}
 }

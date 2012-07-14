@@ -9,35 +9,35 @@
  */
 
 /**
- * Generated result class for `hg heads`
+ * Result class for `hg heads`
  *
- * @generated
  * @see     http://selenic.com/hg/help/heads
  * @package libhg.Command.Heads
  */
-class libhg_Command_Heads_Result {
+class libhg_Command_Heads_Result extends libhg_Command_BaseResult {
 	/**
-	 * command output
+	 * list of heads (libhg_Changeset objects)
 	 *
-	 * @var string
+	 * @var array
 	 */
-	public $output;
+	public $heads;
 
-	/**
-	 * command return code
-	 *
-	 * @var int
-	 */
-	public $code;
+	public function __construct(array $heads, $code) {
+		parent::__construct($code);
+		$this->heads = $heads;
+	}
 
-	/**
-	 * Constructor
-	 *
-	 * @param string $output  command's output
-	 * @param int    $code    command's return code
-	 */
-	public function __construct($output, $code) {
-		$this->output = $output;
-		$this->code   = $code;
+	public function getNodes() {
+		return $this->getHeadProperty('node');
+	}
+
+	public function getHeadProperty($prop) {
+		$result = array();
+
+		foreach ($this->heads as $head) {
+			$result[] = $head->$prop;
+		}
+
+		return $result;
 	}
 }

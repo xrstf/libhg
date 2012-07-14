@@ -20,7 +20,7 @@ class libhg_Command_Tip_Cmd extends libhg_Command_Tip_Base {
 		$options = parent::getCommandOptions();
 
 		// make sure we have a output format we can understand
-		$options->setSingle('--style', realpath(dirname(__FILE__).'/default.style'));
+		$options->setSingle('--style', realpath(dirname(__FILE__).'/../Log/default.style'));
 		$options->setFlag('--debug'); // make hg show trivial parents (i.e. non-merge parents)
 
 		return $options;
@@ -32,12 +32,13 @@ class libhg_Command_Tip_Cmd extends libhg_Command_Tip_Base {
 	 * @param  libhg_Stream_Readable      $reader  readable stream
 	 * @param  libhg_Stream_Writable      $writer  writable stream
 	 * @param  libhg_Repository_Interface $repo    used repository
-	 * @return libhg_Command_Tip_Result
+	 * @return libhg_Changeset
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
-		$output = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
+		$parser = new libhg_Parser_Changeset();
+		$tips   = $parser->parseOutput($reader, $repo);
 		$code   = $reader->readReturnValue();
 
-		return new libhg_Command_Tip_Result($output, $code);
+		return $tips[0];
 	}
 }
