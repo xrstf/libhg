@@ -15,8 +15,28 @@
  * @package libhg.Command.Annotate
  */
 class libhg_Command_Annotate_Cmd extends libhg_Command_Annotate_Base {
-	public function __construct($initialFile) {
-		$this->files((array) $initialFile);
+	public function __construct($file) {
+		$this->file($file);
+	}
+
+	/**
+	 * get command options
+	 *
+	 * @return libhg_Options_Interface  options container
+	 */
+	public function getCommandOptions() {
+		if (count($this->files) > 1) {
+			throw new libhg_Exception('libhg supports only one file per annotate call.');
+		}
+
+		return parent::getCommandOptions()
+			->setFlag('-a') // text
+			->setFlag('-u') // user
+			->setFlag('-d') // date
+			->setFlag('-n') // changeset number
+			->setFlag('-c') // changeset id
+			->setFlag('-l') // line number
+		;
 	}
 
 	/**
@@ -29,8 +49,8 @@ class libhg_Command_Annotate_Cmd extends libhg_Command_Annotate_Base {
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
 		$annotation = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
-		$code       = $reader->readReturnValue();
+		$reader->readReturnValue();
 
-		return new libhg_Command_Annotate_Result($annotation, $code);
+		return new libhg_Command_Annotate_Result($annotation, $repo);
 	}
 }

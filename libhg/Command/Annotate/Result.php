@@ -16,20 +16,35 @@
  */
 class libhg_Command_Annotate_Result extends libhg_Command_BaseResult {
 	/**
-	 * annotation
+	 * annotation lines
 	 *
-	 * @var string
+	 * @var array
 	 */
-	public $text;
+	public $lines;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $text  command output
-	 * @param int    $code  command's return code
+	 * @param string           $annotation  full command output
+	 * @param libhg_Repository $repo        the repository the command was executed on
 	 */
-	public function __construct($text, $code) {
-		parent::__construct($code);
-		$this->text = $text;
+	public function __construct($annotation, libhg_Repository $repo) {
+		parent::__construct(self::SUCCESS);
+
+		$lines = explode("\n", $annotation);
+
+		foreach ($lines as $line) {
+			if (!preg_match('/^(.+?) (\d+) ([0-9a-f]+) (.+?):([ 0-9]+): (.*)$/m', $line, $match)) {
+				continue; // and warn?
+			}
+
+			$lines[] = array(
+				'line'      => $match[5],
+				'text'      => $match[6],
+				'changeset' => new libhg_Changeset($repo, $match[3], (int) $match[2], null, $match[4], $match[1]),
+			);
+		}
+
+		$this->lines = $lines;
 	}
 }
