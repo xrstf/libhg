@@ -1,20 +1,20 @@
 name: annotate
-multi-args:
-   files: { alias: file, optional: false }
+single-args:
+   file: { optional: false }
 multi-opts:
    revs:    { cli: '-r', alias: rev  }
-   include: { cli: '-I', alias: incl }
-   exclude: { cli: '-X', alias: excl }
+#  include: { cli: '-I', alias: incl }
+#  exclude: { cli: '-X', alias: excl }
 flags:
    noFollow:          ~
-   text:              { cli: '-a' }
-   user:              { cli: '-u' }
-   filename:          { cli: '-f' } # conflicts with 'files' argument
-   date:              { cli: '-d' }
-   dateShort:         { cli: '-q' }
-   number:            { cli: '-n' }
-   changeset:         { cli: '-c' }
-   lineNumber:        { cli: '-l' }
+#  text:              { cli: '-a' } # always on
+#  user:              { cli: '-u' } # always on
+#  filename:          { cli: '-f' } # conflicts with 'files' argument, irrelevant since we only support one file per call
+#  date:              { cli: '-d' } # always on
+#  dateShort:         { cli: '-q' } # always on
+#  number:            { cli: '-n' } # always on
+#  changeset:         { cli: '-c' } # always on
+#  lineNumber:        { cli: '-l' } # always on
    ignoreAllSpace:    { cli: '-w' }
    ignoreSpaceChange: { cli: '-b' }
    ignoreBlankLines:  { cli: '-B' }
