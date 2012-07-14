@@ -11,33 +11,24 @@
 /**
  * Generated result class for `hg convert`
  *
- * @generated
  * @see     http://selenic.com/hg/help/convert
  * @package libhg.Command.Convert
  */
-class libhg_Command_Convert_Result {
+class libhg_Command_Convert_Result extends libhg_Command_BaseResult {
 	/**
-	 * command output
+	 * the repository created by converting
 	 *
-	 * @var string
+	 * @var libhg_Repository
 	 */
-	public $output;
-
-	/**
-	 * command return code
-	 *
-	 * @var int
-	 */
-	public $code;
+	public $dest;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $output  command's output
-	 * @param int    $code    command's return code
+	 * @param libhg_Repository $destination  the repository created by converting
 	 */
-	public function __construct($output, $code) {
-		$this->output = $output;
-		$this->code   = $code;
+	public function __construct(libhg_Repository $destination = null) {
+		parent::__construct(self::SUCCESS);
+		$this->dest = $dest;
 	}
 }
