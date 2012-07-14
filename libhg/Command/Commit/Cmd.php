@@ -50,7 +50,7 @@ class libhg_Command_Commit_Cmd extends libhg_Command_Commit_Base {
 	 * @param  libhg_Stream_Readable      $reader  readable stream
 	 * @param  libhg_Stream_Writable      $writer  writable stream
 	 * @param  libhg_Repository_Interface $repo    used repository
-	 * @return libhg_Command_Commit_Result
+	 * @return libhg_Changeset
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
 		$output   = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
@@ -59,8 +59,7 @@ class libhg_Command_Commit_Cmd extends libhg_Command_Commit_Base {
 		$lastLine = end($lines);
 
 		if (preg_match('/^committed changeset (\d+):([0-9a-f]+)$/', $lastLine, $match)) {
-			$changeset = new libhg_Changeset($repo, $match[2], $match[1]);
-			return new libhg_Command_Commit_Result($changeset);
+			return new libhg_Changeset($repo, $match[2], $match[1]);
 		}
 
 		throw new libhg_Exception('Could not parse `commit` output: "'.$lastLine.'".');
