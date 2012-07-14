@@ -9,13 +9,22 @@
  */
 
 /**
- * Generated command class for `hg fetch`
+ * Command class for `hg fetch`
  *
- * @generated
  * @see     http://selenic.com/hg/help/fetch
  * @package libhg.Command.Fetch
  */
 class libhg_Command_Fetch_Cmd extends libhg_Command_Fetch_Base {
+	/**
+	 * get command options
+	 *
+	 * @return libhg_Options_Interface  options container
+	 */
+	public function getCommandOptions() {
+		// don't show the progress
+		return parent::getCommandOptions()->setFlag('-q');
+	}
+
 	/**
 	 * evaluate server's respond to runcommand
 	 *
@@ -25,9 +34,9 @@ class libhg_Command_Fetch_Cmd extends libhg_Command_Fetch_Base {
 	 * @return libhg_Command_Fetch_Result
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
-		$output = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
-		$code   = $reader->readReturnValue();
+		$reader->readString(libhg_Stream::CHANNEL_OUTPUT);
+		$code = $reader->readReturnValue();
 
-		return new libhg_Command_Fetch_Result($output, $code);
+		return new libhg_Command_Fetch_Result($code);
 	}
 }
