@@ -9,13 +9,22 @@
  */
 
 /**
- * Generated command class for `hg clone`
+ * Command class for `hg clone`
  *
- * @generated
  * @see     http://selenic.com/hg/help/clone
  * @package libhg.Command.Clone
  */
 class libhg_Command_Clone_Cmd extends libhg_Command_Clone_Base {
+	/**
+	 * get command options
+	 *
+	 * @return libhg_Options_Interface  options container
+	 */
+	public function getCommandOptions() {
+		// don't show the progress
+		return parent::getCommandOptions()->setFlag('-q');
+	}
+
 	/**
 	 * evaluate server's respond to runcommand
 	 *

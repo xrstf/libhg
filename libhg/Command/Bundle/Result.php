@@ -15,15 +15,5 @@
  * @package libhg.Command.Bundle
  */
 class libhg_Command_Bundle_Result extends libhg_Command_BaseResult {
-	/**
-	 * command output
-	 *
-	 * @var string
-	 */
-	public $text;
-
-	public function __construct($text, $code) {
-		parent::__construct($code);
-		$this->text = $text;
-	}
+	/* empty yet */
 }

@@ -20,6 +20,16 @@ class libhg_Command_Bundle_Cmd extends libhg_Command_Bundle_Base {
 	}
 
 	/**
+	 * get command options
+	 *
+	 * @return libhg_Options_Interface  options container
+	 */
+	public function getCommandOptions() {
+		// don't show the progress
+		return parent::getCommandOptions()->setFlag('-q');
+	}
+
+	/**
 	 * evaluate server's respond to runcommand
 	 *
 	 * @param  libhg_Stream_Readable      $reader  readable stream
@@ -28,9 +38,9 @@ class libhg_Command_Bundle_Cmd extends libhg_Command_Bundle_Base {
 	 * @return libhg_Command_Bundle_Result
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
-		$annotation = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
-		$code       = $reader->readReturnValue();
+		$reader->readString(libhg_Stream::CHANNEL_OUTPUT);
+		$code = $reader->readReturnValue();
 
-		return new libhg_Command_Bundle_Result($annotation, $code);
+		return new libhg_Command_Bundle_Result($code);
 	}
 }
