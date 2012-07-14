@@ -9,13 +9,22 @@
  */
 
 /**
- * Generated command class for `hg incoming`
+ * Command class for `hg incoming`
  *
- * @generated
  * @see     http://selenic.com/hg/help/incoming
  * @package libhg.Command.Incoming
  */
 class libhg_Command_Incoming_Cmd extends libhg_Command_Incoming_Base {
+	/**
+	 * get command options
+	 *
+	 * @return libhg_Options_Interface  options container
+	 */
+	public function getCommandOptions() {
+		// don't show the progress
+		return parent::getCommandOptions()->setFlag('-q');
+	}
+
 	/**
 	 * evaluate server's respond to runcommand
 	 *

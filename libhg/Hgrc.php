@@ -81,7 +81,7 @@ class libhg_Hgrc {
 	 * @param  boolean $returnSelf  if true, the current instance will be returned instead of the file content
 	 * @return mixed                parsed file content if $returnSelf, else self
 	 */
-	public function read($returnSelf) {
+	public function read($returnSelf = true) {
 		if ($this->file === null) {
 			throw new libhg_Exception('Cannot read file because it has not yet been set.');
 		}

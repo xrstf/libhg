@@ -9,13 +9,22 @@
  */
 
 /**
- * Generated command class for `hg outgoing`
+ * Command class for `hg outgoing`
  *
- * @generated
  * @see     http://selenic.com/hg/help/outgoing
  * @package libhg.Command.Outgoing
  */
 class libhg_Command_Outgoing_Cmd extends libhg_Command_Outgoing_Base {
+	/**
+	 * get command options
+	 *
+	 * @return libhg_Options_Interface  options container
+	 */
+	public function getCommandOptions() {
+		// don't show the progress
+		return parent::getCommandOptions()->setFlag('-q');
+	}
+
 	/**
 	 * evaluate server's respond to runcommand
 	 *
