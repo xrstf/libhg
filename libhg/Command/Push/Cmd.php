@@ -9,13 +9,22 @@
  */
 
 /**
- * Generated command class for `hg push`
+ * Command class for `hg push`
  *
- * @generated
  * @see     http://selenic.com/hg/help/push
  * @package libhg.Command.Push
  */
 class libhg_Command_Push_Cmd extends libhg_Command_Push_Base {
+	/**
+	 * get command options
+	 *
+	 * @return libhg_Options_Interface  options container
+	 */
+	public function getCommandOptions() {
+		// don't show the progress
+		return parent::getCommandOptions()->setFlag('-q');
+	}
+
 	/**
 	 * evaluate server's respond to runcommand
 	 *
