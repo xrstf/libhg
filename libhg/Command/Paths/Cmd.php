@@ -9,9 +9,8 @@
  */
 
 /**
- * Generated command class for `hg paths`
+ * Command class for `hg paths`
  *
- * @generated
  * @see     http://selenic.com/hg/help/paths
  * @package libhg.Command.Paths
  */
@@ -25,9 +24,10 @@ class libhg_Command_Paths_Cmd extends libhg_Command_Paths_Base {
 	 * @return libhg_Command_Paths_Result
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
-		$output = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
+		$output = $reader->readString(libhg_Stream::CHANNEL_OUTPUT);
 		$code   = $reader->readReturnValue();
+		$hgrc   = libhg_Hgrc::parsePlainOutput($output, 'paths');
 
-		return new libhg_Command_Paths_Result($output, $code);
+		return new libhg_Command_Paths_Result($hgrc, $code);
 	}
 }

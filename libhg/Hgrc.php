@@ -35,6 +35,50 @@ class libhg_Hgrc {
 	}
 
 	/**
+	 * read file content
+	 *
+	 * This will overwrite any changes that might have happened to this object.
+	 *
+	 * @throws libhg_Exception         if an invalid line was found
+	 * @param  string $plain           configuration as a plain, one element per row output
+	 * @param  string $defaultSection  section name for elements without a section
+	 * @return libhg_Hgrc
+	 */
+	public static function parsePlainOutput($plain, $defaultSection) {
+		$data  = array();
+		$lines = explode("\n", trim($plain));
+		$lines = array_filter($lines);
+
+		foreach ($lines as $idx => $line) {
+			$parts = explode('=', $line, 2);
+
+			if (count($parts) !== 2) {
+				throw new libhg_Exception('Line '.($idx+1).' does not contain a "=" character.');
+			}
+
+			$identifier = trim($parts[0]);
+			$value      = trim($parts[1]);
+
+			if (strpos($identifier, '.') === false) {
+				$section = $defaultSection;
+				$key     = $identifier;
+			}
+			else {
+				$parts   = explode('.', $identifier, 2);
+				$section = $parts[0];
+				$key     = $parts[1];
+			}
+
+			$data[$section][$key] = $value;
+		}
+
+		$instance = new self(null);
+		$instance->data = $data;
+
+		return $instance;
+	}
+
+	/**
 	 * get filename
 	 *
 	 * @return string  filename including path or null if not yet set

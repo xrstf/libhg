@@ -9,35 +9,44 @@
  */
 
 /**
- * Generated result class for `hg paths`
+ * Result class for `hg paths`
  *
- * @generated
  * @see     http://selenic.com/hg/help/paths
  * @package libhg.Command.Paths
  */
-class libhg_Command_Paths_Result {
+class libhg_Command_Paths_Result extends libhg_Command_BaseResult {
 	/**
-	 * command output
+	 * parsed paths
 	 *
-	 * @var string
+	 * @var libhg_Hgrc
 	 */
-	public $output;
-
-	/**
-	 * command return code
-	 *
-	 * @var int
-	 */
-	public $code;
+	public $paths;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $output  command's output
-	 * @param int    $code    command's return code
+	 * @param libhg_Hgrc $paths  parsed paths
+	 * @param int        $code   command's return code
 	 */
-	public function __construct($output, $code) {
-		$this->output = $output;
-		$this->code   = $code;
+	public function __construct(libhg_Hgrc $paths, $code) {
+		parent::__construct($code);
+		$this->paths = $paths;
+	}
+
+	public function getPaths() {
+		return $this->paths->get('paths');
+	}
+
+	public function getPath($name) {
+		return $this->paths->get('paths', $name);
+	}
+
+	public function getDefault() {
+		return $this->getPath('default');
+	}
+
+	public function getDefaultPush() {
+		$default = $this->getPath('default-push');
+		return $default ? $default : $this->getPath('default');
 	}
 }
