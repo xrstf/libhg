@@ -17,27 +17,11 @@
  */
 abstract class libhg_Command_Showconfig_Base extends libhg_Command_Base {
 	/**
-	 * optional 'names' arguments
-	 *
-	 * @var array
-	 */
-	protected $names = array();
-
-	/**
 	 * 'untrusted' flag (-u)
 	 *
 	 * @var boolean
 	 */
 	protected $untrusted = false;
-
-	/**
-	 * get names
-	 *
-	 * @return array  set names or array() if not set
-	 */
-	public function getNames() {
-		return $this->names;
-	}
 
 	/**
 	 * get untrusted
@@ -55,30 +39,6 @@ abstract class libhg_Command_Showconfig_Base extends libhg_Command_Base {
 	 */
 	public function getCommandName() {
 		return 'showconfig';
-	}
-
-	/**
-	 * append a single or multiple names
-	 *
-	 * @param  mixed $names                   a single (scalar) or multiple (array) names
-	 * @return libhg_Command_Showconfig_Base  self
-	 */
-	public function name($names) {
-		foreach ((array) $names as $val) {
-			$this->names[] = $val;
-		}
-
-		return $this;
-	}
-
-	/**
-	 * reset names
-	 *
-	 * @return libhg_Command_Showconfig_Base  self
-	 */
-	public function resetNames() {
-		$this->names = array();
-		return $this;
 	}
 
 	/**
@@ -100,11 +60,6 @@ abstract class libhg_Command_Showconfig_Base extends libhg_Command_Base {
 	public function getCommandOptions() {
 		$options = new libhg_Options_Container();
 
-		if (!empty($this->names)) {
-			foreach ($this->names as $val) {
-				$options->addArgument($val);
-			}
-		}
 		if ($this->untrusted) $options->setFlag('-u');
 
 		return $options;
