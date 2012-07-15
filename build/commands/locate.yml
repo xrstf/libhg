@@ -7,5 +7,5 @@ multi-opts:
 single-opts:
    rev: { cli: '-r' }
 flags:
-   print0:   { cli: '-0' }
+#  print0:   { cli: '-0' } # useless in our usecase
    fullpath: { cli: '-f' }

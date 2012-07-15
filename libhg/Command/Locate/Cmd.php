@@ -28,6 +28,6 @@ class libhg_Command_Locate_Cmd extends libhg_Command_Locate_Base {
 		$output = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
 		$code   = $reader->readReturnValue();
 
-		return new libhg_Command_Locate_Result($output, $code);
+		return new libhg_Command_Locate_Result(explode("\n", $output), $code);
 	}
 }

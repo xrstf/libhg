@@ -9,35 +9,27 @@
  */
 
 /**
- * Generated result class for `hg locate`
+ * Result class for `hg locate`
  *
- * @generated
  * @see     http://selenic.com/hg/help/locate
  * @package libhg.Command.Locate
  */
-class libhg_Command_Locate_Result {
+class libhg_Command_Locate_Result extends libhg_Command_BaseResult {
 	/**
-	 * command output
+	 * list of found files, can be full paths if -f was given
 	 *
-	 * @var string
+	 * @var filenames
 	 */
-	public $output;
-
-	/**
-	 * command return code
-	 *
-	 * @var int
-	 */
-	public $code;
+	public $filenames;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $output  command's output
-	 * @param int    $code    command's return code
+	 * @param array $filenames  list of found files
+	 * @param int   $code       command's return code
 	 */
-	public function __construct($output, $code) {
-		$this->output = $output;
-		$this->code   = $code;
+	public function __construct(array $filenames, $code) {
+		parent::__construct($code);
+		$this->filenames = $filenames;
 	}
 }

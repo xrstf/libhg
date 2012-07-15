@@ -45,13 +45,6 @@ abstract class libhg_Command_Locate_Base extends libhg_Command_Base {
 	protected $rev = null;
 
 	/**
-	 * 'print0' flag (-0)
-	 *
-	 * @var boolean
-	 */
-	protected $print0 = false;
-
-	/**
 	 * 'fullpath' flag (-f)
 	 *
 	 * @var boolean
@@ -92,15 +85,6 @@ abstract class libhg_Command_Locate_Base extends libhg_Command_Base {
 	 */
 	public function getRev() {
 		return $this->rev;
-	}
-
-	/**
-	 * get print0
-	 *
-	 * @return boolean  set value or false if not set
-	 */
-	public function getPrint0() {
-		return $this->print0;
 	}
 
 	/**
@@ -205,17 +189,6 @@ abstract class libhg_Command_Locate_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set or unset print0 flag
-	 *
-	 * @param  boolean $flag              true to set the flag, false to unset it
-	 * @return libhg_Command_Locate_Base  self
-	 */
-	public function print0($flag = true) {
-		$this->print0 = (boolean) $flag;
-		return $this;
-	}
-
-	/**
 	 * set or unset fullpath flag
 	 *
 	 * @param  boolean $flag              true to set the flag, false to unset it
@@ -242,7 +215,6 @@ abstract class libhg_Command_Locate_Base extends libhg_Command_Base {
 		if (!empty($this->incl)) $options->setMultiple('-I', $this->incl);
 		if (!empty($this->exclude)) $options->setMultiple('-X', $this->exclude);
 		if ($this->rev !== null) $options->setSingle('-r', $this->rev);
-		if ($this->print0) $options->setFlag('-0');
 		if ($this->fullpath) $options->setFlag('-f');
 
 		return $options;

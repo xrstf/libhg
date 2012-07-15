@@ -164,61 +164,62 @@ $classSig");
 	fclose($fp);
 
 	// write dummy result class if non exists
+	// nope, don't. There are some commands that should have no result classes.
 
-	$resultFile = $classDir.DIRECTORY_SEPARATOR.'Result.php';
-
-	if (!file_exists($resultFile)) {
-		$fp  = fopen($resultFile, 'wb');
-		$sig = $useNS ? 'class Result' : "class {$namespace}_Result";
-
-		fwrite($fp,
-"<?php
-/*
- * Copyright (c) $year, Christoph Mewes, http://www.xrstf.de/
- *
- * This file is released under the terms of the MIT license. You can find the
- * complete text in the attached LICENSE file or online at:
- *
- * http://www.opensource.org/licenses/mit-license.php
- */
-$nsLine
-/**
- * Generated result class for `hg $cmdName`
- *
- * @generated
- * @see     http://selenic.com/hg/help/$cmdName
- * @package libhg.Command.$cmdNameU
- */
-$sig {
-	/**
-	 * command output
-	 *
-	 * @var string
-	 */
-	public \$output;
-
-	/**
-	 * command return code
-	 *
-	 * @var int
-	 */
-	public \$code;
-
-	/**
-	 * Constructor
-	 *
-	 * @param string \$output  command's output
-	 * @param int    \$code    command's return code
-	 */
-	public function __construct(\$output, \$code) {
-		\$this->output = \$output;
-		\$this->code   = \$code;
-	}
-}
-");
-
-		fclose($fp);
-	}
+//	$resultFile = $classDir.DIRECTORY_SEPARATOR.'Result.php';
+//
+//	if (!file_exists($resultFile)) {
+//		$fp  = fopen($resultFile, 'wb');
+//		$sig = $useNS ? 'class Result' : "class {$namespace}_Result";
+//
+//		fwrite($fp,
+//"<?php
+///*
+// * Copyright (c) $year, Christoph Mewes, http://www.xrstf.de/
+// *
+// * This file is released under the terms of the MIT license. You can find the
+// * complete text in the attached LICENSE file or online at:
+// *
+// * http://www.opensource.org/licenses/mit-license.php
+// */
+//$nsLine
+///**
+// * Generated result class for `hg $cmdName`
+// *
+// * @generated
+// * @see     http://selenic.com/hg/help/$cmdName
+// * @package libhg.Command.$cmdNameU
+// */
+//$sig {
+//	/**
+//	 * command output
+//	 *
+//	 * @var string
+//	 */
+//	public \$output;
+//
+//	/**
+//	 * command return code
+//	 *
+//	 * @var int
+//	 */
+//	public \$code;
+//
+//	/**
+//	 * Constructor
+//	 *
+//	 * @param string \$output  command's output
+//	 * @param int    \$code    command's return code
+//	 */
+//	public function __construct(\$output, \$code) {
+//		\$this->output = \$output;
+//		\$this->code   = \$code;
+//	}
+//}
+//");
+//
+//		fclose($fp);
+//	}
 
 	// write dummy command class if non exists
 
