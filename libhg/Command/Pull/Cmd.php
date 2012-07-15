@@ -9,13 +9,22 @@
  */
 
 /**
- * Generated command class for `hg pull`
+ * Command class for `hg pull`
  *
- * @generated
  * @see     http://selenic.com/hg/help/pull
  * @package libhg.Command.Pull
  */
 class libhg_Command_Pull_Cmd extends libhg_Command_Pull_Base {
+	/**
+	 * get command options
+	 *
+	 * @return libhg_Options_Interface  options container
+	 */
+	public function getCommandOptions() {
+		// don't show the progress
+		return parent::getCommandOptions()->setFlag('-q');
+	}
+
 	/**
 	 * evaluate server's respond to runcommand
 	 *

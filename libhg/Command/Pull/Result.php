@@ -9,13 +9,12 @@
  */
 
 /**
- * Generated result class for `hg pull`
+ * Result class for `hg pull`
  *
- * @generated
  * @see     http://selenic.com/hg/help/pull
  * @package libhg.Command.Pull
  */
-class libhg_Command_Pull_Result {
+class libhg_Command_Pull_Result extends libhg_Command_BaseResult {
 	/**
 	 * command output
 	 *
@@ -24,20 +23,13 @@ class libhg_Command_Pull_Result {
 	public $output;
 
 	/**
-	 * command return code
-	 *
-	 * @var int
-	 */
-	public $code;
-
-	/**
 	 * Constructor
 	 *
 	 * @param string $output  command's output
 	 * @param int    $code    command's return code
 	 */
 	public function __construct($output, $code) {
+		parent::__construct($code);
 		$this->output = $output;
-		$this->code   = $code;
 	}
 }
