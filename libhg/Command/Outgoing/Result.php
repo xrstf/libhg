@@ -9,35 +9,11 @@
  */
 
 /**
- * Generated result class for `hg outgoing`
+ * Result class for `hg outgoing`
  *
- * @generated
  * @see     http://selenic.com/hg/help/outgoing
  * @package libhg.Command.Outgoing
  */
-class libhg_Command_Outgoing_Result {
-	/**
-	 * command output
-	 *
-	 * @var string
-	 */
-	public $output;
-
-	/**
-	 * command return code
-	 *
-	 * @var int
-	 */
-	public $code;
-
-	/**
-	 * Constructor
-	 *
-	 * @param string $output  command's output
-	 * @param int    $code    command's return code
-	 */
-	public function __construct($output, $code) {
-		$this->output = $output;
-		$this->code   = $code;
-	}
+class libhg_Command_Outgoing_Result extends libhg_Command_ChangegroupResult {
+	/* empty yet */
 }

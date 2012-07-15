@@ -15,11 +15,17 @@
  * @package libhg.Command.Log
  */
 class libhg_Command_Log_Cmd extends libhg_Command_Log_Base {
+	/**
+	 * get command options
+	 *
+	 * @return libhg_Options_Interface  options container
+	 */
 	public function getCommandOptions() {
 		$options = parent::getCommandOptions();
 
 		// make sure we have a output format we can understand
 		$options->setSingle('--style', realpath(dirname(__FILE__).'/default.style'));
+		$options->setFlag('-q');      // no progress or info messages
 		$options->setFlag('--debug'); // make hg show trivial parents (i.e. non-merge parents)
 
 		return $options;
