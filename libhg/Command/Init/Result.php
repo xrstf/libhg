@@ -9,18 +9,11 @@
  */
 
 /**
- * Generated result class for `hg init`
+ * Result class for `hg init`
  *
- * @generated
  * @see     http://selenic.com/hg/help/init
  * @package libhg.Command.Init
  */
-class libhg_Command_Init_Result {
-	public $output;
-	public $code;
-
-	public function __construct($output, $code) {
-		$this->output = $output;
-		$this->code   = $code;
-	}
+class libhg_Command_Init_Result extends libhg_Command_BaseResult {
+	/* empty yet */
 }
