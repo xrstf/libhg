@@ -9,35 +9,32 @@
  */
 
 /**
- * Generated result class for `hg rename`
+ * Result class for `hg rename`
  *
- * @generated
  * @see     http://selenic.com/hg/help/rename
  * @package libhg.Command.Rename
  */
-class libhg_Command_Rename_Result {
+class libhg_Command_Rename_Result extends libhg_Command_BaseResult {
 	/**
-	 * command output
+	 * rename operations
 	 *
-	 * @var string
-	 */
-	public $output;
-
-	/**
-	 * command return code
+	 * Each element contains either a single 'text' element (if the line could
+	 * not be matched) or both 'from' and 'to'. Notice that the detection is
+	 * not perfect and can generate false information if filenames contain the
+	 * string ' to '.
 	 *
-	 * @var int
+	 * @var array
 	 */
-	public $code;
+	public $files;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $output  command's output
-	 * @param int    $code    command's return code
+	 * @param array $files  list of rename operations
+	 * @param int   $code   command's return code
 	 */
-	public function __construct($output, $code) {
-		$this->output = $output;
-		$this->code   = $code;
+	public function __construct(array $files, $code) {
+		parent::__construct($code);
+		$this->files = $files;
 	}
 }

@@ -9,13 +9,22 @@
  */
 
 /**
- * Generated command class for `hg rename`
+ * Command class for `hg rename`
  *
- * @generated
  * @see     http://selenic.com/hg/help/rename
  * @package libhg.Command.Rename
  */
 class libhg_Command_Rename_Cmd extends libhg_Command_Rename_Base {
+	/**
+	 * get command options
+	 *
+	 * @return libhg_Options_Interface  options container
+	 */
+	public function getCommandOptions() {
+		// show rename operations
+		return parent::getCommandOptions()->setFlag('-v');
+	}
+
 	/**
 	 * evaluate server's respond to runcommand
 	 *
@@ -25,9 +34,20 @@ class libhg_Command_Rename_Cmd extends libhg_Command_Rename_Base {
 	 * @return libhg_Command_Rename_Result
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
-		$output = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
-		$code   = $reader->readReturnValue();
+		$files = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
+		$files = empty($files) ? array() : explode("\n", $files);
+		$code  = $reader->readReturnValue();
 
-		return new libhg_Command_Rename_Result($output, $code);
+		// try to match renames
+		foreach ($files as $idx => $file) {
+			if (preg_match('/^moving (.+?) to (.+?)$/', $file, $match)) {
+				$files[$idx] = array('from' => $match[1], 'to' => $match[2]);
+			}
+			else {
+				$files[$idx] = array('text' => $file);
+			}
+		}
+
+		return new libhg_Command_Rename_Result($files, $code);
 	}
 }
