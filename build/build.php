@@ -147,16 +147,22 @@ $classSig");
 	 * @return libhg_Options_Interface  options container
 	 */
 	public function getCommandOptions() {
-		\$options = new libhg_Options_Container();
-
 ");
 
-	foreach ($options as $option) {
-		$option->writeOptions($fp);
+	if (empty($options)) {
+		fwrite($fp, "\t\treturn new libhg_Options_Container();");
+	}
+	else {
+		fwrite($fp, "\t\t\$options = new libhg_Options_Container();\n\n");
+
+		foreach ($options as $option) {
+			$option->writeOptions($fp);
+		}
+
+		fwrite($fp, "\n\t\treturn \$options;");
 	}
 
 	fwrite($fp, "
-		return \$options;
 	}
 }
 ");
