@@ -14,30 +14,6 @@
  * @see     http://selenic.com/hg/help/heads
  * @package libhg.Command.Heads
  */
-class libhg_Command_Heads_Result extends libhg_Command_BaseResult {
-	/**
-	 * list of heads (libhg_Changeset objects)
-	 *
-	 * @var array
-	 */
-	public $heads;
-
-	public function __construct(array $heads, $code) {
-		parent::__construct($code);
-		$this->heads = $heads;
-	}
-
-	public function getNodes() {
-		return $this->getHeadProperty('node');
-	}
-
-	public function getHeadProperty($prop) {
-		$result = array();
-
-		foreach ($this->heads as $head) {
-			$result[] = $head->$prop;
-		}
-
-		return $result;
-	}
+class libhg_Command_Heads_Result extends libhg_Command_ChangegroupResult {
+	/* empty yet */
 }
