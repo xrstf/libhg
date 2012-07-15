@@ -9,35 +9,37 @@
  */
 
 /**
- * Generated result class for `hg identify`
+ * Result class for `hg identify`
  *
- * @generated
  * @see     http://selenic.com/hg/help/identify
  * @package libhg.Command.Identify
  */
-class libhg_Command_Identify_Result {
+class libhg_Command_Identify_Result extends libhg_Command_BaseResult {
 	/**
-	 * command output
+	 * the working copy's parent if not rev was given, else the found changeset
 	 *
-	 * @var string
+	 * @var boolean
 	 */
-	public $output;
+	public $parent;
 
 	/**
-	 * command return code
+	 * true if the working copy is not clean
 	 *
-	 * @var int
+	 * @var boolean
 	 */
-	public $code;
+	public $dirty;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $output  command's output
-	 * @param int    $code    command's return code
+	 * @param libhg_Changeset $parent  parent changeset
+	 * @param boolean         $dirty   whether the working copy is dirty or not
+	 * @param int             $code    command's return code
 	 */
-	public function __construct($output, $code) {
-		$this->output = $output;
-		$this->code   = $code;
+	public function __construct(libhg_Changeset $parent, $dirty, $code) {
+		parent::__construct($code);
+
+		$this->parent = $parent;
+		$this->dirty  = (boolean) $dirty;
 	}
 }
