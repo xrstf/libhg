@@ -21,7 +21,7 @@ class libhg_Command_Outgoing_Cmd extends libhg_Command_Outgoing_Base {
 	 * @return libhg_Options_Interface  options container
 	 */
 	public function getCommandOptions() {
-		return libhg_Util::prepareChangegroupOptions(parent::getCommandOptions());
+		return libhg_Util::prepareChangegroupOptions(parent::getCommandOptions(), 'default');
 	}
 
 	/**
