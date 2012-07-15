@@ -18,7 +18,7 @@ class libhg_Command_Locate_Result extends libhg_Command_BaseResult {
 	/**
 	 * list of found files, can be full paths if -f was given
 	 *
-	 * @var filenames
+	 * @var array
 	 */
 	public $filenames;
 

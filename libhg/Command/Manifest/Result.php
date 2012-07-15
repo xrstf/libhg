@@ -9,35 +9,27 @@
  */
 
 /**
- * Generated result class for `hg manifest`
+ * Result class for `hg manifest`
  *
- * @generated
  * @see     http://selenic.com/hg/help/manifest
  * @package libhg.Command.Manifest
  */
 class libhg_Command_Manifest_Result {
 	/**
-	 * command output
+	 * list of files
 	 *
-	 * @var string
+	 * @var array
 	 */
-	public $output;
-
-	/**
-	 * command return code
-	 *
-	 * @var int
-	 */
-	public $code;
+	public $filenames;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $output  command's output
-	 * @param int    $code    command's return code
+	 * @param array $filenames  list of files
+	 * @param int   $code       command's return code
 	 */
-	public function __construct($output, $code) {
-		$this->output = $output;
-		$this->code   = $code;
+	public function __construct(array $filenames, $code) {
+		parent::__construct($code);
+		$this->filenames = $filenames;
 	}
 }
