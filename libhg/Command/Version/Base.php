@@ -31,9 +31,6 @@ abstract class libhg_Command_Version_Base extends libhg_Command_Base {
 	 * @return libhg_Options_Interface  options container
 	 */
 	public function getCommandOptions() {
-		$options = new libhg_Options_Container();
-
-
-		return $options;
+		return new libhg_Options_Container();
 	}
 }

@@ -17,22 +17,6 @@
  */
 abstract class libhg_Command_Paths_Base extends libhg_Command_Base {
 	/**
-	 * optional 'name' argument
-	 *
-	 * @var string
-	 */
-	protected $name = null;
-
-	/**
-	 * get name
-	 *
-	 * @return string  set value or null if not set
-	 */
-	public function getName() {
-		return $this->name;
-	}
-
-	/**
 	 * get command name
 	 *
 	 * @return string  always 'paths'
@@ -42,26 +26,11 @@ abstract class libhg_Command_Paths_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set name
-	 *
-	 * @param  string $name              the single name argument
-	 * @return libhg_Command_Paths_Base  self
-	 */
-	public function name($name) {
-		$this->name = $name;
-		return $this;
-	}
-
-	/**
 	 * get command options
 	 *
 	 * @return libhg_Options_Interface  options container
 	 */
 	public function getCommandOptions() {
-		$options = new libhg_Options_Container();
-
-		if ($this->name !== null) $options->addArgument($this->name);
-
-		return $options;
+		return new libhg_Options_Container();
 	}
 }
