@@ -59,20 +59,6 @@ abstract class libhg_Command_Fetch_Base extends libhg_Command_Base {
 	protected $user = null;
 
 	/**
-	 * optional 'ssh' option (-e)
-	 *
-	 * @var string
-	 */
-	protected $ssh = null;
-
-	/**
-	 * optional 'remoteCmd' option (--remotecmd)
-	 *
-	 * @var string
-	 */
-	protected $remoteCmd = null;
-
-	/**
 	 * 'edit' flag (-e)
 	 *
 	 * @var boolean
@@ -145,24 +131,6 @@ abstract class libhg_Command_Fetch_Base extends libhg_Command_Base {
 	 */
 	public function getUser() {
 		return $this->user;
-	}
-
-	/**
-	 * get ssh
-	 *
-	 * @return string  set value or null if not set
-	 */
-	public function getSsh() {
-		return $this->ssh;
-	}
-
-	/**
-	 * get remoteCmd
-	 *
-	 * @return string  set value or null if not set
-	 */
-	public function getRemoteCmd() {
-		return $this->remoteCmd;
 	}
 
 	/**
@@ -281,28 +249,6 @@ abstract class libhg_Command_Fetch_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set ssh
-	 *
-	 * @param  string $ssh               the single ssh argument
-	 * @return libhg_Command_Fetch_Base  self
-	 */
-	public function ssh($ssh) {
-		$this->ssh = $ssh;
-		return $this;
-	}
-
-	/**
-	 * set remoteCmd
-	 *
-	 * @param  string $remoteCmd         the single remoteCmd argument
-	 * @return libhg_Command_Fetch_Base  self
-	 */
-	public function remoteCmd($remoteCmd) {
-		$this->remoteCmd = $remoteCmd;
-		return $this;
-	}
-
-	/**
 	 * set or unset edit flag
 	 *
 	 * @param  boolean $flag             true to set the flag, false to unset it
@@ -349,8 +295,6 @@ abstract class libhg_Command_Fetch_Base extends libhg_Command_Base {
 		if ($this->logfile !== null) $options->setSingle('-l', $this->logfile);
 		if ($this->date !== null) $options->setSingle('-d', $this->date);
 		if ($this->user !== null) $options->setSingle('-u', $this->user);
-		if ($this->ssh !== null) $options->setSingle('-e', $this->ssh);
-		if ($this->remoteCmd !== null) $options->setSingle('--remotecmd', $this->remoteCmd);
 		if ($this->edit) $options->setFlag('-e');
 		if ($this->switchParent) $options->setFlag('--switch-parent');
 		if ($this->insecure) $options->setFlag('--insecure');

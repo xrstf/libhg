@@ -2,9 +2,7 @@ name: identify
 single-args:
    source: ~
 single-opts:
-   rev:       { cli: '-r'          }
-   ssh:       { cli: '-e'          }
-   remoteCmd: { cli: '--remotecmd' }
+   rev: { cli: '-r' }
 flags:
 #  num:       { cli: '-n' }  # always on
 #  id:        { cli: '-i' }  # always on

@@ -52,20 +52,6 @@ abstract class libhg_Command_Incoming_Base extends libhg_Command_Base {
 	protected $limit = null;
 
 	/**
-	 * optional 'ssh' option (-e)
-	 *
-	 * @var string
-	 */
-	protected $ssh = null;
-
-	/**
-	 * optional 'remoteCmd' option (--remotecmd)
-	 *
-	 * @var string
-	 */
-	protected $remoteCmd = null;
-
-	/**
 	 * 'force' flag (-f)
 	 *
 	 * @var boolean
@@ -143,24 +129,6 @@ abstract class libhg_Command_Incoming_Base extends libhg_Command_Base {
 	 */
 	public function getLimit() {
 		return $this->limit;
-	}
-
-	/**
-	 * get ssh
-	 *
-	 * @return string  set value or null if not set
-	 */
-	public function getSsh() {
-		return $this->ssh;
-	}
-
-	/**
-	 * get remoteCmd
-	 *
-	 * @return string  set value or null if not set
-	 */
-	public function getRemoteCmd() {
-		return $this->remoteCmd;
 	}
 
 	/**
@@ -299,28 +267,6 @@ abstract class libhg_Command_Incoming_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set ssh
-	 *
-	 * @param  string $ssh                  the single ssh argument
-	 * @return libhg_Command_Incoming_Base  self
-	 */
-	public function ssh($ssh) {
-		$this->ssh = $ssh;
-		return $this;
-	}
-
-	/**
-	 * set remoteCmd
-	 *
-	 * @param  string $remoteCmd            the single remoteCmd argument
-	 * @return libhg_Command_Incoming_Base  self
-	 */
-	public function remoteCmd($remoteCmd) {
-		$this->remoteCmd = $remoteCmd;
-		return $this;
-	}
-
-	/**
 	 * set or unset force flag
 	 *
 	 * @param  boolean $flag                true to set the flag, false to unset it
@@ -388,8 +334,6 @@ abstract class libhg_Command_Incoming_Base extends libhg_Command_Base {
 		if (!empty($this->branches)) $options->setMultiple('-b', $this->branches);
 		if ($this->bundle !== null) $options->setSingle('--bundle', $this->bundle);
 		if ($this->limit !== null) $options->setSingle('-l', $this->limit);
-		if ($this->ssh !== null) $options->setSingle('-e', $this->ssh);
-		if ($this->remoteCmd !== null) $options->setSingle('--remotecmd', $this->remoteCmd);
 		if ($this->force) $options->setFlag('-f');
 		if ($this->newestFirst) $options->setFlag('-n');
 		if ($this->bookmarks) $options->setFlag('-B');

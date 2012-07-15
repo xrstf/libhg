@@ -5,9 +5,7 @@ multi-opts:
    revs:     { cli: '-r', alias: rev    }
    branches: { cli: '-b', alias: branch }
 single-opts:
-   limit:     { cli: '-l'          }
-   ssh:       { cli: '-e'          }
-   remoteCmd: { cli: '--remotecmd' }
+   limit: { cli: '-l' }
 flags:
    force:        { cli: '-f' }
    newestFirst:  { cli: '-n' }

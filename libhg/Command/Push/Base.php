@@ -45,20 +45,6 @@ abstract class libhg_Command_Push_Base extends libhg_Command_Base {
 	protected $branches = array();
 
 	/**
-	 * optional 'ssh' option (-e)
-	 *
-	 * @var string
-	 */
-	protected $ssh = null;
-
-	/**
-	 * optional 'remoteCmd' option (--remotecmd)
-	 *
-	 * @var string
-	 */
-	protected $remoteCmd = null;
-
-	/**
 	 * 'force' flag (-f)
 	 *
 	 * @var boolean
@@ -113,24 +99,6 @@ abstract class libhg_Command_Push_Base extends libhg_Command_Base {
 	 */
 	public function getBranches() {
 		return $this->branches;
-	}
-
-	/**
-	 * get ssh
-	 *
-	 * @return string  set value or null if not set
-	 */
-	public function getSsh() {
-		return $this->ssh;
-	}
-
-	/**
-	 * get remoteCmd
-	 *
-	 * @return string  set value or null if not set
-	 */
-	public function getRemoteCmd() {
-		return $this->remoteCmd;
 	}
 
 	/**
@@ -253,28 +221,6 @@ abstract class libhg_Command_Push_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set ssh
-	 *
-	 * @param  string $ssh              the single ssh argument
-	 * @return libhg_Command_Push_Base  self
-	 */
-	public function ssh($ssh) {
-		$this->ssh = $ssh;
-		return $this;
-	}
-
-	/**
-	 * set remoteCmd
-	 *
-	 * @param  string $remoteCmd        the single remoteCmd argument
-	 * @return libhg_Command_Push_Base  self
-	 */
-	public function remoteCmd($remoteCmd) {
-		$this->remoteCmd = $remoteCmd;
-		return $this;
-	}
-
-	/**
 	 * set or unset force flag
 	 *
 	 * @param  boolean $flag            true to set the flag, false to unset it
@@ -319,8 +265,6 @@ abstract class libhg_Command_Push_Base extends libhg_Command_Base {
 		if (!empty($this->revs)) $options->setMultiple('-r', $this->revs);
 		if (!empty($this->bookmarks)) $options->setMultiple('-B', $this->bookmarks);
 		if (!empty($this->branches)) $options->setMultiple('-b', $this->branches);
-		if ($this->ssh !== null) $options->setSingle('-e', $this->ssh);
-		if ($this->remoteCmd !== null) $options->setSingle('--remotecmd', $this->remoteCmd);
 		if ($this->force) $options->setFlag('-f');
 		if ($this->newBranch) $options->setFlag('--new-branch');
 		if ($this->insecure) $options->setFlag('--insecure');

@@ -5,12 +5,10 @@ single-args:
 multi-opts:
    revs: { cli: '-r', alias: rev }
 single-opts:
-   message:   { cli: '-m'          }
-   logfile:   { cli: '-l'          }
-   date:      { cli: '-d'          }
-   user:      { cli: '-u'          }
-   ssh:       { cli: '-e'          }
-   remoteCmd: { cli: '--remotecmd' }
+   message: { cli: '-m' }
+   logfile: { cli: '-l' }
+   date:    { cli: '-d' }
+   user:    { cli: '-u' }
 flags:
    edit:         { cli: '-e' }
    switchParent: ~

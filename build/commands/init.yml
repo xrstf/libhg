@@ -1,8 +1,5 @@
 name: init
 single-args:
    dest: { optional: false }
-single-opts:
-   ssh:       { cli: '-e'          }
-   remoteCmd: { cli: '--remotecmd' }
 flags:
    insecure: ~

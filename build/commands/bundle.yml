@@ -7,9 +7,7 @@ multi-opts:
    branches: { cli: '-b',    alias: branch }
    bases:    { cli: '--base' alias: base   }
 single-opts:
-   type:      { cli: '-t'          }
-   ssh:       { cli: '-e'          }
-   remoteCmd: { cli: '--remotecmd' }
+   type:     { cli: '-t' }
 flags:
    force:    { cli: '-f' }
    all:      { cli: '-a' }

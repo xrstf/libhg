@@ -52,20 +52,6 @@ abstract class libhg_Command_Clone_Base extends libhg_Command_Base {
 	protected $updateRev = null;
 
 	/**
-	 * optional 'ssh' option (-e)
-	 *
-	 * @var string
-	 */
-	protected $ssh = null;
-
-	/**
-	 * optional 'remoteCmd' option (--remotecmd)
-	 *
-	 * @var string
-	 */
-	protected $remoteCmd = null;
-
-	/**
 	 * 'noUpdate' flag (-U)
 	 *
 	 * @var boolean
@@ -136,24 +122,6 @@ abstract class libhg_Command_Clone_Base extends libhg_Command_Base {
 	 */
 	public function getUpdateRev() {
 		return $this->updateRev;
-	}
-
-	/**
-	 * get ssh
-	 *
-	 * @return string  set value or null if not set
-	 */
-	public function getSsh() {
-		return $this->ssh;
-	}
-
-	/**
-	 * get remoteCmd
-	 *
-	 * @return string  set value or null if not set
-	 */
-	public function getRemoteCmd() {
-		return $this->remoteCmd;
 	}
 
 	/**
@@ -283,28 +251,6 @@ abstract class libhg_Command_Clone_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set ssh
-	 *
-	 * @param  string $ssh               the single ssh argument
-	 * @return libhg_Command_Clone_Base  self
-	 */
-	public function ssh($ssh) {
-		$this->ssh = $ssh;
-		return $this;
-	}
-
-	/**
-	 * set remoteCmd
-	 *
-	 * @param  string $remoteCmd         the single remoteCmd argument
-	 * @return libhg_Command_Clone_Base  self
-	 */
-	public function remoteCmd($remoteCmd) {
-		$this->remoteCmd = $remoteCmd;
-		return $this;
-	}
-
-	/**
 	 * set or unset noUpdate flag
 	 *
 	 * @param  boolean $flag             true to set the flag, false to unset it
@@ -361,8 +307,6 @@ abstract class libhg_Command_Clone_Base extends libhg_Command_Base {
 		if (!empty($this->revs)) $options->setMultiple('-r', $this->revs);
 		if (!empty($this->branches)) $options->setMultiple('-b', $this->branches);
 		if ($this->updateRev !== null) $options->setSingle('-u', $this->updateRev);
-		if ($this->ssh !== null) $options->setSingle('-e', $this->ssh);
-		if ($this->remoteCmd !== null) $options->setSingle('--remotecmd', $this->remoteCmd);
 		if ($this->noUpdate) $options->setFlag('-U');
 		if ($this->pull) $options->setFlag('--pull');
 		if ($this->uncompressed) $options->setFlag('--uncompressed');
