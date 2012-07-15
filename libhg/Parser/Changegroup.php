@@ -9,11 +9,11 @@
  */
 
 /**
- * Parser for a changeset output
+ * Parser for a changegroup output
  *
  * @package libhg.Parser
  */
-class libhg_Parser_Changeset {
+class libhg_Parser_Changegroup {
 	public function parseOutput(libhg_Stream_Readable $reader, libhg_Repository $repo) {
 		$changesets = array();
 
@@ -21,9 +21,9 @@ class libhg_Parser_Changeset {
 			$changeset = explode("\n", trim($chunk));
 			$tags      = array();
 			$parents   = array();
-			$modified  = array();
-			$added     = array();
-			$deleted   = array();
+			$modified  = null;
+			$added     = null;
+			$deleted   = null;
 
 			$rev = $node = $date = $author = $desc = $branch = '';
 

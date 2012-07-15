@@ -21,14 +21,7 @@ class libhg_Command_Log_Cmd extends libhg_Command_Log_Base {
 	 * @return libhg_Options_Interface  options container
 	 */
 	public function getCommandOptions() {
-		$options = parent::getCommandOptions();
-
-		// make sure we have a output format we can understand
-		$options->setSingle('--style', realpath(dirname(__FILE__).'/default.style'));
-		$options->setFlag('-q');      // no progress or info messages
-		$options->setFlag('--debug'); // make hg show trivial parents (i.e. non-merge parents)
-
-		return $options;
+		return libhg_Util::prepareChangegroupOptions(parent::getCommandOptions());
 	}
 
 	/**
@@ -40,7 +33,7 @@ class libhg_Command_Log_Cmd extends libhg_Command_Log_Base {
 	 * @return libhg_Command_Log_Result
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
-		$parser     = new libhg_Parser_Changeset();
+		$parser     = new libhg_Parser_Changegroup();
 		$changesets = $parser->parseOutput($reader, $repo);
 		$code       = $reader->readReturnValue();
 
