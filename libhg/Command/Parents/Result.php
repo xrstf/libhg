@@ -9,35 +9,27 @@
  */
 
 /**
- * Generated result class for `hg parents`
+ * Result class for `hg parents`
  *
- * @generated
  * @see     http://selenic.com/hg/help/parents
  * @package libhg.Command.Parents
  */
-class libhg_Command_Parents_Result {
+class libhg_Command_Parents_Result extends libhg_Command_ChangegroupResult {
 	/**
-	 * command output
+	 * get first parent
 	 *
-	 * @var string
+	 * @return libhg_Changeset
 	 */
-	public $output;
+	public function first() {
+		return reset($this->changesets);
+	}
 
 	/**
-	 * command return code
+	 * get second parent
 	 *
-	 * @var int
+	 * @return libhg_Changeset  changeset or null
 	 */
-	public $code;
-
-	/**
-	 * Constructor
-	 *
-	 * @param string $output  command's output
-	 * @param int    $code    command's return code
-	 */
-	public function __construct($output, $code) {
-		$this->output = $output;
-		$this->code   = $code;
+	public function second() {
+		return count($this->changesets) > 1 ? $this->changesets[1] : null;
 	}
 }

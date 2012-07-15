@@ -9,13 +9,21 @@
  */
 
 /**
- * Generated command class for `hg parents`
+ * Command class for `hg parents`
  *
- * @generated
  * @see     http://selenic.com/hg/help/parents
  * @package libhg.Command.Parents
  */
 class libhg_Command_Parents_Cmd extends libhg_Command_Parents_Base {
+	/**
+	 * get command options
+	 *
+	 * @return libhg_Options_Interface  options container
+	 */
+	public function getCommandOptions() {
+		return libhg_Util::prepareChangegroupOptions(parent::getCommandOptions(), 'default');
+	}
+
 	/**
 	 * evaluate server's respond to runcommand
 	 *
@@ -25,9 +33,10 @@ class libhg_Command_Parents_Cmd extends libhg_Command_Parents_Base {
 	 * @return libhg_Command_Parents_Result
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
-		$output = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
-		$code   = $reader->readReturnValue();
+		$parser  = new libhg_Parser_Changegroup();
+		$parents = $parser->parseOutput($reader, $repo);
+		$code    = $reader->readReturnValue();
 
-		return new libhg_Command_Parents_Result($output, $code);
+		return new libhg_Command_Parents_Result($parents, $code);
 	}
 }
