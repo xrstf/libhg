@@ -12,5 +12,4 @@ flags:
    update:   { cli: '-u' }
    force:    { cli: '-f' }
    tool:     { cli: '-t' }
-   rebase:   ~
    insecure: ~

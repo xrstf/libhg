@@ -80,13 +80,6 @@ abstract class libhg_Command_Pull_Base extends libhg_Command_Base {
 	protected $tool = false;
 
 	/**
-	 * 'rebase' flag (--rebase)
-	 *
-	 * @var boolean
-	 */
-	protected $rebase = false;
-
-	/**
 	 * 'insecure' flag (--insecure)
 	 *
 	 * @var boolean
@@ -172,15 +165,6 @@ abstract class libhg_Command_Pull_Base extends libhg_Command_Base {
 	 */
 	public function getTool() {
 		return $this->tool;
-	}
-
-	/**
-	 * get rebase
-	 *
-	 * @return boolean  set value or false if not set
-	 */
-	public function getRebase() {
-		return $this->rebase;
 	}
 
 	/**
@@ -340,17 +324,6 @@ abstract class libhg_Command_Pull_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set or unset rebase flag
-	 *
-	 * @param  boolean $flag            true to set the flag, false to unset it
-	 * @return libhg_Command_Pull_Base  self
-	 */
-	public function rebase($flag = true) {
-		$this->rebase = (boolean) $flag;
-		return $this;
-	}
-
-	/**
 	 * set or unset insecure flag
 	 *
 	 * @param  boolean $flag            true to set the flag, false to unset it
@@ -378,7 +351,6 @@ abstract class libhg_Command_Pull_Base extends libhg_Command_Base {
 		if ($this->update) $options->setFlag('-u');
 		if ($this->force) $options->setFlag('-f');
 		if ($this->tool) $options->setFlag('-t');
-		if ($this->rebase) $options->setFlag('--rebase');
 		if ($this->insecure) $options->setFlag('--insecure');
 
 		return $options;

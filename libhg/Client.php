@@ -131,8 +131,8 @@ class libhg_Client implements libhg_Client_Interface {
 	 * connect
 	 *
 	 * This spawns a new hg instance and connects to its STDIN/STDOUT. By default
-	 * it will force mq, fetch, convert and rebase to be loaded and progress to
-	 * not be loaded.
+	 * it will force mq, fetch and convert to be loaded and progress to not be
+	 * loaded.
 	 *
 	 * @param  string $errorLog          optional error log filename
 	 * @param  array  $forcedExtensions  assoc array, key is extension name, value is true to force loading and false to force unloading
@@ -152,7 +152,7 @@ class libhg_Client implements libhg_Client_Interface {
 		$options = array('--cmdserver pipe');
 
 		if ($forcedExtensions === null) {
-			$forcedExtensions = array('mq' => true, 'fetch' => true, 'convert' => true, 'rebase' => true, 'progress' => false);
+			$forcedExtensions = array('mq' => true, 'fetch' => true, 'convert' => true, 'progress' => false);
 		}
 
 		foreach ($forcedExtensions as $ext => $enabled) {
