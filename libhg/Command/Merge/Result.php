@@ -9,26 +9,18 @@
  */
 
 /**
- * Generated result class for `hg merge`
+ * Result class for `hg merge`
  *
- * @generated
  * @see     http://selenic.com/hg/help/merge
  * @package libhg.Command.Merge
  */
-class libhg_Command_Merge_Result {
+class libhg_Command_Merge_Result extends libhg_Command_BaseResult {
 	/**
-	 * command output
+	 * command output (only set if preview flag was set)
 	 *
 	 * @var string
 	 */
 	public $output;
-
-	/**
-	 * command return code
-	 *
-	 * @var int
-	 */
-	public $code;
 
 	/**
 	 * Constructor
@@ -37,7 +29,7 @@ class libhg_Command_Merge_Result {
 	 * @param int    $code    command's return code
 	 */
 	public function __construct($output, $code) {
+		parent::__construct($code);
 		$this->output = $output;
-		$this->code   = $code;
 	}
 }

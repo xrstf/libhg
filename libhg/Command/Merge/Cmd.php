@@ -9,13 +9,27 @@
  */
 
 /**
- * Generated command class for `hg merge`
+ * Command class for `hg merge`
  *
- * @generated
  * @see     http://selenic.com/hg/help/merge
  * @package libhg.Command.Merge
  */
 class libhg_Command_Merge_Cmd extends libhg_Command_Merge_Base {
+	/**
+	 * get command options
+	 *
+	 * @return libhg_Options_Interface  options container
+	 */
+	public function getCommandOptions() {
+		// noninteractive
+		$options = parent::getCommandOptions()->setFlag('-y');
+
+		// be quiet if not preview mode
+		if (!$this->preview) $options->setFlag('-q');
+
+		return $options;
+	}
+
 	/**
 	 * evaluate server's respond to runcommand
 	 *
