@@ -45,41 +45,6 @@ abstract class libhg_Command_Identify_Base extends libhg_Command_Base {
 	protected $remoteCmd = null;
 
 	/**
-	 * 'num' flag (-n)
-	 *
-	 * @var boolean
-	 */
-	protected $num = false;
-
-	/**
-	 * 'id' flag (-i)
-	 *
-	 * @var boolean
-	 */
-	protected $id = false;
-
-	/**
-	 * 'branch' flag (-b)
-	 *
-	 * @var boolean
-	 */
-	protected $branch = false;
-
-	/**
-	 * 'tags' flag (-t)
-	 *
-	 * @var boolean
-	 */
-	protected $tags = false;
-
-	/**
-	 * 'bookmarks' flag (-B)
-	 *
-	 * @var boolean
-	 */
-	protected $bookmarks = false;
-
-	/**
 	 * 'insecure' flag (--insecure)
 	 *
 	 * @var boolean
@@ -120,51 +85,6 @@ abstract class libhg_Command_Identify_Base extends libhg_Command_Base {
 	 */
 	public function getRemoteCmd() {
 		return $this->remoteCmd;
-	}
-
-	/**
-	 * get num
-	 *
-	 * @return boolean  set value or false if not set
-	 */
-	public function getNum() {
-		return $this->num;
-	}
-
-	/**
-	 * get id
-	 *
-	 * @return boolean  set value or false if not set
-	 */
-	public function getId() {
-		return $this->id;
-	}
-
-	/**
-	 * get branch
-	 *
-	 * @return boolean  set value or false if not set
-	 */
-	public function getBranch() {
-		return $this->branch;
-	}
-
-	/**
-	 * get tags
-	 *
-	 * @return boolean  set value or false if not set
-	 */
-	public function getTags() {
-		return $this->tags;
-	}
-
-	/**
-	 * get bookmarks
-	 *
-	 * @return boolean  set value or false if not set
-	 */
-	public function getBookmarks() {
-		return $this->bookmarks;
 	}
 
 	/**
@@ -230,61 +150,6 @@ abstract class libhg_Command_Identify_Base extends libhg_Command_Base {
 	}
 
 	/**
-	 * set or unset num flag
-	 *
-	 * @param  boolean $flag                true to set the flag, false to unset it
-	 * @return libhg_Command_Identify_Base  self
-	 */
-	public function num($flag = true) {
-		$this->num = (boolean) $flag;
-		return $this;
-	}
-
-	/**
-	 * set or unset id flag
-	 *
-	 * @param  boolean $flag                true to set the flag, false to unset it
-	 * @return libhg_Command_Identify_Base  self
-	 */
-	public function id($flag = true) {
-		$this->id = (boolean) $flag;
-		return $this;
-	}
-
-	/**
-	 * set or unset branch flag
-	 *
-	 * @param  boolean $flag                true to set the flag, false to unset it
-	 * @return libhg_Command_Identify_Base  self
-	 */
-	public function branch($flag = true) {
-		$this->branch = (boolean) $flag;
-		return $this;
-	}
-
-	/**
-	 * set or unset tags flag
-	 *
-	 * @param  boolean $flag                true to set the flag, false to unset it
-	 * @return libhg_Command_Identify_Base  self
-	 */
-	public function tags($flag = true) {
-		$this->tags = (boolean) $flag;
-		return $this;
-	}
-
-	/**
-	 * set or unset bookmarks flag
-	 *
-	 * @param  boolean $flag                true to set the flag, false to unset it
-	 * @return libhg_Command_Identify_Base  self
-	 */
-	public function bookmarks($flag = true) {
-		$this->bookmarks = (boolean) $flag;
-		return $this;
-	}
-
-	/**
 	 * set or unset insecure flag
 	 *
 	 * @param  boolean $flag                true to set the flag, false to unset it
@@ -307,11 +172,6 @@ abstract class libhg_Command_Identify_Base extends libhg_Command_Base {
 		if ($this->rev !== null) $options->setSingle('-r', $this->rev);
 		if ($this->ssh !== null) $options->setSingle('-e', $this->ssh);
 		if ($this->remoteCmd !== null) $options->setSingle('--remotecmd', $this->remoteCmd);
-		if ($this->num) $options->setFlag('-n');
-		if ($this->id) $options->setFlag('-i');
-		if ($this->branch) $options->setFlag('-b');
-		if ($this->tags) $options->setFlag('-t');
-		if ($this->bookmarks) $options->setFlag('-B');
 		if ($this->insecure) $options->setFlag('--insecure');
 
 		return $options;

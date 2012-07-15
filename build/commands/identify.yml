@@ -6,9 +6,9 @@ single-opts:
    ssh:       { cli: '-e'          }
    remoteCmd: { cli: '--remotecmd' }
 flags:
-   num:       { cli: '-n' }
-   id:        { cli: '-i' }
-   branch:    { cli: '-b' }
-   tags:      { cli: '-t' }
-   bookmarks: { cli: '-B' }
+#  num:       { cli: '-n' }  # always on
+#  id:        { cli: '-i' }  # always on
+#  branch:    { cli: '-b' }  # always on
+#  tags:      { cli: '-t' }  # unsupported because there is no good way to parse output
+#  bookmarks: { cli: '-B' }  # unsupported because there is no good way to parse output
    insecure:  ~
