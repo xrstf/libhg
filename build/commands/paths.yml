@@ -1,3 +1,4 @@
 name: paths
-single-args:
-   name: { optional: true }
+# we always fetch all paths and return single ones per API
+#single-args:
+#   name: { optional: true }
