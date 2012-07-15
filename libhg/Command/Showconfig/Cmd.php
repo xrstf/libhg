@@ -9,9 +9,8 @@
  */
 
 /**
- * Generated command class for `hg showconfig`
+ * Command class for `hg showconfig`
  *
- * @generated
  * @see     http://selenic.com/hg/help/showconfig
  * @package libhg.Command.Showconfig
  */
@@ -22,12 +21,12 @@ class libhg_Command_Showconfig_Cmd extends libhg_Command_Showconfig_Base {
 	 * @param  libhg_Stream_Readable      $reader  readable stream
 	 * @param  libhg_Stream_Writable      $writer  writable stream
 	 * @param  libhg_Repository_Interface $repo    used repository
-	 * @return libhg_Command_Showconfig_Result
+	 * @return libhg_Hgrc
 	 */
 	public function evaluate(libhg_Stream_Readable $reader, libhg_Stream_Writable $writer, libhg_Repository_Interface $repo) {
-		$output = trim($reader->readString(libhg_Stream::CHANNEL_OUTPUT));
-		$code   = $reader->readReturnValue();
+		$output = $reader->readString(libhg_Stream::CHANNEL_OUTPUT);
+		$reader->readReturnValue();
 
-		return new libhg_Command_Showconfig_Result($output, $code);
+		return libhg_Hgrc::parsePlainOutput($output, 'hg');
 	}
 }
