@@ -115,6 +115,20 @@ meaning one hg instance, per repository).
     $repoALog = $repoA->log()->exec();
     $repoBLog = $repob->log()->exec();
 
+Limitations
+-----------
+
+* No support for Mercurial Queues (`mq`).
+* No support for `--ssh` and `--remotecmd`.
+* No interactive merging (userland code should ensure that a merge does not
+  require user interaction).
+* `annotate` can only annotate a single file per call.
+* `incoming` does not allow to view diffs/patches or change stats.
+* `outgoing` does not allow to view diffs/patches or change stats.
+
+Not being able to set `--style` option for `log`-like commands is a design
+decision and therefore not regarded as *todo*.
+
 Contributing
 ------------
 
